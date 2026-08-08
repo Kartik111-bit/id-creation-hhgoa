@@ -164,6 +164,7 @@
             letter-spacing: 0.08em;
             opacity: 0.9;
         }
+        .logo-sub span { color: var(--pink); }
         .steps {
             display: flex;
             align-items: center;
@@ -444,11 +445,11 @@
         }
         .result-section {
             display: none;
-            animation: popIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            animation: popIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
         .result-section.visible { display: block; }
         @keyframes popIn {
-            from { opacity: 0; transform: scale(0.85) translateY(30px); }
+            from { opacity: 0; transform: scale(0.9) translateY(20px); }
             to { opacity: 1; transform: scale(1) translateY(0); }
         }
         .result-card-wrapper {
@@ -459,7 +460,6 @@
             margin-bottom: 16px;
             text-align: center;
             position: relative;
-            animation: cardFloat 3s ease-in-out infinite, cardShimmer 2.5s ease-in-out infinite;
         }
         .result-card-wrapper::before {
             content: '';
@@ -469,30 +469,12 @@
             border: 2px dashed var(--pink);
             opacity: 0.5;
             pointer-events: none;
-            animation: dashRotate 8s linear infinite;
-        }
-        @keyframes cardFloat {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-        @keyframes cardShimmer {
-            0%, 100% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.3), 0 0 40px rgba(255, 0, 110, 0.1); }
-            50% { box-shadow: 0 0 35px rgba(255, 215, 0, 0.6), 0 0 70px rgba(255, 0, 110, 0.25); }
-        }
-        @keyframes dashRotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
         }
         #generatedCard {
             max-width: 100%;
             height: auto;
             border-radius: 10px;
             box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-            animation: cardPulse 2s ease-in-out infinite;
-        }
-        @keyframes cardPulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.01); }
         }
         .action-buttons {
             display: flex;
@@ -558,8 +540,6 @@
             .palm-left, .palm-right { display: none; }
         }
     </style>
-<base target="_blank">
-<base target="_blank">
 </head>
 <body>
     <div class="bg-scene">
@@ -721,7 +701,7 @@
             gender: '',
             handle: '',
             builderTitle: '',
-            generatedDataUrl: null,
+            generatedDataUrl: null
         };
 
         const uploadZone = document.getElementById('uploadZone');
@@ -752,7 +732,13 @@
             pink: '#FF006E',
             cream: '#FFF8E7',
             white: '#FFFFFF',
-            black: '#1a1a1a'
+            black: '#1a1a1a',
+            skin: '#E8B89D',
+            skinShadow: '#D4A080',
+            hairBoy: '#2C1810',
+            hairGirl: '#3D2314',
+            shirt: '#0B6B3A',
+            shirtLight: '#147A4A'
         };
 
         const titleAdjectives = {
@@ -882,50 +868,265 @@
             ctx.restore();
         }
 
-        // ===== DRAW ORIGINAL PHOTO WITH FRAME =====
-        function drawPersonWithFrame(ctx, cx, cy, targetSize, img) {
-            const aspect = img.width / img.height;
-            let drawW, drawH;
-            if (aspect > 1) {
-                drawW = targetSize;
-                drawH = targetSize / aspect;
-            } else {
-                drawH = targetSize;
-                drawW = targetSize * aspect;
-            }
+        // ===== AI AVATAR DRAWER =====
+        function drawAvatar(ctx, cx, cy, size, genderVal) {
+            const s = size;
+            const headR = s * 0.35;
 
-            const x = cx - drawW / 2;
-            const y = cy - drawH / 2;
-
-            // Rounded rect clip for photo
-            ctx.save();
-            drawRoundedRect(ctx, x, y, drawW, drawH, 12);
-            ctx.clip();
-            ctx.drawImage(img, x, y, drawW, drawH);
-            ctx.restore();
-
-            // Yellow border frame around photo
+            // Background circle (yellow glow)
+            ctx.beginPath();
+            ctx.arc(cx, cy, s * 0.55, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(255, 215, 0, 0.15)';
+            ctx.fill();
             ctx.strokeStyle = C.yellow;
-            ctx.lineWidth = 4;
-            drawRoundedRect(ctx, x - 6, y - 6, drawW + 12, drawH + 12, 16);
+            ctx.lineWidth = 3;
             ctx.stroke();
 
-            // Pink dashed inner frame
-            ctx.setLineDash([8, 6]);
-            ctx.strokeStyle = C.pink;
+            // Inner pink ring
+            ctx.beginPath();
+            ctx.arc(cx, cy, s * 0.48, 0, Math.PI * 2);
+            ctx.strokeStyle = 'rgba(255, 0, 110, 0.3)';
             ctx.lineWidth = 2;
-            drawRoundedRect(ctx, x - 2, y - 2, drawW + 4, drawH + 4, 14);
+            ctx.setLineDash([8, 6]);
             ctx.stroke();
             ctx.setLineDash([]);
 
-            // Corner decorations
-            const cs = 18;
+            // Shoulders / Body
+            ctx.beginPath();
+            ctx.ellipse(cx, cy + s * 0.42, s * 0.38, s * 0.22, 0, 0, Math.PI * 2);
+            ctx.fillStyle = C.shirt;
+            ctx.fill();
             ctx.strokeStyle = C.black;
+            ctx.lineWidth = 2;
+            ctx.stroke();
+
+            // Shirt detail - collar
+            ctx.beginPath();
+            ctx.moveTo(cx - s * 0.12, cy + s * 0.28);
+            ctx.lineTo(cx, cy + s * 0.38);
+            ctx.lineTo(cx + s * 0.12, cy + s * 0.28);
+            ctx.strokeStyle = C.yellow;
+            ctx.lineWidth = 2;
+            ctx.stroke();
+
+            // Neck
+            ctx.beginPath();
+            ctx.rect(cx - s * 0.1, cy + s * 0.08, s * 0.2, s * 0.18);
+            ctx.fillStyle = C.skinShadow;
+            ctx.fill();
+
+            // Head
+            ctx.beginPath();
+            ctx.arc(cx, cy - s * 0.05, headR, 0, Math.PI * 2);
+            ctx.fillStyle = C.skin;
+            ctx.fill();
+            ctx.strokeStyle = C.black;
+            ctx.lineWidth = 2.5;
+            ctx.stroke();
+
+            // Ears
+            ctx.beginPath();
+            ctx.ellipse(cx - headR, cy - s * 0.05, s * 0.05, s * 0.07, 0, 0, Math.PI * 2);
+            ctx.fillStyle = C.skin;
+            ctx.fill();
+            ctx.strokeStyle = C.black;
+            ctx.lineWidth = 2;
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.ellipse(cx + headR, cy - s * 0.05, s * 0.05, s * 0.07, 0, 0, Math.PI * 2);
+            ctx.fillStyle = C.skin;
+            ctx.fill();
+            ctx.stroke();
+
+            // Hair
+            if (genderVal === 'boy') {
+                // Short hair - flat top with fade
+                ctx.beginPath();
+                ctx.arc(cx, cy - s * 0.08, headR + 4, Math.PI, 0);
+                ctx.fillStyle = C.hairBoy;
+                ctx.fill();
+                ctx.strokeStyle = C.black;
+                ctx.lineWidth = 2;
+                ctx.stroke();
+                // Side fade
+                ctx.beginPath();
+                ctx.rect(cx - headR - 2, cy - s * 0.15, (headR + 2) * 2, s * 0.12);
+                ctx.fillStyle = C.hairBoy;
+                ctx.fill();
+            } else if (genderVal === 'girl') {
+                // Long flowing hair
+                ctx.beginPath();
+                ctx.arc(cx, cy - s * 0.08, headR + 6, Math.PI * 1.1, -0.1);
+                ctx.fillStyle = C.hairGirl;
+                ctx.fill();
+                ctx.strokeStyle = C.black;
+                ctx.lineWidth = 2;
+                ctx.stroke();
+                // Long hair flowing down
+                ctx.beginPath();
+                ctx.moveTo(cx - headR - 4, cy - s * 0.1);
+                ctx.quadraticCurveTo(cx - headR - 12, cy + s * 0.15, cx - headR - 6, cy + s * 0.35);
+                ctx.quadraticCurveTo(cx - headR + 2, cy + s * 0.25, cx - headR + 2, cy + s * 0.1);
+                ctx.fillStyle = C.hairGirl;
+                ctx.fill();
+                ctx.strokeStyle = C.black;
+                ctx.lineWidth = 2;
+                ctx.stroke();
+                // Right side
+                ctx.beginPath();
+                ctx.moveTo(cx + headR + 4, cy - s * 0.1);
+                ctx.quadraticCurveTo(cx + headR + 12, cy + s * 0.15, cx + headR + 6, cy + s * 0.35);
+                ctx.quadraticCurveTo(cx + headR - 2, cy + s * 0.25, cx + headR - 2, cy + s * 0.1);
+                ctx.fillStyle = C.hairGirl;
+                ctx.fill();
+                ctx.stroke();
+                // Bangs
+                ctx.beginPath();
+                ctx.moveTo(cx - headR, cy - s * 0.2);
+                ctx.quadraticCurveTo(cx - s * 0.1, cy - s * 0.05, cx, cy - s * 0.15);
+                ctx.quadraticCurveTo(cx + s * 0.1, cy - s * 0.05, cx + headR, cy - s * 0.2);
+                ctx.fillStyle = C.hairGirl;
+                ctx.fill();
+                ctx.strokeStyle = C.black;
+                ctx.lineWidth = 1.5;
+                ctx.stroke();
+            } else {
+                // Other - medium hair, androgynous
+                ctx.beginPath();
+                ctx.arc(cx, cy - s * 0.06, headR + 5, Math.PI * 1.05, -0.05);
+                ctx.fillStyle = '#4A3728';
+                ctx.fill();
+                ctx.strokeStyle = C.black;
+                ctx.lineWidth = 2;
+                ctx.stroke();
+                // Medium length sides
+                ctx.beginPath();
+                ctx.ellipse(cx - headR - 2, cy + s * 0.05, s * 0.06, s * 0.14, 0.2, 0, Math.PI * 2);
+                ctx.fillStyle = '#4A3728';
+                ctx.fill();
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.ellipse(cx + headR + 2, cy + s * 0.05, s * 0.06, s * 0.14, -0.2, 0, Math.PI * 2);
+                ctx.fillStyle = '#4A3728';
+                ctx.fill();
+                ctx.stroke();
+            }
+
+            // Sunglasses (Goa vibe!)
+            const glassY = cy - s * 0.02;
+            const glassW = s * 0.18;
+            const glassH = s * 0.12;
+            const bridge = s * 0.04;
+
+            // Left lens
+            drawRoundedRect(ctx, cx - glassW - bridge/2, glassY - glassH/2, glassW, glassH, 6);
+            ctx.fillStyle = C.black;
+            ctx.fill();
+            ctx.strokeStyle = C.yellow;
+            ctx.lineWidth = 2;
+            ctx.stroke();
+            // Lens reflection
+            ctx.beginPath();
+            ctx.moveTo(cx - glassW - bridge/2 + 4, glassY - glassH/2 + 4);
+            ctx.lineTo(cx - glassW/2 - bridge/2, glassY + 2);
+            ctx.strokeStyle = 'rgba(255,255,255,0.3)';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+
+            // Right lens
+            drawRoundedRect(ctx, cx + bridge/2, glassY - glassH/2, glassW, glassH, 6);
+            ctx.fillStyle = C.black;
+            ctx.fill();
+            ctx.strokeStyle = C.yellow;
+            ctx.lineWidth = 2;
+            ctx.stroke();
+            // Lens reflection
+            ctx.beginPath();
+            ctx.moveTo(cx + bridge/2 + 4, glassY - glassH/2 + 4);
+            ctx.lineTo(cx + glassW/2 + bridge/2, glassY + 2);
+            ctx.strokeStyle = 'rgba(255,255,255,0.3)';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+
+            // Bridge
+            ctx.beginPath();
+            ctx.moveTo(cx - bridge/2, glassY);
+            ctx.lineTo(cx + bridge/2, glassY);
+            ctx.strokeStyle = C.yellow;
             ctx.lineWidth = 3;
-            ctx.beginPath(); ctx.moveTo(x - 10, y + cs); ctx.lineTo(x - 10, y - 10); ctx.lineTo(x + cs, y - 10); ctx.stroke();
-            ctx.beginPath(); ctx.moveTo(x + drawW - cs, y - 10); ctx.lineTo(x + drawW + 10, y - 10); ctx.lineTo(x + drawW + 10, y + cs); ctx.stroke();
-            ctx.beginPath(); ctx.moveTo(x - 10, y + drawH - cs); ctx.lineTo(x - 10, y + drawH + 10); ctx.lineTo(x + cs, y + drawH + 10); ctx.stroke();
-            ctx.beginPath(); ctx.moveTo(x + drawW - cs, y + drawH + 10); ctx.lineTo(x + drawW + 10, y + drawH + 10); ctx.lineTo(x + drawW + 10, y + drawH - cs); ctx.stroke();
+            ctx.stroke();
+
+            // Smile
+            ctx.beginPath();
+            ctx.arc(cx, cy + s * 0.12, s * 0.1, 0.1, Math.PI - 0.1);
+            ctx.strokeStyle = C.black;
+            ctx.lineWidth = 2.5;
+            ctx.stroke();
+
+            // Goa flower accessory for girls
+            if (genderVal === 'girl') {
+                ctx.beginPath();
+                ctx.arc(cx + headR + 8, cy - s * 0.12, 8, 0, Math.PI * 2);
+                ctx.fillStyle = C.pink;
+                ctx.fill();
+                ctx.strokeStyle = C.yellow;
+                ctx.lineWidth = 1.5;
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.arc(cx + headR + 8, cy - s * 0.12, 3, 0, Math.PI * 2);
+                ctx.fillStyle = C.yellow;
+                ctx.fill();
+            }
+
+            // Headphones for boys (builder vibe)
+            if (genderVal === 'boy') {
+                ctx.beginPath();
+                ctx.arc(cx, cy - s * 0.05, headR + 10, Math.PI * 0.8, Math.PI * 2.2);
+                ctx.strokeStyle = C.pink;
+                ctx.lineWidth = 4;
+                ctx.stroke();
+                // Left earcup
+                drawRoundedRect(ctx, cx - headR - 14, cy - s * 0.1, 10, 18, 4);
+                ctx.fillStyle = C.yellow;
+                ctx.fill();
+                ctx.strokeStyle = C.black;
+                ctx.lineWidth = 1.5;
+                ctx.stroke();
+                // Right earcup
+                drawRoundedRect(ctx, cx + headR + 4, cy - s * 0.1, 10, 18, 4);
+                ctx.fillStyle = C.yellow;
+                ctx.fill();
+                ctx.strokeStyle = C.black;
+                ctx.lineWidth = 1.5;
+                ctx.stroke();
+            }
+
+            // Other - cool cap
+            if (genderVal === 'other') {
+                // Cap
+                ctx.beginPath();
+                ctx.arc(cx, cy - s * 0.15, headR + 3, Math.PI, 0);
+                ctx.fillStyle = C.pink;
+                ctx.fill();
+                ctx.strokeStyle = C.black;
+                ctx.lineWidth = 2;
+                ctx.stroke();
+                // Cap brim
+                ctx.beginPath();
+                ctx.ellipse(cx, cy - s * 0.08, headR + 8, 6, 0, 0, Math.PI);
+                ctx.fillStyle = C.pink;
+                ctx.fill();
+                ctx.strokeStyle = C.black;
+                ctx.lineWidth = 2;
+                ctx.stroke();
+                // Cap detail
+                ctx.beginPath();
+                ctx.moveTo(cx, cy - s * 0.28);
+                ctx.lineTo(cx, cy - s * 0.15);
+                ctx.strokeStyle = C.yellow;
+                ctx.lineWidth = 2;
+                ctx.stroke();
+            }
         }
 
         async function generateCard() {
@@ -933,235 +1134,250 @@
             generateBtn.innerHTML = '<div class="spinner"></div><span>Crafting your badge...</span>';
             await new Promise(r => setTimeout(r, 50));
 
-                const W = 1000;
-                const H = 1400;
-                canvas.width = W;
-                canvas.height = H;
+            const W = 1000;
+            const H = 1400;
+            canvas.width = W;
+            canvas.height = H;
 
-                const name = fullName.value.trim();
-                const handle = github.value.trim();
-                const title = state.builderTitle;
-                const stackVal = stack.value;
-                const vibeVal = vibe.value;
+            const name = fullName.value.trim();
+            const handle = github.value.trim();
+            const title = state.builderTitle;
+            const stackVal = stack.value;
+            const vibeVal = vibe.value;
+            const genderVal = gender.value;
 
-                // ===== CARD BACKGROUND: Goa Theme =====
-                ctx.fillStyle = C.green;
-                ctx.fillRect(0, 0, W, H);
+            // Background
+            ctx.fillStyle = C.green;
+            ctx.fillRect(0, 0, W, H);
+            const bgGrad = ctx.createRadialGradient(W / 2, H / 3, 100, W / 2, H / 2, 600);
+            bgGrad.addColorStop(0, '#147A4A');
+            bgGrad.addColorStop(1, '#0B6B3A');
+            ctx.fillStyle = bgGrad;
+            ctx.fillRect(0, 0, W, H);
 
-                const bgGrad = ctx.createRadialGradient(W / 2, H / 3, 100, W / 2, H / 2, 600);
-                bgGrad.addColorStop(0, '#147A4A');
-                bgGrad.addColorStop(1, '#0B6B3A');
-                ctx.fillStyle = bgGrad;
-                ctx.fillRect(0, 0, W, H);
+            // Grid
+            ctx.strokeStyle = 'rgba(255, 215, 0, 0.04)';
+            ctx.lineWidth = 1;
+            for (let i = 0; i < W; i += 50) { ctx.beginPath(); ctx.moveTo(i, 0); ctx.lineTo(i, H); ctx.stroke(); }
+            for (let i = 0; i < H; i += 50) { ctx.beginPath(); ctx.moveTo(0, i); ctx.lineTo(W, i); ctx.stroke(); }
 
-                // Subtle grid
-                ctx.strokeStyle = 'rgba(255, 215, 0, 0.04)';
-                ctx.lineWidth = 1;
-                for (let i = 0; i < W; i += 50) { ctx.beginPath(); ctx.moveTo(i, 0); ctx.lineTo(i, H); ctx.stroke(); }
-                for (let i = 0; i < H; i += 50) { ctx.beginPath(); ctx.moveTo(0, i); ctx.lineTo(W, i); ctx.stroke(); }
-
-                // Sun at top
+            // Sun
+            ctx.beginPath();
+            ctx.arc(W / 2, 100, 70, 0, Math.PI * 2);
+            ctx.fillStyle = C.yellow;
+            ctx.fill();
+            ctx.strokeStyle = 'rgba(255, 215, 0, 0.3)';
+            ctx.lineWidth = 2;
+            for (let i = 0; i < 12; i++) {
+                const angle = (i / 12) * Math.PI * 2;
                 ctx.beginPath();
-                ctx.arc(W / 2, 120, 80, 0, Math.PI * 2);
-                ctx.fillStyle = C.yellow;
-                ctx.fill();
-                ctx.strokeStyle = 'rgba(255, 215, 0, 0.3)';
-                ctx.lineWidth = 2;
-                for (let i = 0; i < 12; i++) {
-                    const angle = (i / 12) * Math.PI * 2;
-                    ctx.beginPath();
-                    ctx.moveTo(W / 2 + Math.cos(angle) * 95, 120 + Math.sin(angle) * 95);
-                    ctx.lineTo(W / 2 + Math.cos(angle) * 125, 120 + Math.sin(angle) * 125);
-                    ctx.stroke();
-                }
-
-                // Faint palm tree silhouettes in background
-                ctx.fillStyle = 'rgba(8, 69, 38, 0.3)';
-                drawPalmLeaf(ctx, 80, H - 200, -0.8, 90, 14);
-                drawPalmLeaf(ctx, 80, H - 200, -0.3, 100, 14);
-                drawPalmLeaf(ctx, 80, H - 200, 0.3, 90, 14);
-                drawPalmLeaf(ctx, 80, H - 200, 0.8, 80, 12);
-                drawPalmLeaf(ctx, W - 80, H - 200, -0.8 + Math.PI, 90, 14);
-                drawPalmLeaf(ctx, W - 80, H - 200, -0.3 + Math.PI, 100, 14);
-                drawPalmLeaf(ctx, W - 80, H - 200, 0.3 + Math.PI, 90, 14);
-
-                // ===== HEADER: HACKER HOUSE गोवा =====
-                ctx.font = '900 80px "Playfair Display", serif';
-                ctx.textAlign = 'center';
-                ctx.fillStyle = C.black;
-                ctx.fillText('HACKER', W / 2 + 3, 248);
-                ctx.fillText('HOUSE', W / 2 + 3, 328);
-                ctx.fillStyle = C.yellow;
-                ctx.fillText('HACKER', W / 2, 245);
-                ctx.fillText('HOUSE', W / 2, 325);
-
-                // गोवा badge
-                const goaX = W / 2 + 10;
-                const goaY = 285;
-                ctx.save();
-                ctx.translate(goaX, goaY);
-                ctx.rotate(-0.15);
-                drawRoundedRect(ctx, -55, -28, 110, 56, 20);
-                ctx.fillStyle = C.pink;
-                ctx.fill();
-                ctx.lineWidth = 3;
-                ctx.strokeStyle = C.black;
+                ctx.moveTo(W / 2 + Math.cos(angle) * 85, 100 + Math.sin(angle) * 85);
+                ctx.lineTo(W / 2 + Math.cos(angle) * 110, 100 + Math.sin(angle) * 110);
                 ctx.stroke();
-                ctx.fillStyle = C.yellow;
-                ctx.font = '700 32px "Noto Sans Devanagari", sans-serif';
+            }
+
+            // HACKER HOUSE text
+            ctx.font = '900 80px "Playfair Display", serif';
+            ctx.textAlign = 'center';
+            ctx.fillStyle = C.black;
+            ctx.fillText('HACKER', W / 2 + 3, 228);
+            ctx.fillText('HOUSE', W / 2 + 3, 308);
+            ctx.fillStyle = C.yellow;
+            ctx.fillText('HACKER', W / 2, 225);
+            ctx.fillText('HOUSE', W / 2, 305);
+
+            // गोवा badge
+            const goaX = W / 2 + 10;
+            const goaY = 265;
+            ctx.save();
+            ctx.translate(goaX, goaY);
+            ctx.rotate(-0.15);
+            drawRoundedRect(ctx, -55, -28, 110, 56, 20);
+            ctx.fillStyle = C.pink;
+            ctx.fill();
+            ctx.lineWidth = 3;
+            ctx.strokeStyle = C.black;
+            ctx.stroke();
+            ctx.fillStyle = C.yellow;
+            ctx.font = '700 32px "Noto Sans Devanagari", sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('गोवा', 0, 10);
+            ctx.restore();
+
+            // Subtitle
+            ctx.font = '500 18px "JetBrains Mono", monospace';
+            ctx.fillStyle = C.yellow;
+            ctx.textAlign = 'center';
+            ctx.fillText('GOA, INDIA', W / 2, 355);
+            ctx.font = '700 16px "JetBrains Mono", monospace';
+            ctx.fillStyle = C.pink;
+            ctx.fillText('◆ OFFICIAL BUILDER ID ◆', W / 2, 395);
+
+            // Divider
+            ctx.strokeStyle = C.yellow;
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(100, 420);
+            ctx.lineTo(W - 100, 420);
+            ctx.stroke();
+            ctx.fillStyle = C.pink;
+            ctx.beginPath();
+            ctx.moveTo(W / 2, 410);
+            ctx.lineTo(W / 2 + 10, 420);
+            ctx.lineTo(W / 2, 430);
+            ctx.lineTo(W / 2 - 10, 420);
+            ctx.closePath();
+            ctx.fill();
+            ctx.strokeStyle = C.black;
+            ctx.lineWidth = 1.5;
+            ctx.stroke();
+
+            // ===== AI AVATAR =====
+            drawAvatar(ctx, W / 2, 650, 340, genderVal);
+
+            // Corner decorations around avatar area
+            const photoX = W / 2 - 200;
+            const photoY = 460;
+            const photoSize = 400;
+            const cs = 24;
+            ctx.strokeStyle = C.yellow;
+            ctx.lineWidth = 3;
+            ctx.beginPath(); ctx.moveTo(photoX - 14, photoY + cs); ctx.lineTo(photoX - 14, photoY - 14); ctx.lineTo(photoX + cs, photoY - 14); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(photoX + photoSize - cs, photoY - 14); ctx.lineTo(photoX + photoSize + 14, photoY - 14); ctx.lineTo(photoX + photoSize + 14, photoY + cs); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(photoX - 14, photoY + photoSize - cs); ctx.lineTo(photoX - 14, photoY + photoSize + 14); ctx.lineTo(photoX + cs, photoY + photoSize + 14); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(photoX + photoSize - cs, photoY + photoSize + 14); ctx.lineTo(photoX + photoSize + 14, photoY + photoSize + 14); ctx.lineTo(photoX + photoSize + 14, photoY + photoSize - cs); ctx.stroke();
+
+            // Name
+            ctx.textAlign = 'center';
+            ctx.font = '900 56px "Playfair Display", serif';
+            ctx.fillStyle = C.black;
+            ctx.fillText(name, W / 2 + 2, 920);
+            ctx.fillStyle = C.yellow;
+            ctx.fillText(name, W / 2, 918);
+
+            const nameWidth = ctx.measureText(name).width;
+            ctx.strokeStyle = C.pink;
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            ctx.moveTo(W / 2 - nameWidth / 2, 938);
+            ctx.lineTo(W / 2 + nameWidth / 2, 938);
+            ctx.stroke();
+
+            // Builder title
+            ctx.font = '700 26px "JetBrains Mono", monospace';
+            ctx.fillStyle = C.pink;
+            ctx.fillText(title.toUpperCase(), W / 2, 978);
+
+            // Info boxes
+            const infoY = 1040;
+            const boxW = 340;
+            const boxH = 100;
+            const gap = 40;
+            const leftX = (W - (boxW * 2 + gap)) / 2;
+
+            // Stack box
+            drawRoundedRect(ctx, leftX, infoY, boxW, boxH, 12);
+            ctx.fillStyle = 'rgba(255, 215, 0, 0.1)';
+            ctx.fill();
+            ctx.strokeStyle = C.yellow;
+            ctx.lineWidth = 2;
+            ctx.stroke();
+            ctx.setLineDash([6, 4]);
+            ctx.strokeStyle = C.pink;
+            ctx.lineWidth = 1;
+            ctx.strokeRect(leftX + 4, infoY + 4, boxW - 8, boxH - 8);
+            ctx.setLineDash([]);
+            ctx.textAlign = 'center';
+            ctx.font = '700 14px "JetBrains Mono", monospace';
+            ctx.fillStyle = C.yellow;
+            ctx.fillText('STACK', leftX + boxW / 2, infoY + 32);
+            ctx.font = '900 32px "Playfair Display", serif';
+            ctx.fillStyle = C.cream;
+            ctx.fillText(stackVal, leftX + boxW / 2, infoY + 72);
+
+            // Vibe box
+            const rightX = leftX + boxW + gap;
+            drawRoundedRect(ctx, rightX, infoY, boxW, boxH, 12);
+            ctx.fillStyle = 'rgba(255, 0, 110, 0.1)';
+            ctx.fill();
+            ctx.strokeStyle = C.pink;
+            ctx.lineWidth = 2;
+            ctx.stroke();
+            ctx.setLineDash([6, 4]);
+            ctx.strokeStyle = C.yellow;
+            ctx.lineWidth = 1;
+            ctx.strokeRect(rightX + 4, infoY + 4, boxW - 8, boxH - 8);
+            ctx.setLineDash([]);
+            ctx.font = '700 14px "JetBrains Mono", monospace';
+            ctx.fillStyle = C.pink;
+            ctx.fillText('VIBE', rightX + boxW / 2, infoY + 32);
+            ctx.font = '900 28px "Playfair Display", serif';
+            ctx.fillStyle = C.cream;
+            ctx.fillText(vibeVal, rightX + boxW / 2, infoY + 72);
+
+            // Handle
+            if (handle) {
                 ctx.textAlign = 'center';
-                ctx.fillText('गोवा', 0, 10);
-                ctx.restore();
+                ctx.font = '500 22px "JetBrains Mono", monospace';
+                ctx.fillStyle = 'rgba(255, 248, 231, 0.6)';
+                ctx.fillText(handle.startsWith('@') ? handle : '@' + handle, W / 2, infoY + boxH + 45);
+            }
 
-                // Subtitle
-                ctx.font = '500 18px "JetBrains Mono", monospace';
-                ctx.fillStyle = C.yellow;
-                ctx.textAlign = 'center';
-                ctx.fillText('GOA, INDIA', W / 2, 375);
-                ctx.font = '700 16px "JetBrains Mono", monospace';
-                ctx.fillStyle = C.pink;
-                ctx.fillText('◆ OFFICIAL BUILDER ID ◆', W / 2, 415);
+            // Bottom palm trees
+            ctx.fillStyle = C.greenDark;
+            ctx.fillRect(60, H - 180, 12, 100);
+            drawPalmLeaf(ctx, 66, H - 180, -0.8, 70, 12);
+            drawPalmLeaf(ctx, 66, H - 180, -0.3, 75, 12);
+            drawPalmLeaf(ctx, 66, H - 180, 0.3, 70, 12);
+            drawPalmLeaf(ctx, 66, H - 180, 0.8, 60, 10);
+            drawPalmLeaf(ctx, 66, H - 180, -1.3, 55, 10);
 
-                // Divider
-                ctx.strokeStyle = C.yellow;
-                ctx.lineWidth = 2;
-                ctx.beginPath();
-                ctx.moveTo(100, 445);
-                ctx.lineTo(W - 100, 445);
-                ctx.stroke();
-                ctx.fillStyle = C.pink;
-                ctx.beginPath();
-                ctx.moveTo(W / 2, 435);
-                ctx.lineTo(W / 2 + 10, 445);
-                ctx.lineTo(W / 2, 455);
-                ctx.lineTo(W / 2 - 10, 445);
-                ctx.closePath();
-                ctx.fill();
-                ctx.strokeStyle = C.black;
-                ctx.lineWidth = 1.5;
-                ctx.stroke();
+            ctx.fillRect(W - 72, H - 180, 12, 100);
+            drawPalmLeaf(ctx, W - 66, H - 180, -0.8 + Math.PI, 70, 12);
+            drawPalmLeaf(ctx, W - 66, H - 180, -0.3 + Math.PI, 75, 12);
+            drawPalmLeaf(ctx, W - 66, H - 180, 0.3 + Math.PI, 70, 12);
+            drawPalmLeaf(ctx, W - 66, H - 180, 0.8 + Math.PI, 60, 10);
 
-                // ===== PERSON WITH BACKGROUND REMOVED ON GOA BG =====
-                drawPersonWithFrame(ctx, W / 2, 680, 420, state.image);
+            // Bottom bar
+            ctx.fillStyle = C.yellow;
+            ctx.fillRect(60, H - 80, W - 120, 3);
+            ctx.font = '700 16px "JetBrains Mono", monospace';
+            ctx.fillStyle = C.yellow;
+            ctx.textAlign = 'left';
+            ctx.fillText('HH GOA 2026', 60, H - 45);
+            ctx.textAlign = 'right';
+            ctx.fillStyle = C.pink;
+            ctx.fillText('#FRAMEINGOA', W - 60, H - 45);
+            const serial = 'HH26-' + Math.random().toString(36).substr(2, 6).toUpperCase();
+            ctx.font = '500 13px "JetBrains Mono", monospace';
+            ctx.fillStyle = 'rgba(255, 248, 231, 0.25)';
+            ctx.textAlign = 'center';
+            ctx.fillText(serial, W / 2, H - 45);
 
-                // ===== NAME =====
-                ctx.textAlign = 'center';
-                ctx.font = '900 56px "Playfair Display", serif';
-                ctx.fillStyle = C.black;
-                ctx.fillText(name, W / 2 + 2, 940);
-                ctx.fillStyle = C.yellow;
-                ctx.fillText(name, W / 2, 938);
+            // Noise
+            const imageData = ctx.getImageData(0, 0, W, H);
+            const data = imageData.data;
+            for (let i = 0; i < data.length; i += 4) {
+                const noise = (Math.random() - 0.5) * 6;
+                data[i] += noise;
+                data[i + 1] += noise;
+                data[i + 2] += noise;
+            }
+            ctx.putImageData(imageData, 0, 0);
 
-                const nameWidth = ctx.measureText(name).width;
-                ctx.strokeStyle = C.pink;
-                ctx.lineWidth = 3;
-                ctx.beginPath();
-                ctx.moveTo(W / 2 - nameWidth / 2, 958);
-                ctx.lineTo(W / 2 + nameWidth / 2, 958);
-                ctx.stroke();
+            const dataUrl = canvas.toDataURL('image/png', 1.0);
+            generatedCard.src = dataUrl;
+            state.generatedDataUrl = dataUrl;
 
-                // Builder title
-                ctx.font = '700 26px "JetBrains Mono", monospace';
-                ctx.fillStyle = C.pink;
-                ctx.fillText(title.toUpperCase(), W / 2, 998);
+            resultSection.classList.add('visible');
+            generateBtn.innerHTML = '<span>✓ Card Ready!</span>';
+            document.getElementById('step2').classList.remove('active');
+            document.getElementById('step3').classList.add('active');
 
-                // ===== INFO BOXES =====
-                const infoY = 1060;
-                const boxW = 340;
-                const boxH = 100;
-                const gap = 40;
-                const leftX = (W - (boxW * 2 + gap)) / 2;
-
-                // Stack box
-                drawRoundedRect(ctx, leftX, infoY, boxW, boxH, 12);
-                ctx.fillStyle = 'rgba(255, 215, 0, 0.1)';
-                ctx.fill();
-                ctx.strokeStyle = C.yellow;
-                ctx.lineWidth = 2;
-                ctx.stroke();
-                ctx.setLineDash([6, 4]);
-                ctx.strokeStyle = C.pink;
-                ctx.lineWidth = 1;
-                ctx.strokeRect(leftX + 4, infoY + 4, boxW - 8, boxH - 8);
-                ctx.setLineDash([]);
-                ctx.textAlign = 'center';
-                ctx.font = '700 14px "JetBrains Mono", monospace';
-                ctx.fillStyle = C.yellow;
-                ctx.fillText('STACK', leftX + boxW / 2, infoY + 32);
-                ctx.font = '900 32px "Playfair Display", serif';
-                ctx.fillStyle = C.cream;
-                ctx.fillText(stackVal, leftX + boxW / 2, infoY + 72);
-
-                // Vibe box
-                const rightX = leftX + boxW + gap;
-                drawRoundedRect(ctx, rightX, infoY, boxW, boxH, 12);
-                ctx.fillStyle = 'rgba(255, 0, 110, 0.1)';
-                ctx.fill();
-                ctx.strokeStyle = C.pink;
-                ctx.lineWidth = 2;
-                ctx.stroke();
-                ctx.setLineDash([6, 4]);
-                ctx.strokeStyle = C.yellow;
-                ctx.lineWidth = 1;
-                ctx.strokeRect(rightX + 4, infoY + 4, boxW - 8, boxH - 8);
-                ctx.setLineDash([]);
-                ctx.font = '700 14px "JetBrains Mono", monospace';
-                ctx.fillStyle = C.pink;
-                ctx.fillText('VIBE', rightX + boxW / 2, infoY + 32);
-                ctx.font = '900 28px "Playfair Display", serif';
-                ctx.fillStyle = C.cream;
-                ctx.fillText(vibeVal, rightX + boxW / 2, infoY + 72);
-
-                // Handle
-                if (handle) {
-                    ctx.textAlign = 'center';
-                    ctx.font = '500 22px "JetBrains Mono", monospace';
-                    ctx.fillStyle = 'rgba(255, 248, 231, 0.6)';
-                    ctx.fillText(handle.startsWith('@') ? handle : '@' + handle, W / 2, infoY + boxH + 45);
-                }
-
-                // ===== BOTTOM BAR =====
-                ctx.fillStyle = C.yellow;
-                ctx.fillRect(60, H - 80, W - 120, 3);
-                ctx.font = '700 16px "JetBrains Mono", monospace';
-                ctx.fillStyle = C.yellow;
-                ctx.textAlign = 'left';
-                ctx.fillText('HH GOA 2026', 60, H - 45);
-                ctx.textAlign = 'right';
-                ctx.fillStyle = C.pink;
-                ctx.fillText('#FRAMEINGOA', W - 60, H - 45);
-                const serial = 'HH26-' + Math.random().toString(36).substr(2, 6).toUpperCase();
-                ctx.font = '500 13px "JetBrains Mono", monospace';
-                ctx.fillStyle = 'rgba(255, 248, 231, 0.25)';
-                ctx.textAlign = 'center';
-                ctx.fillText(serial, W / 2, H - 45);
-
-                // ===== NOISE TEXTURE =====
-                const imageData = ctx.getImageData(0, 0, W, H);
-                const data = imageData.data;
-                for (let i = 0; i < data.length; i += 4) {
-                    const noise = (Math.random() - 0.5) * 6;
-                    data[i] += noise;
-                    data[i + 1] += noise;
-                    data[i + 2] += noise;
-                }
-                ctx.putImageData(imageData, 0, 0);
-
-                // ===== EXPORT =====
-                const dataUrl = canvas.toDataURL('image/png', 1.0);
-                generatedCard.src = dataUrl;
-                state.generatedDataUrl = dataUrl;
-
-                resultSection.classList.add('visible');
-                generateBtn.innerHTML = '<span>✓ Card Ready!</span>';
-                document.getElementById('step2').classList.remove('active');
-                document.getElementById('step3').classList.add('active');
-
-                setTimeout(() => {
-                    resultSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    fireConfetti();
-                }, 100);
-
+            setTimeout(() => {
+                resultSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                fireConfetti();
+            }, 100);
         }
 
         generateBtn.addEventListener('click', generateCard);
