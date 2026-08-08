@@ -931,242 +931,237 @@
             generateBtn.disabled = true;
             generateBtn.innerHTML = '<div class="spinner"></div><span>Crafting your badge...</span>';
 
-            // Wait for fonts to load so canvas text renders correctly
-            await document.fonts.ready;
-            await new Promise(r => setTimeout(r, 50));
+            // Small delay to let UI update, then draw
+            setTimeout(() => {
+                try {
+                    const W = 1000;
+                    const H = 1400;
+                    canvas.width = W;
+                    canvas.height = H;
 
-                const W = 1000;
-                const H = 1400;
-                canvas.width = W;
-                canvas.height = H;
+                    const name = fullName.value.trim();
+                    const handle = github.value.trim();
+                    const title = state.builderTitle;
+                    const stackVal = stack.value;
+                    const vibeVal = vibe.value;
 
-                const name = fullName.value.trim();
-                const handle = github.value.trim();
-                const title = state.builderTitle;
-                const stackVal = stack.value;
-                const vibeVal = vibe.value;
+                    // ===== CARD BACKGROUND: Clean Goa Theme =====
+                    ctx.fillStyle = C.green;
+                    ctx.fillRect(0, 0, W, H);
 
-                // ===== CARD BACKGROUND: Goa Theme =====
-                ctx.fillStyle = C.green;
-                ctx.fillRect(0, 0, W, H);
+                    const bgGrad = ctx.createRadialGradient(W / 2, H / 3, 100, W / 2, H / 2, 600);
+                    bgGrad.addColorStop(0, '#147A4A');
+                    bgGrad.addColorStop(1, '#0B6B3A');
+                    ctx.fillStyle = bgGrad;
+                    ctx.fillRect(0, 0, W, H);
 
-                const bgGrad = ctx.createRadialGradient(W / 2, H / 3, 100, W / 2, H / 2, 600);
-                bgGrad.addColorStop(0, '#147A4A');
-                bgGrad.addColorStop(1, '#0B6B3A');
-                ctx.fillStyle = bgGrad;
-                ctx.fillRect(0, 0, W, H);
+                    // Subtle grid pattern (background only)
+                    ctx.strokeStyle = 'rgba(255, 215, 0, 0.03)';
+                    ctx.lineWidth = 1;
+                    for (let i = 0; i < W; i += 60) { ctx.beginPath(); ctx.moveTo(i, 0); ctx.lineTo(i, H); ctx.stroke(); }
+                    for (let i = 0; i < H; i += 60) { ctx.beginPath(); ctx.moveTo(0, i); ctx.lineTo(W, i); ctx.stroke(); }
 
-                // Subtle grid
-                ctx.strokeStyle = 'rgba(255, 215, 0, 0.04)';
-                ctx.lineWidth = 1;
-                for (let i = 0; i < W; i += 50) { ctx.beginPath(); ctx.moveTo(i, 0); ctx.lineTo(i, H); ctx.stroke(); }
-                for (let i = 0; i < H; i += 50) { ctx.beginPath(); ctx.moveTo(0, i); ctx.lineTo(W, i); ctx.stroke(); }
-
-                // Sun at top
-                ctx.beginPath();
-                ctx.arc(W / 2, 120, 80, 0, Math.PI * 2);
-                ctx.fillStyle = C.yellow;
-                ctx.fill();
-                ctx.strokeStyle = 'rgba(255, 215, 0, 0.3)';
-                ctx.lineWidth = 2;
-                for (let i = 0; i < 12; i++) {
-                    const angle = (i / 12) * Math.PI * 2;
+                    // Sun at top
                     ctx.beginPath();
-                    ctx.moveTo(W / 2 + Math.cos(angle) * 95, 120 + Math.sin(angle) * 95);
-                    ctx.lineTo(W / 2 + Math.cos(angle) * 125, 120 + Math.sin(angle) * 125);
-                    ctx.stroke();
-                }
+                    ctx.arc(W / 2, 120, 80, 0, Math.PI * 2);
+                    ctx.fillStyle = C.yellow;
+                    ctx.fill();
+                    ctx.strokeStyle = 'rgba(255, 215, 0, 0.3)';
+                    ctx.lineWidth = 2;
+                    for (let i = 0; i < 12; i++) {
+                        const angle = (i / 12) * Math.PI * 2;
+                        ctx.beginPath();
+                        ctx.moveTo(W / 2 + Math.cos(angle) * 95, 120 + Math.sin(angle) * 95);
+                        ctx.lineTo(W / 2 + Math.cos(angle) * 125, 120 + Math.sin(angle) * 125);
+                        ctx.stroke();
+                    }
 
-                // Faint palm tree silhouettes in background
-                ctx.fillStyle = 'rgba(8, 69, 38, 0.3)';
-                drawPalmLeaf(ctx, 80, H - 200, -0.8, 90, 14);
-                drawPalmLeaf(ctx, 80, H - 200, -0.3, 100, 14);
-                drawPalmLeaf(ctx, 80, H - 200, 0.3, 90, 14);
-                drawPalmLeaf(ctx, 80, H - 200, 0.8, 80, 12);
-                drawPalmLeaf(ctx, W - 80, H - 200, -0.8 + Math.PI, 90, 14);
-                drawPalmLeaf(ctx, W - 80, H - 200, -0.3 + Math.PI, 100, 14);
-                drawPalmLeaf(ctx, W - 80, H - 200, 0.3 + Math.PI, 90, 14);
+                    // Faint palm tree silhouettes in background
+                    ctx.fillStyle = 'rgba(8, 69, 38, 0.25)';
+                    drawPalmLeaf(ctx, 80, H - 200, -0.8, 90, 14);
+                    drawPalmLeaf(ctx, 80, H - 200, -0.3, 100, 14);
+                    drawPalmLeaf(ctx, 80, H - 200, 0.3, 90, 14);
+                    drawPalmLeaf(ctx, 80, H - 200, 0.8, 80, 12);
+                    drawPalmLeaf(ctx, W - 80, H - 200, -0.8 + Math.PI, 90, 14);
+                    drawPalmLeaf(ctx, W - 80, H - 200, -0.3 + Math.PI, 100, 14);
+                    drawPalmLeaf(ctx, W - 80, H - 200, 0.3 + Math.PI, 90, 14);
 
-                // ===== HEADER: HACKER HOUSE गोवा =====
-                ctx.font = '900 80px "Playfair Display", serif';
-                ctx.textAlign = 'center';
-                ctx.fillStyle = C.black;
-                ctx.fillText('HACKER', W / 2 + 3, 248);
-                ctx.fillText('HOUSE', W / 2 + 3, 328);
-                ctx.fillStyle = C.yellow;
-                ctx.fillText('HACKER', W / 2, 245);
-                ctx.fillText('HOUSE', W / 2, 325);
-
-                // गोवा badge
-                const goaX = W / 2 + 10;
-                const goaY = 285;
-                ctx.save();
-                ctx.translate(goaX, goaY);
-                ctx.rotate(-0.15);
-                drawRoundedRect(ctx, -55, -28, 110, 56, 20);
-                ctx.fillStyle = C.pink;
-                ctx.fill();
-                ctx.lineWidth = 3;
-                ctx.strokeStyle = C.black;
-                ctx.stroke();
-                ctx.fillStyle = C.yellow;
-                ctx.font = '700 32px "Noto Sans Devanagari", sans-serif';
-                ctx.textAlign = 'center';
-                ctx.fillText('गोवा', 0, 10);
-                ctx.restore();
-
-                // Subtitle
-                ctx.font = '500 18px "JetBrains Mono", monospace';
-                ctx.fillStyle = C.yellow;
-                ctx.textAlign = 'center';
-                ctx.fillText('GOA, INDIA', W / 2, 375);
-                ctx.font = '700 16px "JetBrains Mono", monospace';
-                ctx.fillStyle = C.pink;
-                ctx.fillText('◆ OFFICIAL BUILDER ID ◆', W / 2, 415);
-
-                // Divider
-                ctx.strokeStyle = C.yellow;
-                ctx.lineWidth = 2;
-                ctx.beginPath();
-                ctx.moveTo(100, 445);
-                ctx.lineTo(W - 100, 445);
-                ctx.stroke();
-                ctx.fillStyle = C.pink;
-                ctx.beginPath();
-                ctx.moveTo(W / 2, 435);
-                ctx.lineTo(W / 2 + 10, 445);
-                ctx.lineTo(W / 2, 455);
-                ctx.lineTo(W / 2 - 10, 445);
-                ctx.closePath();
-                ctx.fill();
-                ctx.strokeStyle = C.black;
-                ctx.lineWidth = 1.5;
-                ctx.stroke();
-
-                // ===== PERSON WITH BACKGROUND REMOVED ON GOA BG =====
-                drawPersonWithFrame(ctx, W / 2, 680, 420, state.image);
-
-                // ===== NAME =====
-                ctx.textAlign = 'center';
-                ctx.font = '900 56px "Playfair Display", serif';
-                ctx.fillStyle = C.black;
-                ctx.fillText(name, W / 2 + 2, 940);
-                ctx.fillStyle = C.yellow;
-                ctx.fillText(name, W / 2, 938);
-
-                const nameWidth = ctx.measureText(name).width;
-                ctx.strokeStyle = C.pink;
-                ctx.lineWidth = 3;
-                ctx.beginPath();
-                ctx.moveTo(W / 2 - nameWidth / 2, 958);
-                ctx.lineTo(W / 2 + nameWidth / 2, 958);
-                ctx.stroke();
-
-                // Builder title
-                ctx.font = '700 26px "JetBrains Mono", monospace';
-                ctx.fillStyle = C.pink;
-                ctx.fillText(title.toUpperCase(), W / 2, 998);
-
-                // ===== INFO BOXES =====
-                const infoY = 1060;
-                const boxW = 340;
-                const boxH = 100;
-                const gap = 40;
-                const leftX = (W - (boxW * 2 + gap)) / 2;
-
-                // Stack box
-                drawRoundedRect(ctx, leftX, infoY, boxW, boxH, 12);
-                ctx.fillStyle = 'rgba(255, 215, 0, 0.1)';
-                ctx.fill();
-                ctx.strokeStyle = C.yellow;
-                ctx.lineWidth = 2;
-                ctx.stroke();
-                ctx.setLineDash([6, 4]);
-                ctx.strokeStyle = C.pink;
-                ctx.lineWidth = 1;
-                ctx.strokeRect(leftX + 4, infoY + 4, boxW - 8, boxH - 8);
-                ctx.setLineDash([]);
-                ctx.textAlign = 'center';
-                ctx.font = '700 14px "JetBrains Mono", monospace';
-                ctx.fillStyle = C.yellow;
-                ctx.fillText('STACK', leftX + boxW / 2, infoY + 32);
-                ctx.font = '900 32px "Playfair Display", serif';
-                ctx.fillStyle = C.cream;
-                ctx.fillText(stackVal, leftX + boxW / 2, infoY + 72);
-
-                // Vibe box
-                const rightX = leftX + boxW + gap;
-                drawRoundedRect(ctx, rightX, infoY, boxW, boxH, 12);
-                ctx.fillStyle = 'rgba(255, 0, 110, 0.1)';
-                ctx.fill();
-                ctx.strokeStyle = C.pink;
-                ctx.lineWidth = 2;
-                ctx.stroke();
-                ctx.setLineDash([6, 4]);
-                ctx.strokeStyle = C.yellow;
-                ctx.lineWidth = 1;
-                ctx.strokeRect(rightX + 4, infoY + 4, boxW - 8, boxH - 8);
-                ctx.setLineDash([]);
-                ctx.font = '700 14px "JetBrains Mono", monospace';
-                ctx.fillStyle = C.pink;
-                ctx.fillText('VIBE', rightX + boxW / 2, infoY + 32);
-                ctx.font = '900 28px "Playfair Display", serif';
-                ctx.fillStyle = C.cream;
-                ctx.fillText(vibeVal, rightX + boxW / 2, infoY + 72);
-
-                // Handle
-                if (handle) {
+                    // ===== HEADER: HACKER HOUSE गोवा =====
+                    ctx.font = '900 80px "Playfair Display", serif';
                     ctx.textAlign = 'center';
-                    ctx.font = '500 22px "JetBrains Mono", monospace';
-                    ctx.fillStyle = 'rgba(255, 248, 231, 0.6)';
-                    ctx.fillText(handle.startsWith('@') ? handle : '@' + handle, W / 2, infoY + boxH + 45);
+                    ctx.fillStyle = C.black;
+                    ctx.fillText('HACKER', W / 2 + 3, 248);
+                    ctx.fillText('HOUSE', W / 2 + 3, 328);
+                    ctx.fillStyle = C.yellow;
+                    ctx.fillText('HACKER', W / 2, 245);
+                    ctx.fillText('HOUSE', W / 2, 325);
+
+                    // गोवा badge
+                    const goaX = W / 2 + 10;
+                    const goaY = 285;
+                    ctx.save();
+                    ctx.translate(goaX, goaY);
+                    ctx.rotate(-0.15);
+                    drawRoundedRect(ctx, -55, -28, 110, 56, 20);
+                    ctx.fillStyle = C.pink;
+                    ctx.fill();
+                    ctx.lineWidth = 3;
+                    ctx.strokeStyle = C.black;
+                    ctx.stroke();
+                    ctx.fillStyle = C.yellow;
+                    ctx.font = '700 32px "Noto Sans Devanagari", sans-serif';
+                    ctx.textAlign = 'center';
+                    ctx.fillText('गोवा', 0, 10);
+                    ctx.restore();
+
+                    // Subtitle
+                    ctx.font = '500 18px "JetBrains Mono", monospace';
+                    ctx.fillStyle = C.yellow;
+                    ctx.textAlign = 'center';
+                    ctx.fillText('GOA, INDIA', W / 2, 375);
+                    ctx.font = '700 16px "JetBrains Mono", monospace';
+                    ctx.fillStyle = C.pink;
+                    ctx.fillText('◆ OFFICIAL BUILDER ID ◆', W / 2, 415);
+
+                    // Divider
+                    ctx.strokeStyle = C.yellow;
+                    ctx.lineWidth = 2;
+                    ctx.beginPath();
+                    ctx.moveTo(100, 445);
+                    ctx.lineTo(W - 100, 445);
+                    ctx.stroke();
+                    ctx.fillStyle = C.pink;
+                    ctx.beginPath();
+                    ctx.moveTo(W / 2, 435);
+                    ctx.lineTo(W / 2 + 10, 445);
+                    ctx.lineTo(W / 2, 455);
+                    ctx.lineTo(W / 2 - 10, 445);
+                    ctx.closePath();
+                    ctx.fill();
+                    ctx.strokeStyle = C.black;
+                    ctx.lineWidth = 1.5;
+                    ctx.stroke();
+
+                    // ===== PHOTO: Clean original with simple frame =====
+                    drawCleanPhoto(ctx, W / 2, 680, 400, state.image);
+
+                    // ===== NAME =====
+                    ctx.textAlign = 'center';
+                    ctx.font = '900 56px "Playfair Display", serif';
+                    ctx.fillStyle = C.black;
+                    ctx.fillText(name, W / 2 + 2, 940);
+                    ctx.fillStyle = C.yellow;
+                    ctx.fillText(name, W / 2, 938);
+
+                    const nameWidth = ctx.measureText(name).width;
+                    ctx.strokeStyle = C.pink;
+                    ctx.lineWidth = 3;
+                    ctx.beginPath();
+                    ctx.moveTo(W / 2 - nameWidth / 2, 958);
+                    ctx.lineTo(W / 2 + nameWidth / 2, 958);
+                    ctx.stroke();
+
+                    // Builder title
+                    ctx.font = '700 26px "JetBrains Mono", monospace';
+                    ctx.fillStyle = C.pink;
+                    ctx.fillText(title.toUpperCase(), W / 2, 998);
+
+                    // ===== INFO BOXES =====
+                    const infoY = 1060;
+                    const boxW = 340;
+                    const boxH = 100;
+                    const gap = 40;
+                    const leftX = (W - (boxW * 2 + gap)) / 2;
+
+                    // Stack box
+                    drawRoundedRect(ctx, leftX, infoY, boxW, boxH, 12);
+                    ctx.fillStyle = 'rgba(255, 215, 0, 0.1)';
+                    ctx.fill();
+                    ctx.strokeStyle = C.yellow;
+                    ctx.lineWidth = 2;
+                    ctx.stroke();
+                    ctx.setLineDash([6, 4]);
+                    ctx.strokeStyle = C.pink;
+                    ctx.lineWidth = 1;
+                    ctx.strokeRect(leftX + 4, infoY + 4, boxW - 8, boxH - 8);
+                    ctx.setLineDash([]);
+                    ctx.textAlign = 'center';
+                    ctx.font = '700 14px "JetBrains Mono", monospace';
+                    ctx.fillStyle = C.yellow;
+                    ctx.fillText('STACK', leftX + boxW / 2, infoY + 32);
+                    ctx.font = '900 32px "Playfair Display", serif';
+                    ctx.fillStyle = C.cream;
+                    ctx.fillText(stackVal, leftX + boxW / 2, infoY + 72);
+
+                    // Vibe box
+                    const rightX = leftX + boxW + gap;
+                    drawRoundedRect(ctx, rightX, infoY, boxW, boxH, 12);
+                    ctx.fillStyle = 'rgba(255, 0, 110, 0.1)';
+                    ctx.fill();
+                    ctx.strokeStyle = C.pink;
+                    ctx.lineWidth = 2;
+                    ctx.stroke();
+                    ctx.setLineDash([6, 4]);
+                    ctx.strokeStyle = C.yellow;
+                    ctx.lineWidth = 1;
+                    ctx.strokeRect(rightX + 4, infoY + 4, boxW - 8, boxH - 8);
+                    ctx.setLineDash([]);
+                    ctx.font = '700 14px "JetBrains Mono", monospace';
+                    ctx.fillStyle = C.pink;
+                    ctx.fillText('VIBE', rightX + boxW / 2, infoY + 32);
+                    ctx.font = '900 28px "Playfair Display", serif';
+                    ctx.fillStyle = C.cream;
+                    ctx.fillText(vibeVal, rightX + boxW / 2, infoY + 72);
+
+                    // Handle
+                    if (handle) {
+                        ctx.textAlign = 'center';
+                        ctx.font = '500 22px "JetBrains Mono", monospace';
+                        ctx.fillStyle = 'rgba(255, 248, 231, 0.6)';
+                        ctx.fillText(handle.startsWith('@') ? handle : '@' + handle, W / 2, infoY + boxH + 45);
+                    }
+
+                    // ===== BOTTOM BAR =====
+                    ctx.fillStyle = C.yellow;
+                    ctx.fillRect(60, H - 80, W - 120, 3);
+                    ctx.font = '700 16px "JetBrains Mono", monospace';
+                    ctx.fillStyle = C.yellow;
+                    ctx.textAlign = 'left';
+                    ctx.fillText('HH GOA 2026', 60, H - 45);
+                    ctx.textAlign = 'right';
+                    ctx.fillStyle = C.pink;
+                    ctx.fillText('#FRAMEINGOA', W - 60, H - 45);
+                    const serial = 'HH26-' + Math.random().toString(36).substr(2, 6).toUpperCase();
+                    ctx.font = '500 13px "JetBrains Mono", monospace';
+                    ctx.fillStyle = 'rgba(255, 248, 231, 0.25)';
+                    ctx.textAlign = 'center';
+                    ctx.fillText(serial, W / 2, H - 45);
+
+                    // ===== EXPORT =====
+                    const dataUrl = canvas.toDataURL('image/png', 1.0);
+                    generatedCard.src = dataUrl;
+                    state.generatedDataUrl = dataUrl;
+
+                    resultSection.classList.add('visible');
+                    generateBtn.innerHTML = '<span>✓ Card Ready!</span>';
+                    document.getElementById('step2').classList.remove('active');
+                    document.getElementById('step3').classList.add('active');
+
+                    setTimeout(() => {
+                        resultSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        fireConfetti();
+                    }, 100);
+
+                } catch (err) {
+                    console.error(err);
+                    showToast('Error generating card. Please refresh and try again.');
+                    generateBtn.disabled = false;
+                    generateBtn.innerHTML = '<span>Generate ID Card</span>';
                 }
-
-                // ===== BOTTOM BAR =====
-                ctx.fillStyle = C.yellow;
-                ctx.fillRect(60, H - 80, W - 120, 3);
-                ctx.font = '700 16px "JetBrains Mono", monospace';
-                ctx.fillStyle = C.yellow;
-                ctx.textAlign = 'left';
-                ctx.fillText('HH GOA 2026', 60, H - 45);
-                ctx.textAlign = 'right';
-                ctx.fillStyle = C.pink;
-                ctx.fillText('#FRAMEINGOA', W - 60, H - 45);
-                const serial = 'HH26-' + Math.random().toString(36).substr(2, 6).toUpperCase();
-                ctx.font = '500 13px "JetBrains Mono", monospace';
-                ctx.fillStyle = 'rgba(255, 248, 231, 0.25)';
-                ctx.textAlign = 'center';
-                ctx.fillText(serial, W / 2, H - 45);
-
-                // ===== NOISE TEXTURE =====
-                const imageData = ctx.getImageData(0, 0, W, H);
-                const data = imageData.data;
-                for (let i = 0; i < data.length; i += 4) {
-                    const noise = (Math.random() - 0.5) * 6;
-                    data[i] += noise;
-                    data[i + 1] += noise;
-                    data[i + 2] += noise;
-                }
-                ctx.putImageData(imageData, 0, 0);
-
-                // ===== EXPORT =====
-                const dataUrl = canvas.toDataURL('image/png', 1.0);
-                generatedCard.src = dataUrl;
-                state.generatedDataUrl = dataUrl;
-
-                resultSection.classList.add('visible');
-                generateBtn.innerHTML = '<span>✓ Card Ready!</span>';
-                document.getElementById('step2').classList.remove('active');
-                document.getElementById('step3').classList.add('active');
-
-                setTimeout(() => {
-                    resultSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    fireConfetti();
-                }, 100);
-
+            }, 100);
         }
 
-        generateBtn.addEventListener('click', generateCard);
+                generateBtn.addEventListener('click', generateCard);
 
         downloadBtn.addEventListener('click', () => {
             const link = document.createElement('a');
