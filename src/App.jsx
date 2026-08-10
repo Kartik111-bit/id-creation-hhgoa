@@ -25,7 +25,7 @@ const titleAdjectives = {
   'Design': ['Pixel', 'Motion', 'Interface', 'Visual', 'Vector'],
   'Product': ['Growth', 'Strategy', 'Vision', 'PMF', 'Vibe'],
   'AI/ML': ['Neural', 'Tensor', 'Model', 'Prompt', 'GenAI'],
-  'Blockchain': ['Smart Contract', 'On-Chain', 'Web3', 'Protocol', 'DeFi'],
+  'Blockchain': ['On-Chain', 'Smart Contract', 'Web3', 'Protocol', 'DeFi'],
   'Hardware': ['Embedded', 'IoT', 'Circuit', 'Silicon', 'Robotics'],
   'Other': ['Wildcard', 'Renaissance', 'Hybrid', 'Anomaly', 'Maverick']
 };
@@ -327,28 +327,33 @@ export default function App() {
         ctx.textAlign = 'center';
         ctx.fillText('✦ OFFICIAL BUILDER PASS ✦', contentX + 180, headerY + 28);
 
-        // 2:47 PM STUDIO STAMP (PROMINENT & MUCH BIGGER AS REQUESTED)
-        const studioX = cardX + cardW - 170;
-        const studioY = headerY + 24;
+        // 2:47 PM STUDIO STAMP (EXTRA BIG & EXTRA BOLD!)
+        const studioX = cardX + cardW - 180;
+        const studioY = headerY + 22;
         ctx.save();
         ctx.translate(studioX, studioY);
         ctx.rotate(0.06);
 
-        // Target Circle Ring (Larger: Pink 24px, Gold 14px, Black 6px)
-        ctx.beginPath(); ctx.arc(85, -20, 24, 0, Math.PI * 2); ctx.fillStyle = C.pink; ctx.fill();
-        ctx.beginPath(); ctx.arc(85, -20, 14, 0, Math.PI * 2); ctx.fillStyle = C.gold; ctx.fill();
-        ctx.beginPath(); ctx.arc(85, -20, 6, 0, Math.PI * 2); ctx.fillStyle = C.black; ctx.fill();
-        ctx.lineWidth = 2.5; ctx.strokeStyle = C.black; ctx.stroke();
+        // Target Circle Ring (Extra Large: Pink 28px, Gold 16px, Black 7px)
+        ctx.beginPath(); ctx.arc(105, -24, 28, 0, Math.PI * 2); ctx.fillStyle = C.pink; ctx.fill();
+        ctx.beginPath(); ctx.arc(105, -24, 16, 0, Math.PI * 2); ctx.fillStyle = C.gold; ctx.fill();
+        ctx.beginPath(); ctx.arc(105, -24, 7, 0, Math.PI * 2); ctx.fillStyle = C.black; ctx.fill();
+        ctx.lineWidth = 3; ctx.strokeStyle = C.black; ctx.stroke();
 
-        // 2:47PM Headline Font Size 48px (Big & Bold!)
-        ctx.font = '900 48px "JetBrains Mono", monospace';
-        ctx.fillStyle = C.gold;
+        // 2:47PM Headline Font Size 56px (EXTRA BIG & EXTRA BOLD!)
+        ctx.font = '900 56px "JetBrains Mono", monospace';
+        ctx.fillStyle = C.black;
         ctx.textAlign = 'center';
+        ctx.fillText('2:47PM', 2, 14); // Black drop shadow
+        ctx.fillStyle = C.gold;
         ctx.fillText('2:47PM', 0, 12);
 
-        // STUDIO Subtitle Font Size 24px
-        ctx.font = '900 24px "JetBrains Mono", monospace';
-        ctx.fillText('STUDIO', 0, 44);
+        // STUDIO Subtitle Font Size 28px
+        ctx.font = '900 28px "JetBrains Mono", monospace';
+        ctx.fillStyle = C.black;
+        ctx.fillText('STUDIO', 2, 48);
+        ctx.fillStyle = C.gold;
+        ctx.fillText('STUDIO', 0, 46);
         ctx.restore();
 
         // HACKER HOUSE Stacked Serif Logo Box
@@ -432,8 +437,8 @@ export default function App() {
         drawRoundedRect(ctx, photoX, photoY, photoSize, photoSize, 32);
         ctx.strokeStyle = C.black; ctx.lineWidth = 5; ctx.stroke();
 
-        // 6. BUILDER NAME WITH GOLD HIGHLIGHT BAR UNDERNEATH
-        const nameY = photoY + photoSize + 60;
+        // 6. BUILDER NAME & SUBTITLE
+        const nameY = photoY + photoSize + 54;
         ctx.font = '900 48px "Plus Jakarta Sans", sans-serif';
         const nameWidth = ctx.measureText(fullName.trim()).width;
 
@@ -444,12 +449,36 @@ export default function App() {
         ctx.textAlign = 'left';
         ctx.fillText(fullName.trim(), contentX, nameY);
 
-        ctx.font = '800 24px "Plus Jakarta Sans", sans-serif';
+        ctx.font = '800 22px "Plus Jakarta Sans", sans-serif';
         ctx.fillStyle = C.gold;
-        ctx.fillText(stack.toUpperCase() + ' Builder  ·  Hacker House Goa', contentX, nameY + 44);
+        ctx.fillText(stack.toUpperCase() + ' Builder  ·  Hacker House Goa', contentX, nameY + 40);
 
-        // 7. BOTTOM BARCODE + TAGLINE SECTION
-        const bottomY = cardY + cardH - 130;
+        // 7. NEW: ★ BUILDER TITLE BADGE (MATCHING USER SCREENSHOT PILL BADGE)
+        const badgeTitleText = '★ ' + (builderTitle || 'On-Chain Surfer');
+        const badgeY = nameY + 58;
+        ctx.font = '900 22px "Plus Jakarta Sans", sans-serif';
+        const badgeTextWidth = ctx.measureText(badgeTitleText).width;
+        const badgeW = Math.max(340, badgeTextWidth + 44);
+        const badgeH = 50;
+
+        // Black Drop Shadow Box
+        drawRoundedRect(ctx, contentX + 4, badgeY + 4, badgeW, badgeH, 16);
+        ctx.fillStyle = C.black; ctx.fill();
+
+        // Dark Purple/Black Pill Fill
+        drawRoundedRect(ctx, contentX, badgeY, badgeW, badgeH, 16);
+        ctx.fillStyle = '#22001F'; ctx.fill();
+
+        // Hot Pink Border (#FF007F)
+        ctx.strokeStyle = C.pink; ctx.lineWidth = 3.5; ctx.stroke();
+
+        // White Bold Text Inside Pill
+        ctx.fillStyle = C.white;
+        ctx.textAlign = 'left';
+        ctx.fillText(badgeTitleText, contentX + 22, badgeY + 33);
+
+        // 8. BOTTOM BARCODE + TAGLINE SECTION
+        const bottomY = cardY + cardH - 120;
         drawBarcode(ctx, contentX, bottomY, 260, 60);
 
         ctx.strokeStyle = 'rgba(255, 255, 255, 0.4)';
@@ -661,7 +690,7 @@ export default function App() {
               <button
                 className="btn btn-x"
                 onClick={() => {
-                  const text = `Just generated my official Lanyard Badge for Hacker House Goa 2026! ⚡✦\n\nName: ${fullName}\nStack: ${stack}\n\n#FrameInGoa @hh_goa`;
+                  const text = `Just generated my official Lanyard Badge for Hacker House Goa 2026! ⚡✦\n\nName: ${fullName}\nStack: ${stack}\nTitle: ★ ${builderTitle}\n\n#FrameInGoa @hh_goa`;
                   navigator.clipboard.writeText(text);
                   showToast('Caption copied! Opening X...');
                   window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`, '_blank');
