@@ -4,6 +4,7 @@
   --green-card: #08291B;
   --gold: #F9B828;
   --pink: #FF007F;
+  --crimson: #E51A4C;
   --cyan: #00F5FF;
   --lime: #39FF14;
   --white: #FFFFFF;
@@ -78,7 +79,7 @@ body {
   padding: 24px 18px 60px;
 }
 
-/* Header Area from Screenshot */
+/* Header Area */
 .header {
   text-align: center;
   margin-bottom: 28px;
@@ -92,31 +93,31 @@ body {
   margin-bottom: 24px;
 }
 
-/* 2:47PM STUDIO Logo */
+/* 2:47PM STUDIO Logo - LARGER & BOLDER */
 .studio-brand {
   text-align: left;
 }
 
 .studio-title {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 1.6rem;
+  font-size: 2.4rem;
   font-weight: 900;
   color: var(--gold);
   line-height: 0.9;
   letter-spacing: -0.04em;
-  text-shadow: 2px 2px 0px var(--black);
+  text-shadow: 3px 3px 0px var(--black);
 }
 
 .studio-subtitle {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.8rem;
+  font-size: 1.1rem;
   font-weight: 900;
   color: var(--gold);
-  letter-spacing: 0.14em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
 }
 
-/* Top Right Countdown Timer Pill from Screenshot */
+/* Top Right Countdown Timer Pill */
 .countdown-pill {
   display: inline-flex;
   flex-direction: column;
@@ -147,7 +148,7 @@ body {
   letter-spacing: 0.06em;
 }
 
-/* Middle Header Pill from Screenshot */
+/* Middle Header Pill */
 .middle-header-pill {
   display: inline-block;
   background: var(--gold);
@@ -165,7 +166,7 @@ body {
   max-width: 100%;
 }
 
-/* Main Headline Hero Stacked Logo from Screenshot */
+/* Main Headline Hero Stacked Logo */
 .hero-title-box {
   position: relative;
   display: inline-block;
@@ -201,7 +202,7 @@ body {
   z-index: 2;
 }
 
-/* Location Badge Pill from Screenshot */
+/* Location Badge Pill */
 .location-pill {
   display: inline-block;
   background: #042618;
@@ -549,6 +550,8 @@ select option {
   .container { padding: 16px 12px 40px; }
   .hero-title { font-size: 2.8rem; }
   .devanagari-sticker { font-size: 1.4rem; padding: 2px 16px; }
+  .studio-title { font-size: 1.8rem; }
+  .studio-subtitle { font-size: 0.9rem; }
   .card { padding: 18px; }
   .field-row { grid-template-columns: 1fr; }
 }

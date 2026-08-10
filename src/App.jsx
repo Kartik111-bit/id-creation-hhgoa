@@ -327,27 +327,33 @@ export default function App() {
         ctx.textAlign = 'center';
         ctx.fillText('✦ OFFICIAL BUILDER PASS ✦', contentX + 180, headerY + 28);
 
-        // 2:47 PM STUDIO Stamp (Top Right)
-        const studioX = cardX + cardW - 140;
-        const studioY = headerY + 15;
+        // 2:47 PM STUDIO STAMP (PROMINENT & MUCH BIGGER AS REQUESTED)
+        const studioX = cardX + cardW - 170;
+        const studioY = headerY + 24;
         ctx.save();
         ctx.translate(studioX, studioY);
         ctx.rotate(0.06);
-        ctx.beginPath(); ctx.arc(45, -12, 14, 0, Math.PI * 2); ctx.fillStyle = C.pink; ctx.fill();
-        ctx.beginPath(); ctx.arc(45, -12, 8, 0, Math.PI * 2); ctx.fillStyle = C.gold; ctx.fill();
-        ctx.beginPath(); ctx.arc(45, -12, 3, 0, Math.PI * 2); ctx.fillStyle = C.black; ctx.fill();
 
-        ctx.font = '900 28px "JetBrains Mono", monospace';
+        // Target Circle Ring (Larger: Pink 24px, Gold 14px, Black 6px)
+        ctx.beginPath(); ctx.arc(85, -20, 24, 0, Math.PI * 2); ctx.fillStyle = C.pink; ctx.fill();
+        ctx.beginPath(); ctx.arc(85, -20, 14, 0, Math.PI * 2); ctx.fillStyle = C.gold; ctx.fill();
+        ctx.beginPath(); ctx.arc(85, -20, 6, 0, Math.PI * 2); ctx.fillStyle = C.black; ctx.fill();
+        ctx.lineWidth = 2.5; ctx.strokeStyle = C.black; ctx.stroke();
+
+        // 2:47PM Headline Font Size 48px (Big & Bold!)
+        ctx.font = '900 48px "JetBrains Mono", monospace';
         ctx.fillStyle = C.gold;
         ctx.textAlign = 'center';
-        ctx.fillText('2:47PM', 0, 8);
-        ctx.font = '900 15px "JetBrains Mono", monospace';
-        ctx.fillText('STUDIO', 0, 28);
+        ctx.fillText('2:47PM', 0, 12);
+
+        // STUDIO Subtitle Font Size 24px
+        ctx.font = '900 24px "JetBrains Mono", monospace';
+        ctx.fillText('STUDIO', 0, 44);
         ctx.restore();
 
         // HACKER HOUSE Stacked Serif Logo Box
         const logoBoxX = contentX;
-        const logoBoxY = headerY + 62;
+        const logoBoxY = headerY + 68;
         const logoBoxW = 340;
         const logoBoxH = 220;
 
