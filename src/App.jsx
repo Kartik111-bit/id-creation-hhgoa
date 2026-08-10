@@ -214,6 +214,94 @@ export default function App() {
     ctx.strokeStyle = C.black; ctx.lineWidth = 4; ctx.stroke();
   };
 
+  // RETRO GOA BACKDROP STICKERS & GRAPHICS
+  const drawSealStamp = (ctx, cx, cy, radius) => {
+    ctx.save();
+    ctx.translate(cx, cy);
+    ctx.rotate(-0.1);
+    ctx.beginPath(); ctx.arc(0, 0, radius, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(250, 248, 240, 0.95)'; ctx.fill();
+    ctx.strokeStyle = '#0B5639'; ctx.lineWidth = 4.5; ctx.stroke();
+
+    ctx.beginPath(); ctx.arc(0, 0, radius - 10, 0, Math.PI * 2);
+    ctx.strokeStyle = C.gold; ctx.lineWidth = 2.5; ctx.stroke();
+
+    ctx.font = '28px sans-serif'; ctx.textAlign = 'center'; ctx.fillText('🌴', 0, 8);
+
+    ctx.font = '900 11px "JetBrains Mono", monospace';
+    ctx.fillStyle = '#0B5639';
+    ctx.fillText('BUILD IN GOA', 0, -radius + 22);
+    ctx.fillText('SHIP FROM PARADISE', 0, radius - 12);
+    ctx.restore();
+  };
+
+  const drawPostageStamp = (ctx, x, y, w, h) => {
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.rotate(0.08);
+    drawRoundedRect(ctx, 0, 0, w, h, 8);
+    ctx.fillStyle = 'rgba(250, 248, 240, 0.95)'; ctx.fill();
+    ctx.strokeStyle = C.pink; ctx.lineWidth = 3.5; ctx.stroke();
+
+    ctx.font = '900 14px "JetBrains Mono", monospace'; ctx.fillStyle = C.crimson;
+    ctx.fillText('GOA 2026', 12, 24);
+    ctx.font = '32px sans-serif'; ctx.fillText('🌅🌴', w / 2 - 20, h - 14);
+    ctx.restore();
+  };
+
+  const drawLetsBuildSticker = (ctx, x, y) => {
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.rotate(-0.12);
+    drawRoundedRect(ctx, 0, 0, 130, 48, 12);
+    ctx.fillStyle = C.gold; ctx.fill();
+    ctx.strokeStyle = C.black; ctx.lineWidth = 3.5; ctx.stroke();
+    ctx.font = '900 15px "Playfair Display", serif'; ctx.fillStyle = C.black;
+    ctx.textAlign = 'center';
+    ctx.fillText("LET'S BUILD!", 65, 30);
+    ctx.restore();
+  };
+
+  const drawSignpost = (ctx, x, y) => {
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.fillStyle = '#8B4513'; ctx.fillRect(40, 0, 12, 160);
+    ctx.strokeStyle = C.black; ctx.lineWidth = 2; ctx.strokeRect(40, 0, 12, 160);
+
+    const signs = [
+      { text: 'BUILD ➔', bg: C.gold, y: 15 },
+      { text: 'SHIP ➔', bg: C.pink, y: 60 },
+      { text: 'REPEAT ➔', bg: C.lime, y: 105 }
+    ];
+    signs.forEach(s => {
+      drawRoundedRect(ctx, 0, s.y, 90, 32, 6);
+      ctx.fillStyle = s.bg; ctx.fill();
+      ctx.strokeStyle = C.black; ctx.lineWidth = 2.5; ctx.stroke();
+      ctx.font = '900 12px "JetBrains Mono", monospace'; ctx.fillStyle = C.black;
+      ctx.textAlign = 'center'; ctx.fillText(s.text, 45, s.y + 21);
+    });
+    ctx.restore();
+  };
+
+  const drawSurfboards = (ctx, x, y) => {
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.save(); ctx.rotate(-0.15);
+    drawRoundedRect(ctx, 0, 0, 32, 120, 16);
+    ctx.fillStyle = C.gold; ctx.fill();
+    ctx.strokeStyle = C.black; ctx.lineWidth = 3; ctx.stroke();
+    ctx.fillStyle = C.pink; ctx.fillRect(14, 0, 4, 120);
+    ctx.restore();
+
+    ctx.save(); ctx.translate(24, 10); ctx.rotate(0.12);
+    drawRoundedRect(ctx, 0, 0, 32, 120, 16);
+    ctx.fillStyle = C.pink; ctx.fill();
+    ctx.strokeStyle = C.black; ctx.lineWidth = 3; ctx.stroke();
+    ctx.fillStyle = C.white; ctx.fillRect(14, 0, 4, 120);
+    ctx.restore();
+    ctx.restore();
+  };
+
   const generateCard = () => {
     if (!imageObj || fullName.trim().length < 2 || !stack || !vibe || !gender) return;
     setIsGenerating(true);
@@ -270,9 +358,18 @@ export default function App() {
         ctx.textAlign = 'left';
         ctx.fillText('HOUSE', -40, H - 100);
 
-        // Floating Yellow Starbursts Behind Card
-        drawStarburst(ctx, 160, 480, 14, 110, 50, C.gold);
-        drawStarburst(ctx, W - 140, 1280, 12, 60, 28, C.lime);
+        // FLOATING STICKERS & RETRO GOA ELEMENTS IN BACKDROP
+        drawSealStamp(ctx, 130, 210, 65);
+        drawPostageStamp(ctx, W - 180, 160, 120, 85);
+
+        drawLetsBuildSticker(ctx, 35, 760);
+        drawSignpost(ctx, W - 145, 720);
+
+        drawSurfboards(ctx, W - 140, 1260);
+
+        // Floating Yellow/Lime Starbursts & Sparkles
+        drawStarburst(ctx, 150, 510, 14, 90, 40, C.gold);
+        drawStarburst(ctx, 120, 1240, 12, 50, 24, C.lime);
 
         // Wavy Accent Line Behind Card
         ctx.strokeStyle = 'rgba(249, 184, 40, 0.35)';
@@ -327,7 +424,7 @@ export default function App() {
         ctx.textAlign = 'center';
         ctx.fillText('✦ OFFICIAL BUILDER PASS ✦', contentX + 180, headerY + 28);
 
-        // 2:47 PM STUDIO STAMP — RETRO MARKER DISPLAY FONT STYLE FROM SCREENSHOT
+        // 2:47 PM STUDIO STAMP — RETRO MARKER DISPLAY FONT STYLE
         const studioX = cardX + cardW - 175;
         const studioY = headerY + 22;
         ctx.save();
@@ -340,7 +437,7 @@ export default function App() {
         ctx.beginPath(); ctx.arc(112, -26, 7, 0, Math.PI * 2); ctx.fillStyle = C.black; ctx.fill();
         ctx.lineWidth = 3; ctx.strokeStyle = C.black; ctx.stroke();
 
-        // 2:47PM Headline in 'Permanent Marker', cursive (Exact font style from screenshot!)
+        // 2:47PM Headline in 'Permanent Marker', cursive
         ctx.font = '400 58px "Permanent Marker", cursive';
         ctx.fillStyle = C.black;
         ctx.textAlign = 'center';
@@ -453,7 +550,7 @@ export default function App() {
         ctx.fillStyle = C.gold;
         ctx.fillText(stack.toUpperCase() + ' Builder  ·  Hacker House Goa', contentX, nameY + 40);
 
-        // 7. ★ BUILDER TITLE BADGE (MATCHING USER SCREENSHOT PILL BADGE)
+        // 7. ★ BUILDER TITLE BADGE
         const badgeTitleText = '★ ' + (builderTitle || 'On-Chain Surfer');
         const badgeY = nameY + 58;
         ctx.font = '900 22px "Plus Jakarta Sans", sans-serif';
@@ -461,18 +558,14 @@ export default function App() {
         const badgeW = Math.max(340, badgeTextWidth + 44);
         const badgeH = 50;
 
-        // Black Drop Shadow Box
         drawRoundedRect(ctx, contentX + 4, badgeY + 4, badgeW, badgeH, 16);
         ctx.fillStyle = C.black; ctx.fill();
 
-        // Dark Purple/Black Pill Fill
         drawRoundedRect(ctx, contentX, badgeY, badgeW, badgeH, 16);
         ctx.fillStyle = '#1A0018'; ctx.fill();
 
-        // Darker Hot Pink Border (#D6006E)
         ctx.strokeStyle = C.pink; ctx.lineWidth = 3.5; ctx.stroke();
 
-        // White Bold Text Inside Pill
         ctx.fillStyle = C.white;
         ctx.textAlign = 'left';
         ctx.fillText(badgeTitleText, contentX + 22, badgeY + 33);
@@ -518,14 +611,15 @@ export default function App() {
       <div className="bg-watermark wm-top">HACKER</div>
       <div className="bg-watermark wm-bottom">HOUSE</div>
 
-      <div className="floating-sticker fs-1">🏝️</div>
-      <div className="floating-sticker fs-2">⚡</div>
-      <div className="floating-sticker fs-3">🚀</div>
-      <div className="floating-sticker fs-4">🔥</div>
+      {/* Retro Goa Background Stickers in Web UI */}
+      <div className="floating-sticker fs-1">🌴</div>
+      <div className="floating-sticker fs-2">🏄‍♂️</div>
+      <div className="floating-sticker fs-3">🛵</div>
+      <div className="floating-sticker fs-4">⚡</div>
 
       <div className="container">
         <header className="header">
-          {/* Top Row: Studio Brand & Countdown Pill from Screenshot */}
+          {/* Top Row: Studio Brand & Countdown Pill */}
           <div className="header-top-row">
             <div className="studio-brand">
               <div className="studio-title">2:47PM</div>
@@ -538,12 +632,12 @@ export default function App() {
             </div>
           </div>
 
-          {/* Middle Header Pill from Screenshot */}
+          {/* Middle Header Pill */}
           <div className="middle-header-pill">
             HACKER HOUSE GOA 2026 · OFFICIAL BUILDER PASS ✦
           </div>
 
-          {/* Hero Stacked Title + Hot Pink Devanagari Goa Sticker from Screenshot */}
+          {/* Hero Stacked Title + Hot Pink Devanagari Goa Sticker */}
           <div className="hero-title-box">
             <h1 className="hero-title">
               HACKER<br />HOUSE
@@ -551,7 +645,7 @@ export default function App() {
             <div className="devanagari-sticker">गोवा</div>
           </div>
 
-          {/* Location Badge Pill from Screenshot */}
+          {/* Location Badge Pill */}
           <div>
             <div className="location-pill">
               GOA, INDIA  ·  28 - 31 OCT 2026
