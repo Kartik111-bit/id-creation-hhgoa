@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="description" content="Generate your official HH Goa 2026 Vibrant Neon Maximalist Lanyard Pass">
+    <meta name="description" content="Generate your official HH Goa 2026 2:47PM Studio Lanyard Pass">
     <meta name="theme-color" content="#11002C">
-    <meta property="og:title" content="Hacker House Goa 2026 — Maximalist Neon Pass Generator">
-    <meta property="og:description" content="Generate your official high-voltage maximalist neon Lanyard Pass for HH Goa 2026. Upload your photo, pick your stack & vibe, and get a high-resolution badge ready to share.">
+    <meta property="og:title" content="Hacker House Goa 2026 — Official Lanyard Pass Generator">
+    <meta property="og:description" content="Generate your official 2:47PM Studio Lanyard Pass for HH Goa 2026. Upload your photo, pick your stack & vibe, and get a high-resolution badge ready to share.">
     <meta property="og:image" content="https://gitparthwandre.github.io/id-creation-hhgoa/og-image.png">
     <meta property="og:url" content="https://gitparthwandre.github.io/id-creation-hhgoa/">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Hacker House Goa 2026 — Maximalist Neon Pass Generator">
-    <meta name="twitter:description" content="Generate your official high-voltage maximalist neon Lanyard Pass for HH Goa 2026. Upload your photo, pick your stack & vibe, and get a high-resolution badge ready to share.">
+    <meta name="twitter:title" content="Hacker House Goa 2026 — Official Lanyard Pass Generator">
+    <meta name="twitter:description" content="Generate your official 2:47PM Studio Lanyard Pass for HH Goa 2026. Upload your photo, pick your stack & vibe, and get a high-resolution badge ready to share.">
     <meta name="twitter:image" content="https://gitparthwandre.github.io/id-creation-hhgoa/og-image.png">
-    <title>Hacker House Goa 2026 — Maximalist Neon Pass ⚡</title>
+    <title>Hacker House Goa 2026 — 2:47PM Studio Lanyard Pass ✦</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=Plus+Jakarta+Sans:wght@500;700;800;900&family=JetBrains+Mono:wght@500;700;800&family=Noto+Sans+Devanagari:wght@700;900&display=swap" rel="stylesheet">
@@ -149,7 +149,7 @@
         }
 
         .main-title {
-            font-size: 2.3rem;
+            font-size: 2.2rem;
             font-weight: 900;
             text-transform: uppercase;
             letter-spacing: -0.02em;
@@ -558,7 +558,7 @@
         <header class="header">
             <div class="studio-pill">
                 <span>✦</span>
-                <span>MAXIMALIST NEON LANYARD PASS · GOA 2026</span>
+                <span>2:47 PM STUDIO · HACKER HOUSE GOA 2026</span>
                 <span>✦</span>
             </div>
 
@@ -567,9 +567,9 @@
                 <div class="countdown-timer" id="countdownTimer">78D : 02H : 11M : 43S</div>
             </div>
 
-            <h1 class="main-title">BUILD YOUR VIBRANT BUILDER BADGE</h1>
+            <h1 class="main-title">BUILD YOUR OFFICIAL LANYARD PASS</h1>
             <p class="sub-caption">
-                Upload your portrait photo, pick your details, and download your <span class="highlight-tag">1200×1800</span> maximalist neon lanyard pass.
+                Upload your portrait photo, pick your details, and download your <span class="highlight-tag">1200×1800</span> studio lanyard pass.
             </p>
         </header>
 
@@ -649,18 +649,18 @@
         </div>
 
         <button class="btn btn-primary" id="generateBtn" disabled>
-            <span>GENERATE NEON PASS ⚡</span>
+            <span>GENERATE ID CARD ⚡</span>
         </button>
 
         <div class="result-section" id="resultSection">
             <div class="result-card-wrapper">
-                <img id="generatedCard" alt="Hacker House Goa 2026 Official Maximalist Neon Lanyard Badge" />
+                <img id="generatedCard" alt="Hacker House Goa 2026 Official 2:47PM Studio Lanyard Pass" />
             </div>
 
             <div class="action-buttons">
-                <button class="btn btn-primary" id="downloadBtn"><span>⬇️ Download High-Res Badge</span></button>
+                <button class="btn btn-primary" id="downloadBtn"><span>⬇️ Download High-Res Pass</span></button>
                 <button class="btn btn-x" id="shareBtn"><span>𝕏 Share to X (#FrameInGoa)</span></button>
-                <button class="btn btn-secondary" id="resetBtn"><span>↺ Create Another Badge</span></button>
+                <button class="btn btn-secondary" id="resetBtn"><span>↺ Create Another Pass</span></button>
             </div>
         </div>
 
@@ -705,7 +705,7 @@
         const ctx = canvas.getContext('2d');
         const toast = document.getElementById('toast');
 
-        // Color Constants (Vibrant Neon Maximalist Palette)
+        // Color Constants
         const C = {
             yellow: '#FFE600',
             pink: '#FF007F',
@@ -856,7 +856,7 @@
             ctx.closePath();
         }
 
-        // Helper to draw 12-Point Metallic Starburst
+        // Helper to draw Starburst Accent
         function drawStarburst(ctx, cx, cy, spikes, outerR, innerR, color) {
             let rot = Math.PI / 2 * 3;
             let x = cx, y = cy;
@@ -896,7 +896,7 @@
             }
         }
 
-        // Render Electric Metallic Lanyard Clip at top
+        // Render Metallic Lanyard Clip at top
         function drawLanyardClip(ctx, cardX, cardY, cardW) {
             const clipCx = cardX + cardW / 2;
             const clipCy = cardY + 54;
@@ -938,7 +938,7 @@
 
         async function generateCard() {
             generateBtn.disabled = true;
-            generateBtn.innerHTML = '<div class="spinner"></div><span>CRAFTING 1200×1800 NEON PASS...</span>';
+            generateBtn.innerHTML = '<div class="spinner"></div><span>CRAFTING 1200×1800 STUDIO PASS...</span>';
 
             setTimeout(() => {
                 try {
@@ -954,7 +954,7 @@
                     const stackVal = stack.value.toUpperCase();
                     const vibeVal = vibe.value;
 
-                    // Dynamic Photo Backdrops per Vibe (High-Voltage Neon Palette)
+                    // Dynamic Photo Backdrops per Vibe
                     const vibeColors = {
                         'Night Owl': C.pink,
                         'Coffee Addict': C.yellow,
@@ -968,16 +968,16 @@
 
                     const photoBgColor = vibeColors[vibeVal] || C.lime;
 
-                    // 1. DEEP ELECTRIC NEON PURPLE BACKDROP WITH CYBER GRID & RAYS
+                    // 1. DEEP NEON PURPLE BACKDROP WITH TROPICAL SUNBURST RAYS & WATERMARK
                     ctx.fillStyle = C.purpleBg;
                     ctx.fillRect(0, 0, W, H);
 
-                    // Radial Sunburst Rays in Backdrop (Hot Pink & Cyber Cyan)
+                    // Sunburst Rays in Backdrop
                     const rayCx = W / 2;
                     const rayCy = 950;
                     const numRays = 26;
                     const rayAngle = (Math.PI * 2) / numRays;
-                    ctx.fillStyle = 'rgba(255, 0, 127, 0.25)'; // Neon Hot Pink Rays
+                    ctx.fillStyle = 'rgba(255, 0, 127, 0.22)';
 
                     for (let i = 0; i < numRays; i += 2) {
                         ctx.beginPath();
@@ -987,7 +987,7 @@
                         ctx.fill();
                     }
 
-                    // Cyber Cyan Grid Pattern Overlay on Canvas
+                    // Cyber Cyan Grid Pattern
                     ctx.strokeStyle = 'rgba(0, 245, 255, 0.16)';
                     ctx.lineWidth = 2.5;
                     for (let gx = 0; gx < W; gx += 45) {
@@ -997,7 +997,7 @@
                         ctx.beginPath(); ctx.moveTo(0, gy); ctx.lineTo(W, gy); ctx.stroke();
                     }
 
-                    // Large Background Watermark Text
+                    // Watermark Text
                     ctx.font = '900 240px "Plus Jakarta Sans", sans-serif';
                     ctx.fillStyle = 'rgba(255, 230, 0, 0.04)';
                     ctx.textAlign = 'right';
@@ -1005,15 +1005,15 @@
                     ctx.textAlign = 'left';
                     ctx.fillText('HOUSE', -40, H - 100);
 
-                    // Floating Neon Starbursts
+                    // Floating Starbursts
                     drawStarburst(ctx, 160, 480, 14, 110, 50, C.yellow);
                     drawStarburst(ctx, W - 140, 1280, 12, 60, 28, C.cyan);
 
                     // 2. MAIN LANYARD BADGE CARD (Clean Bright Cream #FAF8F0)
-                    const cardW = 780;
-                    const cardH = 1380;
+                    const cardW = 800;
+                    const cardH = 1460;
                     const cardX = (W - cardW) / 2;
-                    const cardY = 280;
+                    const cardY = 240;
 
                     // 3D Offset Drop Shadow Box
                     drawRoundedRect(ctx, cardX + 18, cardY + 18, cardW, cardH, 38);
@@ -1027,50 +1027,84 @@
                     // Top Lanyard Metallic Clasp
                     drawLanyardClip(ctx, cardX, cardY, cardW);
 
-                    // 3. BADGE HEADER ("official builder pass.")
-                    const contentX = cardX + 60;
-                    const contentY = cardY + 140;
+                    // 3. TOP STUFFED HEADER DESIGN (OFFICIAL BUILDER PASS + 2:47PM STUDIO + HACKER HOUSE GOA LOGO BOX)
+                    const headerY = cardY + 110;
+                    const contentX = cardX + 50;
 
-                    ctx.font = '800 24px "JetBrains Mono", monospace';
-                    ctx.fillStyle = C.cyan;
-                    ctx.textAlign = 'left';
-                    ctx.fillText('official', contentX, contentY);
-
-                    // Huge Bold Main Title: "builder pass."
-                    ctx.font = '900 68px "Plus Jakarta Sans", sans-serif';
+                    // Top Sticker Pill: "✦ OFFICIAL BUILDER PASS ✦"
+                    drawRoundedRect(ctx, contentX, headerY, 360, 44, 12);
+                    ctx.fillStyle = C.yellow; ctx.fill();
+                    ctx.strokeStyle = C.black; ctx.lineWidth = 3.5; ctx.stroke();
+                    ctx.font = '900 16px "JetBrains Mono", monospace';
                     ctx.fillStyle = C.black;
-                    ctx.fillText('builder', contentX, contentY + 68);
-                    ctx.fillText('pass', contentX, contentY + 138);
-
-                    // Acid Lime Accent Dot at end of "pass."
-                    const passWidth = ctx.measureText('pass').width;
-                    ctx.fillStyle = C.lime;
-                    ctx.beginPath();
-                    ctx.arc(contentX + passWidth + 16, contentY + 124, 10, 0, Math.PI * 2);
-                    ctx.fill();
-                    ctx.strokeStyle = C.black; ctx.lineWidth = 3; ctx.stroke();
-
-                    // Neon Pink Devanagari "गोवा" Sticker Badge (Top Right of Card Header)
-                    ctx.save();
-                    ctx.translate(cardX + cardW - 130, contentY + 45);
-                    ctx.rotate(-0.16);
-                    drawRoundedRect(ctx, -56, -28, 112, 56, 12);
-                    ctx.fillStyle = C.pink; ctx.fill();
-                    ctx.strokeStyle = C.black; ctx.lineWidth = 4; ctx.stroke();
-                    ctx.font = '900 32px "Noto Sans Devanagari", sans-serif';
-                    ctx.fillStyle = C.yellow;
                     ctx.textAlign = 'center';
-                    ctx.fillText('गोवा', 0, 10);
+                    ctx.fillText('✦ OFFICIAL BUILDER PASS ✦', contentX + 180, headerY + 28);
+
+                    // 2:47 PM STUDIO Stamp (Top Right)
+                    const studioX = cardX + cardW - 140;
+                    const studioY = headerY + 15;
+                    ctx.save();
+                    ctx.translate(studioX, studioY);
+                    ctx.rotate(0.06);
+
+                    // Yellow Circle Target Symbol
+                    ctx.beginPath(); ctx.arc(45, -12, 14, 0, Math.PI * 2); ctx.fillStyle = C.pink; ctx.fill();
+                    ctx.beginPath(); ctx.arc(45, -12, 8, 0, Math.PI * 2); ctx.fillStyle = C.yellow; ctx.fill();
+                    ctx.beginPath(); ctx.arc(45, -12, 3, 0, Math.PI * 2); ctx.fillStyle = C.black; ctx.fill();
+
+                    ctx.font = '900 28px "JetBrains Mono", monospace';
+                    ctx.fillStyle = C.black;
+                    ctx.textAlign = 'center';
+                    ctx.fillText('2:47PM', 0, 8);
+                    ctx.font = '900 15px "JetBrains Mono", monospace';
+                    ctx.fillText('STUDIO', 0, 28);
                     ctx.restore();
 
+                    // HACKER HOUSE Stacked Serif Logo Box (Below Top Pill)
+                    const logoBoxX = contentX;
+                    const logoBoxY = headerY + 62;
+                    const logoBoxW = 340;
+                    const logoBoxH = 220;
+
+                    // Black Logo Box with Gold Double Frame
+                    drawRoundedRect(ctx, logoBoxX, logoBoxY, logoBoxW, logoBoxH, 18);
+                    ctx.fillStyle = C.black; ctx.fill();
+                    ctx.strokeStyle = C.yellow; ctx.lineWidth = 4; ctx.stroke();
+
+                    // "HACKER HOUSE" High Contrast Serif Text
+                    ctx.font = '900 68px "Playfair Display", serif';
+                    ctx.fillStyle = C.yellow;
+                    ctx.textAlign = 'left';
+                    ctx.fillText('HACKER', logoBoxX + 18, logoBoxY + 86);
+                    ctx.fillText('HOUSE', logoBoxX + 18, logoBoxY + 172);
+
+                    // Overlapping Hot Pink Devanagari "गोवा" Sticker Badge right in the center!
+                    ctx.save();
+                    ctx.translate(logoBoxX + logoBoxW / 2 + 10, logoBoxY + logoBoxH / 2 - 4);
+                    ctx.rotate(-0.16);
+                    drawRoundedRect(ctx, -62, -28, 124, 56, 12);
+                    ctx.fillStyle = C.pink; ctx.fill();
+                    ctx.strokeStyle = C.black; ctx.lineWidth = 4; ctx.stroke();
+                    ctx.font = '900 34px "Noto Sans Devanagari", sans-serif';
+                    ctx.fillStyle = C.yellow;
+                    ctx.textAlign = 'center';
+                    ctx.fillText('गोवा', 0, 11);
+                    ctx.restore();
+
+                    // Date & Location Label (Below Logo Box)
+                    ctx.font = '800 16px "JetBrains Mono", monospace';
+                    ctx.fillStyle = C.grayText;
+                    ctx.textAlign = 'left';
+                    ctx.fillText('GOA, INDIA  ·  28 - 31 OCT 2026', logoBoxX + 4, logoBoxY + logoBoxH + 30);
+
                     // 4. LEFT SIDEBAR NEON TOOL BADGES (STACK ICONS)
-                    const iconsY = contentY + 220;
+                    const iconsY = logoBoxY + logoBoxH + 65;
                     const iconsX = contentX;
 
                     const icons = [
                         { symbol: '⚡', bg: C.yellow },
-                        { symbol: '💻', bg: C.cyan },
-                        { symbol: '🎨', bg: C.pink },
+                        { symbol: '🏖️', bg: C.cyan },
+                        { symbol: '🌴', bg: C.pink },
                         { symbol: '🚀', bg: C.lime },
                         { symbol: '🔥', bg: C.yellow }
                     ];
@@ -1086,10 +1120,10 @@
                         ctx.fillText(ic.symbol, iconsX + 22, iy + 30);
                     });
 
-                    // 5. LARGE PORTRAIT PHOTO WITH HIGH-VOLTAGE BACKDROP
-                    const photoSize = 480;
-                    const photoX = cardX + cardW - photoSize - 60;
-                    const photoY = contentY + 180;
+                    // 5. LARGE PORTRAIT PHOTO WITH VIBRANT BACKDROP
+                    const photoSize = 470;
+                    const photoX = cardX + cardW - photoSize - 50;
+                    const photoY = iconsY;
 
                     // Photo Container Outer Black Shadow
                     drawRoundedRect(ctx, photoX + 8, photoY + 8, photoSize, photoSize, 32);
@@ -1115,13 +1149,13 @@
                     drawRoundedRect(ctx, photoX, photoY, photoSize, photoSize, 32);
                     ctx.strokeStyle = C.black; ctx.lineWidth = 5; ctx.stroke();
 
-                    // 6. BUILDER NAME WITH ACID LIME HIGHLIGHT BAR UNDERNEATH
+                    // 6. BUILDER NAME WITH GOLD HIGHLIGHT BAR UNDERNEATH
                     const nameY = photoY + photoSize + 60;
                     ctx.font = '900 48px "Plus Jakarta Sans", sans-serif';
                     const nameWidth = ctx.measureText(name).width;
 
-                    // Acid Lime Highlight Bar Underneath First Name
-                    ctx.fillStyle = C.lime;
+                    // Gold Highlight Bar Underneath First Name
+                    ctx.fillStyle = C.yellow;
                     ctx.fillRect(contentX, nameY + 6, Math.min(nameWidth, 340), 16);
 
                     // Name Text
@@ -1135,7 +1169,7 @@
                     ctx.fillText(stackVal + ' Builder  ·  Hacker House Goa', contentX, nameY + 44);
 
                     // 7. BOTTOM BARCODE + TAGLINE SECTION
-                    const bottomY = cardY + cardH - 140;
+                    const bottomY = cardY + cardH - 130;
 
                     // Left Barcode
                     drawBarcode(ctx, contentX, bottomY, 260, 60);
@@ -1160,7 +1194,7 @@
                     state.generatedDataUrl = dataUrl;
 
                     resultSection.classList.add('visible');
-                    generateBtn.innerHTML = '<span>✓ 1200×1800 NEON PASS READY!</span>';
+                    generateBtn.innerHTML = '<span>✓ 1200×1800 PASS READY!</span>';
 
                     setTimeout(() => {
                         resultSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -1171,7 +1205,7 @@
                     console.error(err);
                     showToast('Error generating pass. Please refresh and try again.');
                     generateBtn.disabled = false;
-                    generateBtn.innerHTML = '<span>GENERATE NEON PASS ⚡</span>';
+                    generateBtn.innerHTML = '<span>GENERATE ID CARD ⚡</span>';
                 }
             }, 100);
         }
@@ -1180,29 +1214,29 @@
 
         downloadBtn.addEventListener('click', () => {
             const link = document.createElement('a');
-            link.download = 'HackerHouse-Goa-2026-' + fullName.value.trim().replace(/\s+/g, '-') + '-NeonPass.png';
+            link.download = 'HackerHouse-Goa-2026-' + fullName.value.trim().replace(/\s+/g, '-') + '-Pass.png';
             link.href = state.generatedDataUrl;
             link.click();
-            showToast('Maximalist Neon Pass downloaded! ⚡✦');
+            showToast('Pass downloaded! ⚡✦');
         });
 
         shareBtn.addEventListener('click', async () => {
             const name = fullName.value.trim();
-            const text = 'Just generated my official 1200x1800 Maximalist Neon Lanyard Badge for Hacker House Goa 2026! ⚡✦\n\nName: ' + name + '\nStack: ' + stack.value + '\n\n#FrameInGoa @hh_goa';
+            const text = 'Just generated my official 1200x1800 Lanyard Badge for Hacker House Goa 2026! ⚡✦\n\nName: ' + name + '\nStack: ' + stack.value + '\n\n#FrameInGoa @hh_goa';
 
             const link = document.createElement('a');
-            link.download = 'HackerHouse-Goa-2026-' + name.replace(/\s+/g, '-') + '-NeonPass.png';
+            link.download = 'HackerHouse-Goa-2026-' + name.replace(/\s+/g, '-') + '-Pass.png';
             link.href = state.generatedDataUrl;
             link.click();
 
             if (navigator.canShare && state.generatedDataUrl) {
                 try {
                     const blob = await fetch(state.generatedDataUrl).then(r => r.blob());
-                    const file = new File([blob], 'hh-goa-2026-neon-pass.png', { type: 'image/png' });
+                    const file = new File([blob], 'hh-goa-2026-studio-pass.png', { type: 'image/png' });
                     if (navigator.canShare({ files: [file] })) {
                         await navigator.share({
                             files: [file],
-                            title: 'My Hacker House Goa 2026 Neon Pass',
+                            title: 'My Hacker House Goa 2026 Studio Pass',
                             text: text
                         });
                         return;
@@ -1237,7 +1271,7 @@
             resultSection.classList.remove('visible');
             generatedCard.src = '';
             generateBtn.disabled = true;
-            generateBtn.innerHTML = '<span>GENERATE NEON PASS ⚡</span>';
+            generateBtn.innerHTML = '<span>GENERATE ID CARD ⚡</span>';
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
