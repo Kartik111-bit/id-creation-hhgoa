@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="description" content="Generate your HH Goa 2026 Builder ID Pass - Studio Edition">
+    <meta name="description" content="Generate your official HH Goa 2026 Builder Pass - Studio Edition">
     <meta name="theme-color" content="#F9B828">
-    <meta property="og:title" content="Hacker House Goa 2026 — Builder ID Pass Generator">
-    <meta property="og:description" content="Generate your official retro-tropical HH Goa 2026 Builder ID Pass. Upload your photo, pick your stack & vibe, and get a high-resolution badge ready to share.">
+    <meta property="og:title" content="Hacker House Goa 2026 — Official Builder Pass Generator">
+    <meta property="og:description" content="Generate your official bespoke HH Goa 2026 Builder Pass. Upload your photo, pick your stack & vibe, and get a high-resolution badge ready to share.">
     <meta property="og:image" content="https://gitparthwandre.github.io/id-creation-hhgoa/og-image.png">
     <meta property="og:url" content="https://gitparthwandre.github.io/id-creation-hhgoa/">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Hacker House Goa 2026 — Builder ID Pass Generator">
-    <meta name="twitter:description" content="Generate your official retro-tropical HH Goa 2026 Builder ID Pass. Upload your photo, pick your stack & vibe, and get a high-resolution badge ready to share.">
+    <meta name="twitter:title" content="Hacker House Goa 2026 — Official Builder Pass Generator">
+    <meta name="twitter:description" content="Generate your official bespoke HH Goa 2026 Builder Pass. Upload your photo, pick your stack & vibe, and get a high-resolution badge ready to share.">
     <meta name="twitter:image" content="https://gitparthwandre.github.io/id-creation-hhgoa/og-image.png">
     <title>Hacker House Goa 2026 — Official Builder Pass Generator ✦</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,6 +23,7 @@
         :root {
             --gold: #F9B828;
             --pink: #FF007F;
+            --magenta: #D81159;
             --dark-green: #09331D;
             --forest-green: #0E472A;
             --mint: #39FF14;
@@ -664,13 +665,15 @@
         const ctx = canvas.getContext('2d');
         const toast = document.getElementById('toast');
 
-        // Color Constants for Studio Retro-Tropical Theme
+        // Color Constants
         const C = {
             gold: '#F9B828',
             pink: '#FF007F',
             magenta: '#D81159',
             darkGreen: '#09331D',
             forestGreen: '#0B3C1D',
+            mint: '#39FF14',
+            cyan: '#00F5FF',
             cream: '#F5EFE6',
             white: '#FFFFFF',
             black: '#111111'
@@ -701,7 +704,7 @@
             'Chaos': ['Disruptor', 'Firestarter', 'Rebel', 'Stormbringer', 'Catalyst']
         };
 
-        // Live Countdown Timer Script (Target Date: Oct 28, 2026)
+        // Live Countdown Timer
         function updateCountdown() {
             const target = new Date('October 28, 2026 09:00:00').getTime();
             const now = new Date().getTime();
@@ -813,14 +816,17 @@
             ctx.closePath();
         }
 
-        // Helper to draw Arch Photo Frame (Rounded top arch, flat bottom)
-        function drawArchPath(ctx, x, y, w, h) {
+        // Bespoke Capsule-Octagon Photo Frame Path (Rounded top capsule + chamfered bottom corners)
+        function drawCapsuleOctagonPath(ctx, x, y, w, h) {
             const r = w / 2;
+            const chamfer = 36;
             ctx.beginPath();
-            ctx.moveTo(x, y + h);
+            ctx.moveTo(x + chamfer, y + h);
+            ctx.lineTo(x, y + h - chamfer);
             ctx.lineTo(x, y + r);
             ctx.arc(x + r, y + r, r, Math.PI, 0, false);
-            ctx.lineTo(x + w, y + h);
+            ctx.lineTo(x + w, y + h - chamfer);
+            ctx.lineTo(x + w - chamfer, y + h);
             ctx.closePath();
         }
 
@@ -837,7 +843,7 @@
             ctx.closePath();
             ctx.fill();
             ctx.strokeStyle = C.black;
-            ctx.lineWidth = 2;
+            ctx.lineWidth = 2.5;
             ctx.stroke();
             ctx.restore();
         }
@@ -855,13 +861,42 @@
             }
         }
 
+        // Helper to draw Starburst Stamp Seal
+        function drawStarburstStamp(ctx, cx, cy, spikes, outerRadius, innerRadius, color) {
+            let rot = Math.PI / 2 * 3;
+            let x = cx;
+            let y = cy;
+            const step = Math.PI / spikes;
+
+            ctx.beginPath();
+            ctx.moveTo(cx, cy - outerRadius);
+            for (let i = 0; i < spikes; i++) {
+                x = cx + Math.cos(rot) * outerRadius;
+                y = cy + Math.sin(rot) * outerRadius;
+                ctx.lineTo(x, y);
+                rot += step;
+
+                x = cx + Math.cos(rot) * innerRadius;
+                y = cy + Math.sin(rot) * innerRadius;
+                ctx.lineTo(x, y);
+                rot += step;
+            }
+            ctx.lineTo(cx, cy - outerRadius);
+            ctx.closePath();
+            ctx.fillStyle = color;
+            ctx.fill();
+            ctx.strokeStyle = C.black;
+            ctx.lineWidth = 3.5;
+            ctx.stroke();
+        }
+
         async function generateCard() {
             generateBtn.disabled = true;
-            generateBtn.innerHTML = '<div class="spinner"></div><span>CRAFTING 1200×1800 PASS...</span>';
+            generateBtn.innerHTML = '<div class="spinner"></div><span>CRAFTING 1200×1800 BESPOKE PASS...</span>';
 
             setTimeout(() => {
                 try {
-                    // 1200 x 1800 High Resolution Badge
+                    // 1200 x 1800 High Resolution Pass Canvas
                     const W = 1200;
                     const H = 1800;
                     canvas.width = W;
@@ -873,26 +908,26 @@
                     const stackVal = stack.value.toUpperCase();
                     const vibeVal = vibe.value;
 
-                    // Dynamic Theme Mapping Per Vibe
+                    // Dynamic Bespoke Theme Mapping Per Vibe
                     const themeMap = {
-                        'Night Owl': { bg: '#0A071E', ray: '#4A0E4E', accent: '#9D4EDD' },
-                        'Coffee Addict': { bg: '#1C0A00', ray: '#7A4332', accent: C.gold },
-                        'Beach Bum': { bg: '#09331D', ray: '#D81159', accent: C.gold },
-                        'Code Warrior': { bg: '#051923', ray: '#006494', accent: '#00F5FF' },
-                        'Bug Hunter': { bg: '#1F1900', ray: '#D97706', accent: C.gold },
-                        'Ship It': { bg: '#0B091A', ray: '#5A189A', accent: C.pink },
-                        'Chill': { bg: '#081C15', ray: '#2D6A4F', accent: '#39FF14' },
-                        'Chaos': { bg: '#2B001D', ray: '#C026D3', accent: C.gold }
+                        'Night Owl': { bg: ['#0A061D', '#2B0938', '#4A0E4E'], ray: 'rgba(157, 78, 221, 0.35)', accent: C.cyan, titlePill: C.gold },
+                        'Coffee Addict': { bg: ['#1C0A00', '#3D1C06', '#5D2B09'], ray: 'rgba(255, 140, 0, 0.35)', accent: C.gold, titlePill: C.gold },
+                        'Beach Bum': { bg: ['#09331D', '#0B4728', '#0E5C34'], ray: 'rgba(216, 17, 89, 0.35)', accent: C.mint, titlePill: C.gold },
+                        'Code Warrior': { bg: ['#051923', '#003554', '#006494'], ray: 'rgba(0, 245, 255, 0.35)', accent: C.mint, titlePill: C.cyan },
+                        'Bug Hunter': { bg: ['#1F1900', '#4A3B00', '#755C00'], ray: 'rgba(255, 187, 0, 0.35)', accent: C.gold, titlePill: C.gold },
+                        'Ship It': { bg: ['#0B091A', '#240046', '#4C0099'], ray: 'rgba(0, 245, 255, 0.35)', accent: C.pink, titlePill: C.gold },
+                        'Chill': { bg: ['#081C15', '#1B4332', '#2D6A4F'], ray: 'rgba(57, 255, 20, 0.35)', accent: '#40E0D0', titlePill: C.gold },
+                        'Chaos': { bg: ['#2B001D', '#5E0040', '#8A005E'], ray: 'rgba(255, 0, 127, 0.35)', accent: C.gold, titlePill: C.pink }
                     };
 
                     const t = themeMap[vibeVal] || themeMap['Beach Bum'];
 
-                    // 1. CARD BASE CONTAINER (Golden Outer Frame + Black Border)
+                    // 1. CARD CONTAINER (Gold Outer Shell with Notched Ticket Corners)
                     ctx.fillStyle = C.black;
                     drawRoundedRect(ctx, 20, 20, W - 40, H - 40, 48);
                     ctx.fill();
 
-                    // Gold Outer Border Fill
+                    // Gold Outer Frame
                     drawRoundedRect(ctx, 28, 28, W - 56, H - 56, 42);
                     ctx.fillStyle = C.gold;
                     ctx.fill();
@@ -900,27 +935,32 @@
                     ctx.lineWidth = 6;
                     ctx.stroke();
 
-                    // Inner Dark Forest Background Box
+                    // Inner Dark Card Background
                     const innerX = 54;
                     const innerY = 54;
                     const innerW = W - 108;
                     const innerH = H - 108;
 
+                    const bgGrad = ctx.createLinearGradient(0, innerY, 0, innerY + innerH);
+                    bgGrad.addColorStop(0, t.bg[0]);
+                    bgGrad.addColorStop(0.5, t.bg[1]);
+                    bgGrad.addColorStop(1, t.bg[2]);
+
                     drawRoundedRect(ctx, innerX, innerY, innerW, innerH, 36);
-                    ctx.fillStyle = t.bg;
+                    ctx.fillStyle = bgGrad;
                     ctx.fill();
                     ctx.strokeStyle = C.black;
                     ctx.lineWidth = 6;
                     ctx.stroke();
 
-                    // 2. SUNBURST PINWHEEL RAYS (Center of Photo Arch)
+                    // 2. GEOMETRIC SUNBURST & HALFTONE MESH
                     const rayCx = W / 2;
-                    const rayCy = 950;
+                    const rayCy = 920;
                     ctx.save();
                     drawRoundedRect(ctx, innerX, innerY, innerW, innerH, 36);
                     ctx.clip();
 
-                    const numRays = 28;
+                    const numRays = 24;
                     const rayAngle = (Math.PI * 2) / numRays;
                     ctx.fillStyle = t.ray;
 
@@ -931,9 +971,17 @@
                         ctx.closePath();
                         ctx.fill();
                     }
+
+                    // Dot Matrix Overlay for depth
+                    ctx.fillStyle = 'rgba(255, 255, 255, 0.05)';
+                    for (let dx = innerX; dx < innerX + innerW; dx += 30) {
+                        for (let dy = innerY; dy < innerY + innerH; dy += 30) {
+                            ctx.beginPath(); ctx.arc(dx, dy, 1.5, 0, Math.PI * 2); ctx.fill();
+                        }
+                    }
                     ctx.restore();
 
-                    // 3. INNER DOTTED GOLD BORDER LINING
+                    // 3. INNER DASHED BORDER
                     ctx.save();
                     ctx.strokeStyle = C.gold;
                     ctx.lineWidth = 4;
@@ -942,22 +990,22 @@
                     ctx.stroke();
                     ctx.restore();
 
-                    // 4. TOP STAMP BADGE ("✦ OFFICIAL BUILDER PASS ✦")
+                    // 4. TOP STICKER PILL BADGE ("✦ OFFICIAL BUILDER PASS · GOA 2026 ✦")
                     ctx.save();
-                    ctx.translate(W / 2, 135);
-                    drawRoundedRect(ctx, -190, -22, 380, 44, 12);
+                    ctx.translate(W / 2, 132);
+                    drawRoundedRect(ctx, -210, -22, 420, 44, 14);
                     ctx.fillStyle = C.gold; ctx.fill();
                     ctx.strokeStyle = C.black; ctx.lineWidth = 4; ctx.stroke();
                     ctx.font = '800 18px "JetBrains Mono", monospace';
                     ctx.fillStyle = C.black;
                     ctx.textAlign = 'center';
-                    ctx.fillText('✦ OFFICIAL BUILDER PASS ✦', 0, 7);
+                    ctx.fillText('✦ OFFICIAL BUILDER PASS · GOA 2026 ✦', 0, 7);
                     ctx.restore();
 
                     // 2:47 PM STUDIO Stamp (Top Right)
                     ctx.save();
-                    ctx.translate(W - 160, 140);
-                    ctx.rotate(0.08);
+                    ctx.translate(W - 150, 138);
+                    ctx.rotate(0.06);
                     ctx.font = '900 24px "JetBrains Mono", monospace';
                     ctx.fillStyle = C.gold;
                     ctx.textAlign = 'center';
@@ -966,119 +1014,155 @@
                     ctx.fillText('STUDIO', 0, 16);
                     ctx.restore();
 
-                    // 5. STACKED LOGO BOX ("HACKER HOUSE") WITH HOT-PINK DEVANAGARI "गोवा" STICKER
-                    const logoX = 100;
+                    // 5. ASYMMETRIC EDITORIAL HEADER ("HACKER HOUSE") WITH HOT PINK "गोवा" STICKER
+                    const logoX = 96;
                     const logoY = 195;
-                    const logoW = 380;
-                    const logoH = 260;
+                    const logoW = 400;
+                    const logoH = 250;
 
-                    // Black Logo Box with Gold Stroke
-                    drawRoundedRect(ctx, logoX, logoY, logoW, logoH, 20);
+                    // Black Logo Box
+                    drawRoundedRect(ctx, logoX, logoY, logoW, logoH, 22);
                     ctx.fillStyle = C.black; ctx.fill();
                     ctx.strokeStyle = C.gold; ctx.lineWidth = 4; ctx.stroke();
 
-                    // "HACKER HOUSE" High Contrast Serif Text
-                    ctx.font = '900 78px "Playfair Display", serif';
+                    // "HACKER HOUSE" High-Contrast Typography
+                    ctx.font = '900 82px "Playfair Display", serif';
                     ctx.fillStyle = C.gold;
                     ctx.textAlign = 'left';
-                    ctx.fillText('HACKER', logoX + 24, logoY + 105);
-                    ctx.fillText('HOUSE', logoX + 24, logoY + 205);
+                    ctx.fillText('HACKER', logoX + 24, logoY + 102);
+                    ctx.fillText('HOUSE', logoX + 24, logoY + 200);
 
-                    // Hot Pink Tilted Devanagari "गोवा" Badge Overlapping Center
+                    // Hot Pink Tilted Devanagari "गोवा" Badge
                     ctx.save();
-                    ctx.translate(logoX + logoW / 2 + 10, logoY + logoH / 2 - 5);
+                    ctx.translate(logoX + logoW / 2 + 15, logoY + logoH / 2 - 8);
                     ctx.rotate(-0.16);
-                    drawRoundedRect(ctx, -68, -30, 136, 60, 14);
+                    drawRoundedRect(ctx, -70, -32, 140, 64, 14);
                     ctx.fillStyle = C.pink; ctx.fill();
                     ctx.strokeStyle = C.black; ctx.lineWidth = 4; ctx.stroke();
-                    ctx.font = '900 36px "Noto Sans Devanagari", sans-serif';
+                    ctx.font = '900 38px "Noto Sans Devanagari", sans-serif';
                     ctx.fillStyle = C.gold;
                     ctx.textAlign = 'center';
-                    ctx.fillText('गोवा', 0, 12);
+                    ctx.fillText('गोवा', 0, 13);
                     ctx.restore();
 
-                    // Event Dates below logo
+                    // Date & Location Details
                     ctx.font = '800 18px "JetBrains Mono", monospace';
                     ctx.fillStyle = C.gold;
                     ctx.textAlign = 'left';
                     ctx.fillText('GOA, INDIA  ·  28 - 31 OCT 2026', logoX + 10, logoY + logoH + 42);
 
-                    // 6. ARCH PHOTO FRAME (Rounded Top Arch, Flat Bottom)
-                    const archW = 460;
-                    const archH = 560;
+                    // 6. BESPOKE CAPSULE-OCTAGON PHOTO FRAME
+                    const archW = 470;
+                    const archH = 550;
                     const archX = (W - archW) / 2;
                     const archY = 620;
 
-                    // Outer Gold Backing Box Arch
-                    drawArchPath(ctx, archX - 12, archY - 12, archW + 24, archH + 24);
+                    // Black Backing Block Shadow
+                    drawCapsuleOctagonPath(ctx, archX + 12, archY + 12, archW, archH);
+                    ctx.fillStyle = C.black; ctx.fill();
+
+                    // Outer Gold Frame Rim
+                    drawCapsuleOctagonPath(ctx, archX - 10, archY - 10, archW + 20, archH + 20);
                     ctx.fillStyle = C.gold; ctx.fill();
                     ctx.strokeStyle = C.black; ctx.lineWidth = 6; ctx.stroke();
 
-                    // Inner Pink Arch Rim
-                    drawArchPath(ctx, archX - 4, archY - 4, archW + 8, archH + 8);
+                    // Inner Pink Accent Ring
+                    drawCapsuleOctagonPath(ctx, archX - 3, archY - 3, archW + 6, archH + 6);
                     ctx.fillStyle = C.pink; ctx.fill();
 
-                    // Render Uploaded Portrait Photo inside Arch
+                    // Crop & Render Photo inside Capsule-Octagon
                     const imgAspect = state.image.width / state.image.height;
                     let sx, sy, sW, sH;
                     if (imgAspect > 1) { sH = state.image.height; sW = sH; sx = (state.image.width - sW) / 2; sy = 0; }
                     else { sW = state.image.width; sH = sW; sx = 0; sy = (state.image.height - sH) / 2; }
 
                     ctx.save();
-                    drawArchPath(ctx, archX, archY, archW, archH);
+                    drawCapsuleOctagonPath(ctx, archX, archY, archW, archH);
                     ctx.clip();
                     ctx.drawImage(state.image, sx, sy, sW, sH, archX, archY, archW, archH);
 
-                    // Subtle Arch Bottom Gradient Overlay
-                    const photoOverlay = ctx.createLinearGradient(0, archY + archH - 120, 0, archY + archH);
-                    photoOverlay.addColorStop(0, 'rgba(0,0,0,0)');
-                    photoOverlay.addColorStop(1, 'rgba(0,0,0,0.35)');
-                    ctx.fillStyle = photoOverlay;
+                    // Holographic Diagonal Light Streak Reflection
+                    const holoGrad = ctx.createLinearGradient(archX - 100, archY - 100, archX + 500, archY + 500);
+                    holoGrad.addColorStop(0, 'rgba(255,255,255,0)');
+                    holoGrad.addColorStop(0.45, 'rgba(255,255,255,0)');
+                    holoGrad.addColorStop(0.5, 'rgba(255,255,255,0.22)');
+                    holoGrad.addColorStop(0.55, 'rgba(255,255,255,0)');
+                    holoGrad.addColorStop(1, 'rgba(255,255,255,0)');
+                    ctx.fillStyle = holoGrad;
                     ctx.fillRect(archX, archY, archW, archH);
                     ctx.restore();
 
-                    // Arch Frame Outline
-                    drawArchPath(ctx, archX, archY, archW, archH);
+                    // Black Inner Frame Border
+                    drawCapsuleOctagonPath(ctx, archX, archY, archW, archH);
                     ctx.strokeStyle = C.black; ctx.lineWidth = 5; ctx.stroke();
 
-                    // Sparkle Stars Floating on Left of Arch
-                    drawStarSparkle(ctx, archX - 35, archY + 180, 24, C.gold);
-                    drawStarSparkle(ctx, archX - 15, archY + 280, 16, C.gold);
+                    // Corner reticles / sparkles around photo frame
+                    drawStarSparkle(ctx, archX - 35, archY + 160, 24, C.gold);
+                    drawStarSparkle(ctx, archX - 15, archY + 270, 16, C.gold);
+                    drawStarSparkle(ctx, archX + archW + 35, archY + 380, 22, t.accent);
 
-                    // 7. BUILDER NAME GOLD PILL BADGE
-                    const nameY = archY + archH + 50;
-                    const nameW = 680;
-                    const nameH = 84;
-                    const nameX = (W - nameW) / 2;
-
-                    // Black Shadow
-                    drawRoundedRect(ctx, nameX + 6, nameY + 6, nameW, nameH, 42);
-                    ctx.fillStyle = C.black; ctx.fill();
-
-                    // Gold Pill
-                    drawRoundedRect(ctx, nameX, nameY, nameW, nameH, 42);
+                    // Photo Frame Stickers
+                    // Top-Left Sticker: "★ VERIFIED BUILDER"
+                    ctx.save();
+                    ctx.translate(archX - 25, archY + 25);
+                    ctx.rotate(-0.09);
+                    drawRoundedRect(ctx, 0, 0, 185, 36, 10);
                     ctx.fillStyle = C.gold; ctx.fill();
-                    ctx.strokeStyle = C.black; ctx.lineWidth = 5; ctx.stroke();
-
-                    // Name Text + Cross Sparkles
-                    ctx.font = '900 42px "Plus Jakarta Sans", sans-serif';
+                    ctx.strokeStyle = C.black; ctx.lineWidth = 3.5; ctx.stroke();
+                    ctx.font = '900 13px "JetBrains Mono", monospace';
                     ctx.fillStyle = C.black;
                     ctx.textAlign = 'center';
-                    ctx.fillText(name, W / 2, nameY + 56);
+                    ctx.fillText('★ VERIFIED BUILDER', 92, 23);
+                    ctx.restore();
 
-                    ctx.font = '800 32px sans-serif';
+                    // Bottom-Right Sticker: "ACCESS ALL AREAS // 26"
+                    ctx.save();
+                    ctx.translate(archX + archW - 185, archY + archH - 25);
+                    ctx.rotate(0.06);
+                    drawRoundedRect(ctx, 0, 0, 205, 38, 10);
+                    ctx.fillStyle = C.cyan; ctx.fill();
+                    ctx.strokeStyle = C.black; ctx.lineWidth = 3.5; ctx.stroke();
+                    ctx.font = '900 13px "JetBrains Mono", monospace';
+                    ctx.fillStyle = C.black;
+                    ctx.textAlign = 'center';
+                    ctx.fillText('ACCESS ALL AREAS // 26', 102, 24);
+                    ctx.restore();
+
+                    // 7. BUILDER NAME CAPSULE BADGE
+                    const nameY = archY + archH + 48;
+                    const nameW = 700;
+                    const nameH = 86;
+                    const nameX = (W - nameW) / 2;
+
+                    // Black Offset 3D Shadow Box
+                    drawRoundedRect(ctx, nameX + 8, nameY + 8, nameW, nameH, 43);
+                    ctx.fillStyle = C.black; ctx.fill();
+
+                    // Gold Capsule Pill
+                    drawRoundedRect(ctx, nameX, nameY, nameW, nameH, 43);
+                    ctx.fillStyle = t.titlePill; ctx.fill();
+                    ctx.strokeStyle = C.black; ctx.lineWidth = 5; ctx.stroke();
+
+                    // Name Display
+                    ctx.font = '900 44px "Plus Jakarta Sans", sans-serif';
+                    ctx.fillStyle = C.black;
+                    ctx.textAlign = 'center';
+                    ctx.fillText(name, W / 2, nameY + 58);
+
+                    // End-Cap Starburst Accents
+                    ctx.font = '800 34px sans-serif';
                     ctx.fillStyle = C.pink;
-                    ctx.fillText('✦', nameX + 45, nameY + 54);
-                    ctx.fillText('✦', nameX + nameW - 45, nameY + 54);
+                    ctx.fillText('✦', nameX + 45, nameY + 55);
+                    ctx.fillText('✦', nameX + nameW - 45, nameY + 55);
 
-                    // 8. GENERATED BUILDER TITLE PILL
-                    const titleY = nameY + nameH + 36;
+                    // 8. GENERATED BUILDER TITLE PILL BANNER
+                    const titleY = nameY + nameH + 38;
                     ctx.font = '800 24px "JetBrains Mono", monospace';
                     ctx.fillStyle = C.gold;
                     ctx.textAlign = 'center';
-                    ctx.fillText(title.toUpperCase(), W / 2, titleY);
+                    ctx.fillText('⚡ ' + title.toUpperCase() + ' ⚡', W / 2, titleY);
 
-                    // 9. CLEAN INFO CARDS (STACK & VIBE)
+                    // 9. CLEAN DUO-TONE STACK & VIBE CARDS
                     const infoY = titleY + 45;
                     const cardW = 480;
                     const cardH = 110;
@@ -1097,7 +1181,7 @@
                     ctx.textAlign = 'center';
                     ctx.font = '800 14px "JetBrains Mono", monospace';
                     ctx.fillStyle = C.magenta;
-                    ctx.fillText('STACK', leftX + cardW / 2, infoY + 34);
+                    ctx.fillText('PRIMARY STACK', leftX + cardW / 2, infoY + 34);
                     ctx.font = '900 40px "Plus Jakarta Sans", sans-serif';
                     ctx.fillStyle = C.black;
                     ctx.fillText(stackVal, leftX + cardW / 2, infoY + 82);
@@ -1112,7 +1196,7 @@
 
                     ctx.font = '800 14px "JetBrains Mono", monospace';
                     ctx.fillStyle = C.magenta;
-                    ctx.fillText('VIBE', rightX + cardW / 2, infoY + 34);
+                    ctx.fillText('VIBE CHECK', rightX + cardW / 2, infoY + 34);
                     ctx.font = '900 38px "Plus Jakarta Sans", sans-serif';
                     ctx.fillStyle = C.black;
                     ctx.fillText(vibeVal.toUpperCase(), rightX + cardW / 2, infoY + 82);
@@ -1124,18 +1208,29 @@
                         ctx.fillText('𝕏 ' + (handle.startsWith('@') ? handle : '@' + handle), W / 2, infoY + cardH + 45);
                     }
 
-                    // 11. BARCODE & FOOTER DETAILS
+                    // 11. BARCODE & OFFICIAL METALLIC STAMP SEAL
                     const bY = H - 150;
-                    drawRoundedRect(ctx, 100, bY, 340, 64, 10);
+                    drawRoundedRect(ctx, 96, bY, 340, 64, 10);
                     ctx.fillStyle = C.white; ctx.fill();
-                    ctx.strokeStyle = C.black; ctx.lineWidth = 3; ctx.stroke();
-                    drawBarcode(ctx, 115, bY + 10, 310, 44);
+                    ctx.strokeStyle = C.black; ctx.lineWidth = 3.5; ctx.stroke();
+                    drawBarcode(ctx, 110, bY + 10, 310, 44);
 
-                    // Bottom Hashtag & Ticket ID
+                    // Metallic Starburst Seal (Right Bottom)
+                    const sealX = W - 160;
+                    const sealY = bY + 30;
+                    drawStarburstStamp(ctx, sealX, sealY, 16, 56, 46, C.gold);
+                    ctx.font = '900 11px "JetBrains Mono", monospace';
+                    ctx.fillStyle = C.black;
+                    ctx.textAlign = 'center';
+                    ctx.fillText('HACKER HOUSE', sealX, sealY - 10);
+                    ctx.fillText('GOA 2026', sealX, sealY + 3);
+                    ctx.fillText('OFFICIAL SEAL', sealX, sealY + 16);
+
+                    // Bottom Hashtag & Ticket Serial
                     ctx.font = '800 20px "JetBrains Mono", monospace';
                     ctx.fillStyle = C.gold;
                     ctx.textAlign = 'right';
-                    ctx.fillText('#FRAMEINGOA 🌴', W - 100, bY + 40);
+                    ctx.fillText('#FRAMEINGOA 🌴', W - 240, bY + 40);
 
                     const serial = 'STUDIO-HH26-' + Math.random().toString(36).substr(2, 6).toUpperCase();
                     ctx.font = '800 16px "JetBrains Mono", monospace';
@@ -1149,7 +1244,7 @@
                     state.generatedDataUrl = dataUrl;
 
                     resultSection.classList.add('visible');
-                    generateBtn.innerHTML = '<span>✓ 1200×1800 PASS READY!</span>';
+                    generateBtn.innerHTML = '<span>✓ 1200×1800 BESPOKE PASS READY!</span>';
 
                     setTimeout(() => {
                         resultSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -1169,10 +1264,10 @@
 
         downloadBtn.addEventListener('click', () => {
             const link = document.createElement('a');
-            link.download = 'HackerHouse-Goa-2026-' + fullName.value.trim().replace(/\s+/g, '-') + '-StudioPass.png';
+            link.download = 'HackerHouse-Goa-2026-' + fullName.value.trim().replace(/\s+/g, '-') + '-Pass.png';
             link.href = state.generatedDataUrl;
             link.click();
-            showToast('Studio Pass downloaded! 🌴✦');
+            showToast('Bespoke Pass downloaded! 🌴✦');
         });
 
         shareBtn.addEventListener('click', async () => {
@@ -1180,14 +1275,14 @@
             const text = 'Just customized my official 1200x1800 Builder Pass for Hacker House Goa 2026! 🌴✦\n\nTitle: ' + state.builderTitle + '\nStack: ' + stack.value + '\n\n#FrameInGoa @hh_goa';
 
             const link = document.createElement('a');
-            link.download = 'HackerHouse-Goa-2026-' + name.replace(/\s+/g, '-') + '-StudioPass.png';
+            link.download = 'HackerHouse-Goa-2026-' + name.replace(/\s+/g, '-') + '-Pass.png';
             link.href = state.generatedDataUrl;
             link.click();
 
             if (navigator.canShare && state.generatedDataUrl) {
                 try {
                     const blob = await fetch(state.generatedDataUrl).then(r => r.blob());
-                    const file = new File([blob], 'hh-goa-2026-studio-pass.png', { type: 'image/png' });
+                    const file = new File([blob], 'hh-goa-2026-bespoke-pass.png', { type: 'image/png' });
                     if (navigator.canShare({ files: [file] })) {
                         await navigator.share({
                             files: [file],
