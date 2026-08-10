@@ -327,33 +327,33 @@ export default function App() {
         ctx.textAlign = 'center';
         ctx.fillText('✦ OFFICIAL BUILDER PASS ✦', contentX + 180, headerY + 28);
 
-        // 2:47 PM STUDIO STAMP (EXTRA BIG & BOLD)
-        const studioX = cardX + cardW - 180;
+        // 2:47 PM STUDIO STAMP — RETRO MARKER DISPLAY FONT STYLE FROM SCREENSHOT
+        const studioX = cardX + cardW - 175;
         const studioY = headerY + 22;
         ctx.save();
         ctx.translate(studioX, studioY);
         ctx.rotate(0.06);
 
         // Target Circle Ring (Pink 28px, Gold 16px, Black 7px)
-        ctx.beginPath(); ctx.arc(105, -24, 28, 0, Math.PI * 2); ctx.fillStyle = C.pink; ctx.fill();
-        ctx.beginPath(); ctx.arc(105, -24, 16, 0, Math.PI * 2); ctx.fillStyle = C.gold; ctx.fill();
-        ctx.beginPath(); ctx.arc(105, -24, 7, 0, Math.PI * 2); ctx.fillStyle = C.black; ctx.fill();
+        ctx.beginPath(); ctx.arc(112, -26, 28, 0, Math.PI * 2); ctx.fillStyle = C.pink; ctx.fill();
+        ctx.beginPath(); ctx.arc(112, -26, 16, 0, Math.PI * 2); ctx.fillStyle = C.gold; ctx.fill();
+        ctx.beginPath(); ctx.arc(112, -26, 7, 0, Math.PI * 2); ctx.fillStyle = C.black; ctx.fill();
         ctx.lineWidth = 3; ctx.strokeStyle = C.black; ctx.stroke();
 
-        // 2:47PM Headline Font Size 56px
-        ctx.font = '900 56px "JetBrains Mono", monospace';
+        // 2:47PM Headline in 'Permanent Marker', cursive (Exact font style from screenshot!)
+        ctx.font = '400 58px "Permanent Marker", cursive';
         ctx.fillStyle = C.black;
         ctx.textAlign = 'center';
-        ctx.fillText('2:47PM', 2, 14);
+        ctx.fillText('2:47PM', 3, 15);
         ctx.fillStyle = C.gold;
         ctx.fillText('2:47PM', 0, 12);
 
-        // STUDIO Subtitle Font Size 28px
-        ctx.font = '900 28px "JetBrains Mono", monospace';
+        // STUDIO Subtitle in 'Permanent Marker', cursive
+        ctx.font = '400 32px "Permanent Marker", cursive';
         ctx.fillStyle = C.black;
-        ctx.fillText('STUDIO', 2, 48);
+        ctx.fillText('STUDIO', 3, 52);
         ctx.fillStyle = C.gold;
-        ctx.fillText('STUDIO', 0, 46);
+        ctx.fillText('STUDIO', 0, 49);
         ctx.restore();
 
         // HACKER HOUSE Stacked Serif Logo Box

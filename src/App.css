@@ -93,28 +93,29 @@ body {
   margin-bottom: 24px;
 }
 
-/* 2:47PM STUDIO Logo */
+/* 2:47PM STUDIO Logo - EXACT RETRO HAND-DRAWN MARKER STYLE FROM SCREENSHOT */
 .studio-brand {
   text-align: left;
 }
 
 .studio-title {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 2.4rem;
-  font-weight: 900;
+  font-family: 'Permanent Marker', cursive;
+  font-size: 2.6rem;
+  font-weight: 400;
   color: var(--gold);
-  line-height: 0.9;
-  letter-spacing: -0.04em;
+  line-height: 0.85;
+  letter-spacing: 0.02em;
   text-shadow: 3px 3px 0px var(--black);
 }
 
 .studio-subtitle {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 1.1rem;
-  font-weight: 900;
+  font-family: 'Permanent Marker', cursive;
+  font-size: 1.3rem;
+  font-weight: 400;
   color: var(--gold);
-  letter-spacing: 0.16em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
+  text-shadow: 2px 2px 0px var(--black);
 }
 
 /* Top Right Countdown Timer Pill */
@@ -550,8 +551,8 @@ select option {
   .container { padding: 16px 12px 40px; }
   .hero-title { font-size: 2.8rem; }
   .devanagari-sticker { font-size: 1.4rem; padding: 2px 16px; }
-  .studio-title { font-size: 1.8rem; }
-  .studio-subtitle { font-size: 0.9rem; }
+  .studio-title { font-size: 2.0rem; }
+  .studio-subtitle { font-size: 1.0rem; }
   .card { padding: 18px; }
   .field-row { grid-template-columns: 1fr; }
 }
