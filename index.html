@@ -3,31 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="description" content="Generate your official HH Goa 2026 Lanyard Pass - Graphic Edition">
-    <meta name="theme-color" content="#7C3AED">
-    <meta property="og:title" content="Hacker House Goa 2026 — Lanyard Badge Generator">
-    <meta property="og:description" content="Generate your official realistic Lanyard Badge for HH Goa 2026. Upload your photo, pick your stack & vibe, and get a high-resolution badge ready to share.">
+    <meta name="description" content="Generate your official HH Goa 2026 Lanyard Pass - Retro-Tropical Edition">
+    <meta name="theme-color" content="#09331D">
+    <meta property="og:title" content="Hacker House Goa 2026 — Lanyard Pass Generator">
+    <meta property="og:description" content="Generate your official retro-tropical Lanyard Pass for HH Goa 2026. Upload your photo, pick your stack & vibe, and get a high-resolution badge ready to share.">
     <meta property="og:image" content="https://gitparthwandre.github.io/id-creation-hhgoa/og-image.png">
     <meta property="og:url" content="https://gitparthwandre.github.io/id-creation-hhgoa/">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Hacker House Goa 2026 — Lanyard Badge Generator">
-    <meta name="twitter:description" content="Generate your official realistic Lanyard Badge for HH Goa 2026. Upload your photo, pick your stack & vibe, and get a high-resolution badge ready to share.">
+    <meta name="twitter:title" content="Hacker House Goa 2026 — Lanyard Pass Generator">
+    <meta name="twitter:description" content="Generate your official retro-tropical Lanyard Pass for HH Goa 2026. Upload your photo, pick your stack & vibe, and get a high-resolution badge ready to share.">
     <meta name="twitter:image" content="https://gitparthwandre.github.io/id-creation-hhgoa/og-image.png">
-    <title>Hacker House Goa 2026 — Official Lanyard Pass ✦</title>
+    <title>Hacker House Goa 2026 — Official Builder Pass 🌴</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=Plus+Jakarta+Sans:wght@500;700;800;900&family=JetBrains+Mono:wght@500;700;800&family=Noto+Sans+Devanagari:wght@700;900&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/heic2any@0.0.4/dist/heic2any.min.js"></script>
     <style>
         :root {
-            --purple-bg: #6C2BD9;
-            --purple-dark: #4C1D95;
-            --purple-light: #8B5CF6;
-            --lime: #CCFF00;
-            --mint: #39FF14;
-            --cream-card: #F6F5ED;
+            --dark-green: #09331D;
+            --forest-green: #0E472A;
+            --gold: #F9B828;
             --pink: #FF007F;
+            --magenta: #D81159;
+            --mint: #39FF14;
+            --cyan: #00F5FF;
+            --cream-card: #F5EFE6;
             --white: #FFFFFF;
             --black: #111111;
             --gray-text: #555555;
@@ -37,21 +38,26 @@
 
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background: var(--purple-bg);
+            background: var(--dark-green);
             color: var(--white);
             min-height: 100vh;
             min-height: 100dvh;
             overflow-x: hidden;
             line-height: 1.5;
             position: relative;
+            background-image: 
+                radial-gradient(circle at 50% 0%, #0E472A 0%, #09331D 70%),
+                linear-gradient(to right, rgba(249, 184, 40, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(249, 184, 40, 0.05) 1px, transparent 1px);
+            background-size: 100% 100%, 32px 32px, 32px 32px;
         }
 
-        /* Electric Backdrop Decorations */
+        /* Tropical Watermark Accents */
         .bg-watermark {
             position: fixed;
             font-size: 18vw;
             font-weight: 900;
-            color: rgba(255, 255, 255, 0.04);
+            color: rgba(249, 184, 40, 0.04);
             pointer-events: none;
             user-select: none;
             z-index: 0;
@@ -61,16 +67,6 @@
 
         .wm-top { top: -2vw; right: -5vw; }
         .wm-bottom { bottom: -2vw; left: -5vw; }
-
-        .bg-starburst {
-            position: fixed;
-            pointer-events: none;
-            z-index: 0;
-            opacity: 0.18;
-        }
-
-        .sb-left { top: 15%; left: 3%; width: 140px; height: 140px; }
-        .sb-right { bottom: 10%; right: 4%; width: 120px; height: 120px; }
 
         .container {
             position: relative;
@@ -91,16 +87,16 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
-            background: var(--lime);
+            background: var(--gold);
             color: var(--black);
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.75rem;
             font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.12em;
             padding: 8px 18px;
             border-radius: 30px;
-            border: 2px solid var(--black);
+            border: 2.5px solid var(--black);
             box-shadow: 4px 4px 0px var(--black);
             margin-bottom: 16px;
         }
@@ -110,13 +106,13 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background: rgba(17, 17, 17, 0.65);
+            background: rgba(11, 17, 13, 0.85);
             backdrop-filter: blur(10px);
-            color: var(--lime);
+            color: var(--gold);
             padding: 10px 18px;
             border-radius: 14px;
-            border: 2px solid rgba(255, 255, 255, 0.15);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+            border: 2px solid var(--gold);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
             margin-bottom: 20px;
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.75rem;
@@ -124,7 +120,7 @@
         }
 
         .countdown-label {
-            color: var(--lime);
+            color: var(--pink);
             letter-spacing: 0.08em;
             display: flex;
             align-items: center;
@@ -133,7 +129,7 @@
 
         .countdown-timer {
             font-size: 0.9375rem;
-            color: var(--white);
+            color: var(--gold);
             letter-spacing: 0.06em;
         }
 
@@ -143,14 +139,15 @@
             text-transform: uppercase;
             letter-spacing: -0.02em;
             line-height: 1.1;
-            color: var(--white);
+            color: var(--gold);
             margin-bottom: 8px;
+            text-shadow: 0 4px 12px rgba(0,0,0,0.4);
         }
 
         .sub-caption {
             font-size: 0.9375rem;
             font-weight: 600;
-            color: rgba(255, 255, 255, 0.82);
+            color: rgba(255, 255, 255, 0.88);
             max-width: 480px;
             margin: 0 auto 24px;
             line-height: 1.5;
@@ -159,7 +156,7 @@
         .highlight-tag {
             color: var(--black);
             font-weight: 800;
-            background: var(--lime);
+            background: var(--gold);
             padding: 1px 6px;
             border-radius: 4px;
         }
@@ -191,7 +188,7 @@
 
         .card-title .icon {
             font-size: 1.1rem;
-            background: var(--lime);
+            background: var(--gold);
             padding: 4px 8px;
             border-radius: 6px;
             border: 2px solid var(--black);
@@ -212,7 +209,7 @@
         }
 
         .upload-zone:hover {
-            background: rgba(204, 255, 0, 0.25);
+            background: rgba(249, 184, 40, 0.25);
             border-color: var(--black);
             transform: translateY(-2px);
         }
@@ -262,8 +259,8 @@
             position: absolute;
             bottom: 14px;
             right: 14px;
-            background: var(--black);
-            color: var(--lime);
+            background: var(--pink);
+            color: var(--white);
             padding: 8px 16px;
             border-radius: 20px;
             font-size: 0.75rem;
@@ -309,7 +306,7 @@
         input[type="text"]:focus, select:focus {
             background: #FFFFFF;
             border-color: var(--black);
-            box-shadow: 4px 4px 0px var(--lime);
+            box-shadow: 4px 4px 0px var(--gold);
         }
 
         select {
@@ -328,7 +325,7 @@
 
         /* Live Title Preview */
         .title-preview {
-            background: rgba(204, 255, 0, 0.3);
+            background: rgba(249, 184, 40, 0.3);
             border: 2.5px solid var(--black);
             border-radius: 12px;
             padding: 14px 16px;
@@ -342,8 +339,8 @@
             position: absolute;
             top: -12px;
             left: 14px;
-            background: var(--black);
-            color: var(--lime);
+            background: var(--pink);
+            color: var(--white);
             font-size: 0.625rem;
             font-weight: 900;
             padding: 2px 8px;
@@ -379,7 +376,7 @@
         }
 
         .btn-primary {
-            background: var(--lime);
+            background: var(--gold);
             color: var(--black);
             box-shadow: 6px 6px 0px var(--black);
         }
@@ -387,7 +384,7 @@
         .btn-primary:hover {
             transform: translate(-3px, -3px);
             box-shadow: 9px 9px 0px var(--black);
-            background: #D5FF1A;
+            background: #FFC038;
         }
 
         .btn-primary:active {
@@ -415,7 +412,7 @@
 
         .btn-x {
             background: var(--black);
-            color: var(--lime);
+            color: var(--gold);
             box-shadow: 6px 6px 0px var(--black);
         }
 
@@ -449,7 +446,7 @@
             max-width: 100%;
             height: auto;
             border-radius: 20px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.45);
         }
 
         .action-buttons {
@@ -474,7 +471,7 @@
             bottom: 24px;
             left: 50%;
             transform: translateX(-50%) translateY(100px);
-            background: var(--lime);
+            background: var(--gold);
             color: var(--black);
             padding: 14px 26px;
             border-radius: 14px;
@@ -498,17 +495,17 @@
             text-align: center;
             margin-top: 36px;
             padding-top: 24px;
-            border-top: 2px dashed rgba(255, 255, 255, 0.25);
+            border-top: 2px dashed rgba(249, 184, 40, 0.3);
         }
 
         .footer p {
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(255, 255, 255, 0.85);
             font-size: 0.8125rem;
             font-weight: 700;
             letter-spacing: 0.06em;
         }
 
-        .footer .hashtag { color: var(--lime); font-weight: 900; }
+        .footer .hashtag { color: var(--gold); font-weight: 900; }
 
         #canvas { display: none; }
 
@@ -529,7 +526,7 @@
 <base target="_blank">
 </head>
 <body>
-    <!-- Background Watermarks & Graphic Accents -->
+    <!-- Background Watermarks -->
     <div class="bg-watermark wm-top">HACKER</div>
     <div class="bg-watermark wm-bottom">HOUSE</div>
 
@@ -539,7 +536,7 @@
         <header class="header">
             <div class="studio-pill">
                 <span>✦</span>
-                <span>OFFICIAL LANYARD PASS · GOA 2026</span>
+                <span>2:47 PM STUDIO · HACKER HOUSE GOA 2026</span>
                 <span>✦</span>
             </div>
 
@@ -548,9 +545,9 @@
                 <div class="countdown-timer" id="countdownTimer">78D : 02H : 11M : 43S</div>
             </div>
 
-            <h1 class="main-title">BUILD YOUR OFFICIAL LANYARD BADGE</h1>
+            <h1 class="main-title">BUILD YOUR OFFICIAL LANYARD PASS</h1>
             <p class="sub-caption">
-                Upload your portrait photo, pick your details, and download your <span class="highlight-tag">1200×1800</span> ultra-realistic Lanyard Badge.
+                Upload your portrait photo, pick your details, and download your <span class="highlight-tag">1200×1800</span> high-res retro-tropical badge.
             </p>
         </header>
 
@@ -570,7 +567,7 @@
             <div class="card-title"><span class="icon">✏️</span>Step 2: Builder Info</div>
             <div class="field-group">
                 <label for="fullName">Full Name</label>
-                <input type="text" id="fullName" placeholder="e.g. Aryan Chauhan" maxlength="26" />
+                <input type="text" id="fullName" placeholder="e.g. Arjun Mehta" maxlength="26" />
             </div>
 
             <div class="field-row">
@@ -630,18 +627,18 @@
         </div>
 
         <button class="btn btn-primary" id="generateBtn" disabled>
-            <span>GENERATE LANYARD BADGE 🌴</span>
+            <span>GENERATE ID CARD 🌴</span>
         </button>
 
         <div class="result-section" id="resultSection">
             <div class="result-card-wrapper">
-                <img id="generatedCard" alt="Hacker House Goa 2026 Official Lanyard Badge" />
+                <img id="generatedCard" alt="Hacker House Goa 2026 Official Lanyard Pass" />
             </div>
 
             <div class="action-buttons">
-                <button class="btn btn-primary" id="downloadBtn"><span>⬇️ Download High-Res Badge</span></button>
+                <button class="btn btn-primary" id="downloadBtn"><span>⬇️ Download High-Res Pass</span></button>
                 <button class="btn btn-x" id="shareBtn"><span>𝕏 Share to X (#FrameInGoa)</span></button>
-                <button class="btn btn-secondary" id="resetBtn"><span>↺ Create Another Badge</span></button>
+                <button class="btn btn-secondary" id="resetBtn"><span>↺ Create Another Pass</span></button>
             </div>
         </div>
 
@@ -686,15 +683,16 @@
         const ctx = canvas.getContext('2d');
         const toast = document.getElementById('toast');
 
-        // Color Constants for Lanyard Graphic Theme
+        // Color Constants (Exact Retro-Tropical Theme: Deep Green #09331D, Gold #F9B828, Hot Pink #FF007F)
         const C = {
-            purpleBg: '#6C2BD9',
-            purpleDark: '#4C1D95',
-            lime: '#CCFF00',
+            darkGreen: '#09331D',
+            forestGreen: '#0E472A',
+            gold: '#F9B828',
+            pink: '#FF007F',
+            magenta: '#D81159',
             mint: '#39FF14',
             cyan: '#00F5FF',
-            cardCream: '#F6F5ED',
-            pink: '#FF007F',
+            cardCream: '#F5EFE6',
             white: '#FFFFFF',
             black: '#111111',
             grayText: '#555555'
@@ -859,6 +857,9 @@
             ctx.closePath();
             ctx.fillStyle = color;
             ctx.fill();
+            ctx.strokeStyle = C.black;
+            ctx.lineWidth = 3;
+            ctx.stroke();
         }
 
         // Helper to draw Barcode
@@ -874,36 +875,34 @@
             }
         }
 
-        // Render Metallic Silver Lanyard Clip at top
+        // Render Lanyard Clip at top
         function drawLanyardClip(ctx, cardX, cardY, cardW) {
             const clipCx = cardX + cardW / 2;
             const clipCy = cardY + 54;
 
-            // Top Fabric Strap
-            ctx.fillStyle = C.lime;
+            // Fabric Strap (Golden Yellow)
+            ctx.fillStyle = C.gold;
             ctx.fillRect(clipCx - 36, 0, 72, clipCy - 30);
-
-            // Black Strap Border
             ctx.strokeStyle = C.black;
             ctx.lineWidth = 4;
             ctx.strokeRect(clipCx - 36, 0, 72, clipCy - 30);
 
-            // Rivet Dot on Strap
+            // Strap Rivet Dot
             ctx.fillStyle = C.black;
             ctx.beginPath(); ctx.arc(clipCx, clipCy - 55, 6, 0, Math.PI * 2); ctx.fill();
 
-            // Metallic Silver Clasp Ring
+            // Silver Clasp Ring
             ctx.lineWidth = 7;
-            ctx.strokeStyle = '#D1D5DB';
+            ctx.strokeStyle = '#E5E7EB';
             ctx.beginPath();
             ctx.arc(clipCx, clipCy - 15, 22, 0, Math.PI * 2);
             ctx.stroke();
 
-            ctx.strokeStyle = '#4B5563';
+            ctx.strokeStyle = '#374151';
             ctx.lineWidth = 2.5;
             ctx.stroke();
 
-            // Metallic Swivel Hook
+            // Swivel Hook Box
             ctx.fillStyle = '#9CA3AF';
             ctx.fillRect(clipCx - 10, clipCy - 5, 20, 26);
             ctx.strokeStyle = C.black;
@@ -912,13 +911,13 @@
 
             // Slot Hole Punched in Card Base
             drawRoundedRect(ctx, clipCx - 40, cardY + 40, 80, 26, 12);
-            ctx.fillStyle = '#26134D'; ctx.fill();
+            ctx.fillStyle = '#062012'; ctx.fill();
             ctx.strokeStyle = C.black; ctx.lineWidth = 3.5; ctx.stroke();
         }
 
         async function generateCard() {
             generateBtn.disabled = true;
-            generateBtn.innerHTML = '<div class="spinner"></div><span>CRAFTING 1200×1800 LANYARD BADGE...</span>';
+            generateBtn.innerHTML = '<div class="spinner"></div><span>CRAFTING 1200×1800 PASS...</span>';
 
             setTimeout(() => {
                 try {
@@ -934,58 +933,60 @@
                     const stackVal = stack.value.toUpperCase();
                     const vibeVal = vibe.value;
 
-                    // Dynamic Photo Backdrops per Vibe
+                    // Dynamic Photo Backdrops per Vibe (Retro-Tropical Palette)
                     const vibeColors = {
-                        'Night Owl': '#9D4EDD',
+                        'Night Owl': '#09331D',
                         'Coffee Addict': '#D97706',
-                        'Beach Bum': '#059669',
-                        'Code Warrior': '#2563EB',
-                        'Bug Hunter': '#F59E0B',
-                        'Ship It': '#7C3AED',
-                        'Chill': '#10B981',
-                        'Chaos': '#E11D48'
+                        'Beach Bum': '#0E472A',
+                        'Code Warrior': '#0284C7',
+                        'Bug Hunter': '#EA580C',
+                        'Ship It': '#09331D',
+                        'Chill': '#059669',
+                        'Chaos': '#FF007F'
                     };
 
-                    const photoBgColor = vibeColors[vibeVal] || '#84CC16'; // Vivid Green default
+                    const photoBgColor = vibeColors[vibeVal] || C.darkGreen;
 
-                    // 1. PURPLE BACKDROP WITH GRAPHIC ACCENTS
-                    ctx.fillStyle = C.purpleBg;
+                    // 1. RETRO-TROPICAL DEEP GREEN BACKDROP WITH SUNBURST & WATERMARK
+                    ctx.fillStyle = C.darkGreen;
                     ctx.fillRect(0, 0, W, H);
 
+                    // Sunburst Rays in Backdrop
+                    const rayCx = W / 2;
+                    const rayCy = 950;
+                    const numRays = 24;
+                    const rayAngle = (Math.PI * 2) / numRays;
+                    ctx.fillStyle = 'rgba(216, 17, 89, 0.22)'; // Tropical Magenta Ray Overlay
+
+                    for (let i = 0; i < numRays; i += 2) {
+                        ctx.beginPath();
+                        ctx.moveTo(rayCx, rayCy);
+                        ctx.arc(rayCx, rayCy, 1600, i * rayAngle, (i + 1) * rayAngle);
+                        ctx.closePath();
+                        ctx.fill();
+                    }
+
                     // Large Background Watermark Text
-                    ctx.font = '900 240px "Plus Jakarta Sans", sans-serif';
-                    ctx.fillStyle = 'rgba(255, 255, 255, 0.04)';
+                    ctx.font = '900 240px "Playfair Display", serif';
+                    ctx.fillStyle = 'rgba(249, 184, 40, 0.05)';
                     ctx.textAlign = 'right';
-                    ctx.fillText('HH', W + 40, 300);
+                    ctx.fillText('HACKER', W + 40, 300);
                     ctx.textAlign = 'left';
-                    ctx.fillText('GOA', -40, H - 100);
+                    ctx.fillText('HOUSE', -40, H - 100);
 
-                    // Floating Lime Starbursts
-                    drawStarburst(ctx, 160, 480, 14, 110, 50, C.lime);
-                    drawStarburst(ctx, W - 140, 1280, 12, 60, 28, C.lime);
+                    // Floating Golden Starbursts
+                    drawStarburst(ctx, 160, 480, 14, 110, 50, C.gold);
+                    drawStarburst(ctx, W - 140, 1280, 12, 60, 28, C.gold);
 
-                    // Dot Matrix Background Grid
-                    ctx.fillStyle = 'rgba(255, 255, 255, 0.12)';
-                    for (let dx = 80; dx < 280; dx += 30) {
-                        for (let dy = 120; dy < 320; dy += 30) {
-                            ctx.beginPath(); ctx.arc(dx, dy, 3, 0, Math.PI * 2); ctx.fill();
-                        }
-                    }
-                    for (let dx = W - 280; dx < W - 80; dx += 30) {
-                        for (let dy = H - 320; dy < H - 120; dy += 30) {
-                            ctx.beginPath(); ctx.arc(dx, dy, 3, 0, Math.PI * 2); ctx.fill();
-                        }
-                    }
-
-                    // 2. MAIN LANYARD BADGE CARD (Clean Off-White #F6F5ED)
-                    const cardW = 760;
+                    // 2. MAIN LANYARD BADGE CARD (Clean Off-White #F5EFE6)
+                    const cardW = 780;
                     const cardH = 1380;
                     const cardX = (W - cardW) / 2;
                     const cardY = 280;
 
                     // 3D Drop Shadow Box
                     drawRoundedRect(ctx, cardX + 16, cardY + 16, cardW, cardH, 36);
-                    ctx.fillStyle = 'rgba(0, 0, 0, 0.35)'; ctx.fill();
+                    ctx.fillStyle = 'rgba(0, 0, 0, 0.45)'; ctx.fill();
 
                     // Off-White Card Fill
                     drawRoundedRect(ctx, cardX, cardY, cardW, cardH, 36);
@@ -999,8 +1000,8 @@
                     const contentX = cardX + 60;
                     const contentY = cardY + 140;
 
-                    ctx.font = '700 24px "Plus Jakarta Sans", sans-serif';
-                    ctx.fillStyle = C.grayText;
+                    ctx.font = '800 24px "JetBrains Mono", monospace';
+                    ctx.fillStyle = C.pink;
                     ctx.textAlign = 'left';
                     ctx.fillText('official', contentX, contentY);
 
@@ -1010,19 +1011,32 @@
                     ctx.fillText('builder', contentX, contentY + 68);
                     ctx.fillText('pass', contentX, contentY + 138);
 
-                    // Green Accent Dot at end of "pass."
+                    // Gold Accent Dot at end of "pass."
                     const passWidth = ctx.measureText('pass').width;
-                    ctx.fillStyle = C.lime;
+                    ctx.fillStyle = C.gold;
                     ctx.beginPath();
                     ctx.arc(contentX + passWidth + 16, contentY + 124, 10, 0, Math.PI * 2);
                     ctx.fill();
                     ctx.strokeStyle = C.black; ctx.lineWidth = 3; ctx.stroke();
 
+                    // Devanagari "गोवा" Sticker Badge (Top Right of Card Header)
+                    ctx.save();
+                    ctx.translate(cardX + cardW - 130, contentY + 45);
+                    ctx.rotate(-0.16);
+                    drawRoundedRect(ctx, -55, -28, 110, 56, 12);
+                    ctx.fillStyle = C.pink; ctx.fill();
+                    ctx.strokeStyle = C.black; ctx.lineWidth = 3.5; ctx.stroke();
+                    ctx.font = '900 32px "Noto Sans Devanagari", sans-serif';
+                    ctx.fillStyle = C.gold;
+                    ctx.textAlign = 'center';
+                    ctx.fillText('गोवा', 0, 10);
+                    ctx.restore();
+
                     // 4. LEFT SIDEBAR TOOL BADGES (STACK ICONS)
                     const iconsY = contentY + 220;
                     const iconsX = contentX;
 
-                    const icons = ['⚡', '💻', '🎨', '🚀', '🌴'];
+                    const icons = ['⚡', '🏖️', '🌴', '🚀', '🔥'];
                     icons.forEach((ic, i) => {
                         const iy = iconsY + (i * 64);
                         drawRoundedRect(ctx, iconsX, iy, 44, 44, 10);
@@ -1034,7 +1048,7 @@
                         ctx.fillText(ic, iconsX + 22, iy + 30);
                     });
 
-                    // 5. LARGE SQUARE PORTRAIT PHOTO WITH VIBRANT BACKDROP
+                    // 5. LARGE SQUARE PORTRAIT PHOTO WITH VIBRANT TROPICAL BACKDROP
                     const photoSize = 480;
                     const photoX = cardX + cardW - photoSize - 60;
                     const photoY = contentY + 180;
@@ -1063,14 +1077,14 @@
                     drawRoundedRect(ctx, photoX, photoY, photoSize, photoSize, 32);
                     ctx.strokeStyle = C.black; ctx.lineWidth = 5; ctx.stroke();
 
-                    // 6. BUILDER NAME WITH LIME HIGHLIGHT BAR UNDERNEATH
+                    // 6. BUILDER NAME WITH GOLD HIGHLIGHT BAR UNDERNEATH
                     const nameY = photoY + photoSize + 60;
                     ctx.font = '900 48px "Plus Jakarta Sans", sans-serif';
                     const nameWidth = ctx.measureText(name).width;
 
-                    // Lime Highlight Bar Underneath First Name
-                    ctx.fillStyle = C.lime;
-                    ctx.fillRect(contentX, nameY + 6, Math.min(nameWidth, 320), 16);
+                    // Gold Highlight Bar Underneath First Name
+                    ctx.fillStyle = C.gold;
+                    ctx.fillRect(contentX, nameY + 6, Math.min(nameWidth, 340), 16);
 
                     // Name Text
                     ctx.fillStyle = C.black;
@@ -1082,7 +1096,7 @@
                     ctx.fillStyle = C.grayText;
                     ctx.fillText(stackVal + ' Builder  ·  Hacker House Goa', contentX, nameY + 44);
 
-                    // 7. BOTTOM BARCODE + QUOTE SECTION
+                    // 7. BOTTOM BARCODE + TAGLINE SECTION
                     const bottomY = cardY + cardH - 140;
 
                     // Left Barcode
@@ -1096,7 +1110,7 @@
                     ctx.lineTo(contentX + 300, bottomY + 70);
                     ctx.stroke();
 
-                    // Quote / Tagline (Right)
+                    // Tagline (Right)
                     ctx.font = '700 18px "Plus Jakarta Sans", sans-serif';
                     ctx.fillStyle = C.black;
                     ctx.fillText('Code is intelligence', contentX + 325, bottomY + 22);
@@ -1108,7 +1122,7 @@
                     state.generatedDataUrl = dataUrl;
 
                     resultSection.classList.add('visible');
-                    generateBtn.innerHTML = '<span>✓ 1200×1800 LANYARD BADGE READY!</span>';
+                    generateBtn.innerHTML = '<span>✓ 1200×1800 TROPICAL PASS READY!</span>';
 
                     setTimeout(() => {
                         resultSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -1119,7 +1133,7 @@
                     console.error(err);
                     showToast('Error generating pass. Please refresh and try again.');
                     generateBtn.disabled = false;
-                    generateBtn.innerHTML = '<span>GENERATE LANYARD BADGE 🌴</span>';
+                    generateBtn.innerHTML = '<span>GENERATE ID CARD 🌴</span>';
                 }
             }, 100);
         }
@@ -1128,29 +1142,29 @@
 
         downloadBtn.addEventListener('click', () => {
             const link = document.createElement('a');
-            link.download = 'HackerHouse-Goa-2026-' + fullName.value.trim().replace(/\s+/g, '-') + '-LanyardBadge.png';
+            link.download = 'HackerHouse-Goa-2026-' + fullName.value.trim().replace(/\s+/g, '-') + '-Pass.png';
             link.href = state.generatedDataUrl;
             link.click();
-            showToast('Lanyard Badge downloaded! 🌴✦');
+            showToast('Retro-Tropical Pass downloaded! 🌴✦');
         });
 
         shareBtn.addEventListener('click', async () => {
             const name = fullName.value.trim();
-            const text = 'Just generated my official 1200x1800 Lanyard Badge for Hacker House Goa 2026! 🌴✦\n\nName: ' + name + '\nStack: ' + stack.value + '\n\n#FrameInGoa @hh_goa';
+            const text = 'Just generated my official 1200x1800 Builder Pass for Hacker House Goa 2026! 🌴✦\n\nName: ' + name + '\nStack: ' + stack.value + '\n\n#FrameInGoa @hh_goa';
 
             const link = document.createElement('a');
-            link.download = 'HackerHouse-Goa-2026-' + name.replace(/\s+/g, '-') + '-LanyardBadge.png';
+            link.download = 'HackerHouse-Goa-2026-' + name.replace(/\s+/g, '-') + '-Pass.png';
             link.href = state.generatedDataUrl;
             link.click();
 
             if (navigator.canShare && state.generatedDataUrl) {
                 try {
                     const blob = await fetch(state.generatedDataUrl).then(r => r.blob());
-                    const file = new File([blob], 'hh-goa-2026-lanyard-badge.png', { type: 'image/png' });
+                    const file = new File([blob], 'hh-goa-2026-tropical-pass.png', { type: 'image/png' });
                     if (navigator.canShare({ files: [file] })) {
                         await navigator.share({
                             files: [file],
-                            title: 'My Hacker House Goa 2026 Lanyard Badge',
+                            title: 'My Hacker House Goa 2026 Builder Pass',
                             text: text
                         });
                         return;
@@ -1160,9 +1174,9 @@
 
             try {
                 await navigator.clipboard.writeText(text);
-                showToast('Badge downloaded & caption copied! Opening X...');
+                showToast('Pass downloaded & caption copied! Opening X...');
             } catch (e) {
-                showToast('Badge downloaded! Opening X...');
+                showToast('Pass downloaded! Opening X...');
             }
 
             const twitterUrl = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(text);
@@ -1185,7 +1199,7 @@
             resultSection.classList.remove('visible');
             generatedCard.src = '';
             generateBtn.disabled = true;
-            generateBtn.innerHTML = '<span>GENERATE LANYARD BADGE 🌴</span>';
+            generateBtn.innerHTML = '<span>GENERATE ID CARD 🌴</span>';
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
@@ -1195,7 +1209,7 @@
             c.width = window.innerWidth;
             c.height = window.innerHeight;
             const particles = [];
-            const colors = [C.lime, C.pink, C.purpleDark, C.white];
+            const colors = [C.gold, C.pink, C.forestGreen, C.white];
             for (let i = 0; i < 110; i++) {
                 particles.push({
                     x: c.width / 2,
