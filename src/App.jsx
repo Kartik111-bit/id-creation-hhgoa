@@ -3,16 +3,15 @@ import heic2any from 'heic2any';
 import './App.css';
 
 const C = {
-  yellow: '#FFE600',
+  greenBg: '#0B5639',
+  greenCard: '#08291B',
+  gold: '#F9B828',
   pink: '#FF007F',
   cyan: '#00F5FF',
   lime: '#39FF14',
-  purpleBg: '#11002C',
-  purpleCard: '#1D0047',
-  cardCream: '#FAF8F0',
   white: '#FFFFFF',
   black: '#000000',
-  grayText: '#AAAAAA'
+  grayText: '#B2D8C6'
 };
 
 const titleAdjectives = {
@@ -136,34 +135,8 @@ export default function App() {
     ctx.closePath();
   };
 
-  const drawStarburst = (ctx, cx, cy, spikes, outerR, innerR, color) => {
-    let rot = (Math.PI / 2) * 3;
-    let x = cx, y = cy;
-    const step = Math.PI / spikes;
-
-    ctx.beginPath();
-    ctx.moveTo(cx, cy - outerR);
-    for (let i = 0; i < spikes; i++) {
-      x = cx + Math.cos(rot) * outerR;
-      y = cy + Math.sin(rot) * outerR;
-      ctx.lineTo(x, y);
-      rot += step;
-      x = cx + Math.cos(rot) * innerR;
-      y = cy + Math.sin(rot) * innerR;
-      ctx.lineTo(x, y);
-      rot += step;
-    }
-    ctx.lineTo(cx, cy - outerR);
-    ctx.closePath();
-    ctx.fillStyle = color;
-    ctx.fill();
-    ctx.strokeStyle = C.black;
-    ctx.lineWidth = 3.5;
-    ctx.stroke();
-  };
-
   const drawBarcode = (ctx, x, y, width, height) => {
-    ctx.fillStyle = C.white;
+    ctx.fillStyle = C.gold;
     let currentX = x;
     const endX = x + width;
     while (currentX < endX) {
@@ -178,7 +151,7 @@ export default function App() {
     const clipCx = cardX + cardW / 2;
     const clipCy = cardY + 54;
 
-    ctx.fillStyle = C.yellow;
+    ctx.fillStyle = C.gold;
     ctx.fillRect(clipCx - 38, 0, 76, clipCy - 30);
     ctx.strokeStyle = C.black;
     ctx.lineWidth = 4.5;
@@ -204,7 +177,7 @@ export default function App() {
     ctx.strokeRect(clipCx - 11, clipCy - 5, 22, 28);
 
     drawRoundedRect(ctx, clipCx - 42, cardY + 40, 84, 28, 14);
-    ctx.fillStyle = '#0D0022'; ctx.fill();
+    ctx.fillStyle = '#041B12'; ctx.fill();
     ctx.strokeStyle = C.black; ctx.lineWidth = 4; ctx.stroke();
   };
 
@@ -221,21 +194,12 @@ export default function App() {
         canvas.width = W;
         canvas.height = H;
 
-        const themeMap = {
-          'Night Owl': { cardBg: '#1C003D', textColor: '#FFFFFF', subColor: '#00F5FF', photoBg: C.pink },
-          'Coffee Addict': { cardBg: '#2B1408', textColor: '#FFFFFF', subColor: '#FFE600', photoBg: C.yellow },
-          'Beach Bum': { cardBg: '#09331D', textColor: '#FFFFFF', subColor: '#F9B828', photoBg: C.lime },
-          'Code Warrior': { cardBg: '#051923', textColor: '#FFFFFF', subColor: '#00F5FF', photoBg: C.cyan },
-          'Bug Hunter': { cardBg: '#2D1F00', textColor: '#FFFFFF', subColor: '#FFE600', photoBg: C.yellow },
-          'Ship It': { cardBg: '#1E0040', textColor: '#FFFFFF', subColor: '#00F5FF', photoBg: C.pink },
-          'Chill': { cardBg: '#082419', textColor: '#FFFFFF', subColor: '#39FF14', photoBg: C.lime },
-          'Chaos': { cardBg: '#3D0022', textColor: '#FFFFFF', subColor: '#FFE600', photoBg: C.pink }
-        };
-
-        const t = themeMap[vibe] || themeMap['Beach Bum'];
+        // RETRO-TROPICAL EMERALD & GOLD CARD THEME
+        const cardBgColor = '#063623';
+        const photoBgColor = C.gold;
 
         // Outer Backdrop
-        ctx.fillStyle = C.purpleBg;
+        ctx.fillStyle = C.greenBg;
         ctx.fillRect(0, 0, W, H);
 
         // Sunburst Rays
@@ -243,7 +207,7 @@ export default function App() {
         const rayCy = 950;
         const numRays = 26;
         const rayAngle = (Math.PI * 2) / numRays;
-        ctx.fillStyle = 'rgba(255, 0, 127, 0.22)';
+        ctx.fillStyle = 'rgba(249, 184, 40, 0.14)';
         for (let i = 0; i < numRays; i += 2) {
           ctx.beginPath();
           ctx.moveTo(rayCx, rayCy);
@@ -252,27 +216,13 @@ export default function App() {
           ctx.fill();
         }
 
-        // Cyber Grid Pattern
-        ctx.strokeStyle = 'rgba(0, 245, 255, 0.16)';
-        ctx.lineWidth = 2.5;
-        for (let gx = 0; gx < W; gx += 45) {
-          ctx.beginPath(); ctx.moveTo(gx, 0); ctx.lineTo(gx, H); ctx.stroke();
-        }
-        for (let gy = 0; gy < H; gy += 45) {
-          ctx.beginPath(); ctx.moveTo(0, gy); ctx.lineTo(W, gy); ctx.stroke();
-        }
-
         // Watermark Text
         ctx.font = '900 240px "Plus Jakarta Sans", sans-serif';
-        ctx.fillStyle = 'rgba(255, 230, 0, 0.04)';
+        ctx.fillStyle = 'rgba(249, 184, 40, 0.04)';
         ctx.textAlign = 'right';
         ctx.fillText('HACKER', W + 40, 300);
         ctx.textAlign = 'left';
         ctx.fillText('HOUSE', -40, H - 100);
-
-        // Floating Starbursts
-        drawStarburst(ctx, 160, 480, 14, 110, 50, C.yellow);
-        drawStarburst(ctx, W - 140, 1280, 12, 60, 28, C.cyan);
 
         // Main Card
         const cardW = 800;
@@ -284,14 +234,14 @@ export default function App() {
         ctx.fillStyle = C.black; ctx.fill();
 
         drawRoundedRect(ctx, cardX, cardY, cardW, cardH, 38);
-        ctx.fillStyle = t.cardBg; ctx.fill();
-        ctx.strokeStyle = C.yellow; ctx.lineWidth = 6; ctx.stroke();
+        ctx.fillStyle = cardBgColor; ctx.fill();
+        ctx.strokeStyle = C.gold; ctx.lineWidth = 6; ctx.stroke();
 
         // Card Grid Mesh Overlay
         ctx.save();
         drawRoundedRect(ctx, cardX, cardY, cardW, cardH, 38);
         ctx.clip();
-        ctx.strokeStyle = 'rgba(255, 255, 255, 0.06)';
+        ctx.strokeStyle = 'rgba(249, 184, 40, 0.08)';
         ctx.lineWidth = 1.5;
         for (let cx = cardX; cx < cardX + cardW; cx += 32) {
           ctx.beginPath(); ctx.moveTo(cx, cardY); ctx.lineTo(cx, cardY + cardH); ctx.stroke();
@@ -309,7 +259,7 @@ export default function App() {
         const contentX = cardX + 50;
 
         drawRoundedRect(ctx, contentX, headerY, 360, 44, 12);
-        ctx.fillStyle = C.yellow; ctx.fill();
+        ctx.fillStyle = C.gold; ctx.fill();
         ctx.strokeStyle = C.black; ctx.lineWidth = 3.5; ctx.stroke();
         ctx.font = '900 16px "JetBrains Mono", monospace';
         ctx.fillStyle = C.black;
@@ -323,11 +273,11 @@ export default function App() {
         ctx.translate(studioX, studioY);
         ctx.rotate(0.06);
         ctx.beginPath(); ctx.arc(45, -12, 14, 0, Math.PI * 2); ctx.fillStyle = C.pink; ctx.fill();
-        ctx.beginPath(); ctx.arc(45, -12, 8, 0, Math.PI * 2); ctx.fillStyle = C.yellow; ctx.fill();
+        ctx.beginPath(); ctx.arc(45, -12, 8, 0, Math.PI * 2); ctx.fillStyle = C.gold; ctx.fill();
         ctx.beginPath(); ctx.arc(45, -12, 3, 0, Math.PI * 2); ctx.fillStyle = C.black; ctx.fill();
 
         ctx.font = '900 28px "JetBrains Mono", monospace';
-        ctx.fillStyle = C.yellow;
+        ctx.fillStyle = C.gold;
         ctx.textAlign = 'center';
         ctx.fillText('2:47PM', 0, 8);
         ctx.font = '900 15px "JetBrains Mono", monospace';
@@ -342,10 +292,10 @@ export default function App() {
 
         drawRoundedRect(ctx, logoBoxX, logoBoxY, logoBoxW, logoBoxH, 18);
         ctx.fillStyle = C.black; ctx.fill();
-        ctx.strokeStyle = C.yellow; ctx.lineWidth = 4; ctx.stroke();
+        ctx.strokeStyle = C.gold; ctx.lineWidth = 4; ctx.stroke();
 
         ctx.font = '900 68px "Playfair Display", serif';
-        ctx.fillStyle = C.yellow;
+        ctx.fillStyle = C.gold;
         ctx.textAlign = 'left';
         ctx.fillText('HACKER', logoBoxX + 18, logoBoxY + 86);
         ctx.fillText('HOUSE', logoBoxX + 18, logoBoxY + 172);
@@ -358,13 +308,13 @@ export default function App() {
         ctx.fillStyle = C.pink; ctx.fill();
         ctx.strokeStyle = C.black; ctx.lineWidth = 4; ctx.stroke();
         ctx.font = '900 34px "Noto Sans Devanagari", sans-serif';
-        ctx.fillStyle = C.yellow;
+        ctx.fillStyle = C.gold;
         ctx.textAlign = 'center';
         ctx.fillText('गोवा', 0, 11);
         ctx.restore();
 
         ctx.font = '800 16px "JetBrains Mono", monospace';
-        ctx.fillStyle = t.subColor;
+        ctx.fillStyle = C.gold;
         ctx.textAlign = 'left';
         ctx.fillText('GOA, INDIA  ·  28 - 31 OCT 2026', logoBoxX + 4, logoBoxY + logoBoxH + 30);
 
@@ -372,11 +322,11 @@ export default function App() {
         const iconsY = logoBoxY + logoBoxH + 65;
         const iconsX = contentX;
         const icons = [
-          { symbol: '⚡', bg: C.yellow },
+          { symbol: '⚡', bg: C.gold },
           { symbol: '🏖️', bg: C.cyan },
           { symbol: '🌴', bg: C.pink },
           { symbol: '🚀', bg: C.lime },
-          { symbol: '🔥', bg: C.yellow }
+          { symbol: '🔥', bg: C.gold }
         ];
 
         icons.forEach((ic, i) => {
@@ -398,7 +348,7 @@ export default function App() {
         ctx.fillStyle = C.black; ctx.fill();
 
         drawRoundedRect(ctx, photoX, photoY, photoSize, photoSize, 32);
-        ctx.fillStyle = t.photoBg; ctx.fill();
+        ctx.fillStyle = photoBgColor; ctx.fill();
 
         const imgAspect = imageObj.width / imageObj.height;
         let sx, sy, sW, sH;
@@ -412,29 +362,29 @@ export default function App() {
         ctx.restore();
 
         drawRoundedRect(ctx, photoX, photoY, photoSize, photoSize, 32);
-        ctx.strokeStyle = C.yellow; ctx.lineWidth = 5; ctx.stroke();
+        ctx.strokeStyle = C.gold; ctx.lineWidth = 5; ctx.stroke();
 
         // Name
         const nameY = photoY + photoSize + 60;
         ctx.font = '900 48px "Plus Jakarta Sans", sans-serif';
         const nameWidth = ctx.measureText(fullName.trim()).width;
 
-        ctx.fillStyle = C.yellow;
+        ctx.fillStyle = C.gold;
         ctx.fillRect(contentX, nameY + 6, Math.min(nameWidth, 340), 16);
 
-        ctx.fillStyle = t.textColor;
+        ctx.fillStyle = C.white;
         ctx.textAlign = 'left';
         ctx.fillText(fullName.trim(), contentX, nameY);
 
         ctx.font = '800 24px "Plus Jakarta Sans", sans-serif';
-        ctx.fillStyle = t.subColor;
+        ctx.fillStyle = C.gold;
         ctx.fillText(stack.toUpperCase() + ' Builder  ·  Hacker House Goa', contentX, nameY + 44);
 
         // Barcode & Tagline
         const bottomY = cardY + cardH - 130;
         drawBarcode(ctx, contentX, bottomY, 260, 60);
 
-        ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
+        ctx.strokeStyle = 'rgba(249, 184, 40, 0.3)';
         ctx.lineWidth = 2.5;
         ctx.beginPath();
         ctx.moveTo(contentX + 300, bottomY - 10);
@@ -442,7 +392,7 @@ export default function App() {
         ctx.stroke();
 
         ctx.font = '800 18px "Plus Jakarta Sans", sans-serif';
-        ctx.fillStyle = t.textColor;
+        ctx.fillStyle = C.white;
         ctx.fillText('Code is intelligence', contentX + 325, bottomY + 22);
         ctx.fillText('made visible. #FrameInGoa', contentX + 325, bottomY + 48);
 
@@ -478,20 +428,41 @@ export default function App() {
 
       <div className="container">
         <header className="header">
-          <div className="studio-pill">
-            <span>✦</span>
-            <span>2:47 PM STUDIO · HACKER HOUSE GOA 2026</span>
-            <span>✦</span>
+          {/* Top Row: Studio Brand & Countdown Pill from Screenshot */}
+          <div className="header-top-row">
+            <div className="studio-brand">
+              <div className="studio-title">2:47PM</div>
+              <div className="studio-subtitle">STUDIO</div>
+            </div>
+
+            <div className="countdown-pill">
+              <div className="countdown-label">✦ GOA 2026 IN</div>
+              <div className="countdown-timer">{countdown}</div>
+            </div>
           </div>
 
-          <div className="countdown-box">
-            <div className="countdown-label">⚡ GOA 2026 IN</div>
-            <div className="countdown-timer">{countdown}</div>
+          {/* Middle Header Pill from Screenshot */}
+          <div className="middle-header-pill">
+            HACKER HOUSE GOA 2026 · OFFICIAL BUILDER PASS ✦
           </div>
 
-          <h1 className="main-title">BUILD YOUR OFFICIAL LANYARD PASS</h1>
+          {/* Hero Stacked Title + Hot Pink Devanagari Goa Sticker from Screenshot */}
+          <div className="hero-title-box">
+            <h1 className="hero-title">
+              HACKER<br />HOUSE
+            </h1>
+            <div className="devanagari-sticker">गोवा</div>
+          </div>
+
+          {/* Location Badge Pill from Screenshot */}
+          <div>
+            <div className="location-pill">
+              GOA, INDIA  ·  28 - 31 OCT 2026
+            </div>
+          </div>
+
           <p className="sub-caption">
-            Upload your portrait photo, pick your details, and download your <span className="highlight-tag">1200×1800</span> high-res badge.
+            Upload your portrait photo, customize your official retro-tropical builder pass with automated builder title, and share with <span className="highlight-hashtag">#FrameInGoa</span>.
           </p>
         </header>
 
@@ -599,7 +570,7 @@ export default function App() {
               <span>CRAFTING 1200×1800 PASS...</span>
             </>
           ) : (
-            <span>GENERATE ID CARD ⚡</span>
+            <span>GENERATE ID CARD 🌴</span>
           )}
         </button>
 
