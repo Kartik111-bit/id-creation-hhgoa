@@ -509,8 +509,8 @@ export default function App() {
           ctx.fillText(ic.symbol, iconsX + 22, iy + 30);
         });
 
-        // 5. LARGE PORTRAIT PHOTO WITH VIBRANT BACKDROP & OVERLAY BADGES FROM USER SCREENSHOTS
-        const photoSize = 500; // ENLARGED PORTRAIT PHOTO FRAME
+        // 5. LARGE PORTRAIT PHOTO WITH VIBRANT BACKDROP & OVERLAY BADGES
+        const photoSize = 500;
         const photoX = cardX + cardW - photoSize - 35;
         const photoY = iconsY - 10;
 
@@ -537,7 +537,7 @@ export default function App() {
         drawRoundedRect(ctx, photoX, photoY, photoSize, photoSize, 32);
         ctx.strokeStyle = C.black; ctx.lineWidth = 5.5; ctx.stroke();
 
-        // TOP PHOTO OVERLAY STICKER: "★ VERIFIED BUILDER" (Yellow Sticker Pill from Screenshot)
+        // TOP PHOTO OVERLAY STICKER: "★ VERIFIED BUILDER"
         const topTagX = photoX + 20;
         const topTagY = photoY - 14;
         drawRoundedRect(ctx, topTagX + 3, topTagY + 3, 215, 38, 10);
@@ -550,7 +550,7 @@ export default function App() {
         ctx.textAlign = 'center';
         ctx.fillText('★ VERIFIED BUILDER', topTagX + 107, topTagY + 24);
 
-        // BOTTOM PHOTO OVERLAY STICKER: "ACCESS ALL AREAS // 26" (Cyan Sticker Pill from Screenshot)
+        // BOTTOM PHOTO OVERLAY STICKER: "ACCESS ALL AREAS // 26"
         const botTagX = photoX + photoSize - 235;
         const botTagY = photoY + photoSize - 22;
         drawRoundedRect(ctx, botTagX + 3, botTagY + 3, 225, 38, 10);
@@ -563,18 +563,18 @@ export default function App() {
         ctx.textAlign = 'center';
         ctx.fillText('ACCESS ALL AREAS // 26', botTagX + 112, botTagY + 24);
 
-        // 6. BUILDER NAME & SUBTITLE (EXTRA BIG & EXTRA BOLD)
-        const nameY = photoY + photoSize + 56;
+        // 6. BUILDER NAME & SUBTITLE
+        const nameY = photoY + photoSize + 54;
         const rawName = fullName.trim();
-        let nameFontSize = 60;
-        if (rawName.length > 18) nameFontSize = 44;
-        else if (rawName.length > 14) nameFontSize = 50;
+        let nameFontSize = 58;
+        if (rawName.length > 18) nameFontSize = 42;
+        else if (rawName.length > 14) nameFontSize = 48;
 
         ctx.font = `900 ${nameFontSize}px "Playfair Display", serif`;
         const nameWidth = ctx.measureText(rawName).width;
 
         // Warm Gold Underline Highlight Banner
-        drawRoundedRect(ctx, contentX - 6, nameY + 8, Math.min(nameWidth + 16, 360), 16, 6);
+        drawRoundedRect(ctx, contentX - 6, nameY + 6, Math.min(nameWidth + 16, 360), 14, 6);
         ctx.fillStyle = C.gold; ctx.fill();
         ctx.strokeStyle = C.black; ctx.lineWidth = 2.5; ctx.stroke();
 
@@ -587,17 +587,64 @@ export default function App() {
         ctx.fillStyle = C.white;
         ctx.fillText(rawName, contentX, nameY);
 
-        ctx.font = '800 22px "Plus Jakarta Sans", sans-serif';
+        ctx.font = '800 20px "Plus Jakarta Sans", sans-serif';
         ctx.fillStyle = C.gold;
-        ctx.fillText(stack.toUpperCase() + ' Builder  ·  Hacker House Goa', contentX, nameY + 42);
+        ctx.fillText('Hacker House Goa  ·  Builder Pass', contentX, nameY + 36);
 
-        // 7. ★ BUILDER TITLE BADGE
+        // 7. NEW: SIDE-BY-SIDE "STACK / ROLE" AND "VIBE CHECK" RETRO PILL BOXES (FROM USER SCREENSHOT)
+        const stackVibeY = nameY + 54;
+        const boxW = 160;
+        const boxH = 42;
+
+        // BOX 1: STACK / ROLE
+        ctx.font = '900 11px "JetBrains Mono", monospace';
+        ctx.fillStyle = C.gold;
+        ctx.fillText('STACK / ROLE', contentX, stackVibeY + 10);
+
+        const b1Y = stackVibeY + 16;
+        drawRoundedRect(ctx, contentX + 3, b1Y + 3, boxW, boxH, 12);
+        ctx.fillStyle = C.black; ctx.fill();
+        drawRoundedRect(ctx, contentX, b1Y, boxW, boxH, 12);
+        ctx.fillStyle = '#042618'; ctx.fill();
+        ctx.strokeStyle = C.gold; ctx.lineWidth = 2.5; ctx.stroke();
+
+        ctx.font = '900 15px "Plus Jakarta Sans", sans-serif';
+        ctx.fillStyle = C.white;
+        ctx.fillText(stack || 'Hardware', contentX + 16, b1Y + 26);
+
+        // Yellow Dropdown Arrow ▼
+        ctx.font = '900 12px sans-serif';
+        ctx.fillStyle = C.gold;
+        ctx.fillText('▼', contentX + boxW - 24, b1Y + 26);
+
+        // BOX 2: VIBE CHECK
+        const b2X = contentX + 175;
+        ctx.font = '900 11px "JetBrains Mono", monospace';
+        ctx.fillStyle = C.gold;
+        ctx.fillText('VIBE CHECK', b2X, stackVibeY + 10);
+
+        drawRoundedRect(ctx, b2X + 3, b1Y + 3, boxW, boxH, 12);
+        ctx.fillStyle = C.black; ctx.fill();
+        drawRoundedRect(ctx, b2X, b1Y, boxW, boxH, 12);
+        ctx.fillStyle = '#042618'; ctx.fill();
+        ctx.strokeStyle = C.gold; ctx.lineWidth = 2.5; ctx.stroke();
+
+        ctx.font = '900 15px "Plus Jakarta Sans", sans-serif';
+        ctx.fillStyle = C.white;
+        ctx.fillText(vibe || 'Ship It', b2X + 16, b1Y + 26);
+
+        // Yellow Dropdown Arrow ▼
+        ctx.font = '900 12px sans-serif';
+        ctx.fillStyle = C.gold;
+        ctx.fillText('▼', b2X + boxW - 24, b1Y + 26);
+
+        // 8. ★ BUILDER TITLE BADGE (MATCHING SCREENSHOT)
         const badgeTitleText = '★ ' + (builderTitle || 'On-Chain Surfer');
-        const badgeY = nameY + 62;
+        const badgeY = b1Y + boxH + 20;
         ctx.font = '900 22px "Plus Jakarta Sans", sans-serif';
         const badgeTextWidth = ctx.measureText(badgeTitleText).width;
         const badgeW = Math.max(340, badgeTextWidth + 44);
-        const badgeH = 50;
+        const badgeH = 48;
 
         drawRoundedRect(ctx, contentX + 4, badgeY + 4, badgeW, badgeH, 16);
         ctx.fillStyle = C.black; ctx.fill();
@@ -609,23 +656,23 @@ export default function App() {
 
         ctx.fillStyle = C.white;
         ctx.textAlign = 'left';
-        ctx.fillText(badgeTitleText, contentX + 22, badgeY + 33);
+        ctx.fillText(badgeTitleText, contentX + 22, badgeY + 32);
 
-        // 8. BOTTOM BARCODE + TAGLINE SECTION
-        const bottomY = cardY + cardH - 120;
-        drawBarcode(ctx, contentX, bottomY, 260, 60);
+        // 9. BOTTOM BARCODE + TAGLINE SECTION
+        const bottomY = cardY + cardH - 110;
+        drawBarcode(ctx, contentX, bottomY, 260, 56);
 
         ctx.strokeStyle = 'rgba(255, 255, 255, 0.4)';
         ctx.lineWidth = 2.5;
         ctx.beginPath();
         ctx.moveTo(contentX + 300, bottomY - 10);
-        ctx.lineTo(contentX + 300, bottomY + 70);
+        ctx.lineTo(contentX + 300, bottomY + 66);
         ctx.stroke();
 
         ctx.font = '800 18px "Plus Jakarta Sans", sans-serif';
         ctx.fillStyle = C.white;
-        ctx.fillText('Code is intelligence', contentX + 325, bottomY + 22);
-        ctx.fillText('made visible. #FrameInGoa', contentX + 325, bottomY + 48);
+        ctx.fillText('Code is intelligence', contentX + 325, bottomY + 20);
+        ctx.fillText('made visible. #FrameInGoa', contentX + 325, bottomY + 46);
 
         const dataUrl = canvas.toDataURL('image/png', 1.0);
         setGeneratedDataUrl(dataUrl);
