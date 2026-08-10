@@ -534,25 +534,37 @@ export default function App() {
         drawRoundedRect(ctx, photoX, photoY, photoSize, photoSize, 32);
         ctx.strokeStyle = C.black; ctx.lineWidth = 5; ctx.stroke();
 
-        // 6. BUILDER NAME & SUBTITLE
-        const nameY = photoY + photoSize + 54;
-        ctx.font = '900 48px "Plus Jakarta Sans", sans-serif';
-        const nameWidth = ctx.measureText(fullName.trim()).width;
+        // 6. BUILDER NAME & SUBTITLE (EXTRA BIG, EXTRA BOLD 900 & CREATIVE SHADOW)
+        const nameY = photoY + photoSize + 56;
+        const rawName = fullName.trim();
+        let nameFontSize = 60;
+        if (rawName.length > 18) nameFontSize = 44;
+        else if (rawName.length > 14) nameFontSize = 50;
 
-        ctx.fillStyle = C.gold;
-        ctx.fillRect(contentX, nameY + 6, Math.min(nameWidth, 340), 16);
+        ctx.font = `900 ${nameFontSize}px "Playfair Display", serif`;
+        const nameWidth = ctx.measureText(rawName).width;
 
-        ctx.fillStyle = C.white;
+        // Warm Gold Underline Highlight Banner
+        drawRoundedRect(ctx, contentX - 6, nameY + 8, Math.min(nameWidth + 16, 360), 16, 6);
+        ctx.fillStyle = C.gold; ctx.fill();
+        ctx.strokeStyle = C.black; ctx.lineWidth = 2.5; ctx.stroke();
+
+        // 3D Offset Black Shadow for Name Text
+        ctx.fillStyle = C.black;
         ctx.textAlign = 'left';
-        ctx.fillText(fullName.trim(), contentX, nameY);
+        ctx.fillText(rawName, contentX + 3, nameY + 3);
+
+        // Giant Crisp White Name Text
+        ctx.fillStyle = C.white;
+        ctx.fillText(rawName, contentX, nameY);
 
         ctx.font = '800 22px "Plus Jakarta Sans", sans-serif';
         ctx.fillStyle = C.gold;
-        ctx.fillText(stack.toUpperCase() + ' Builder  ·  Hacker House Goa', contentX, nameY + 40);
+        ctx.fillText(stack.toUpperCase() + ' Builder  ·  Hacker House Goa', contentX, nameY + 42);
 
         // 7. ★ BUILDER TITLE BADGE
         const badgeTitleText = '★ ' + (builderTitle || 'On-Chain Surfer');
-        const badgeY = nameY + 58;
+        const badgeY = nameY + 62;
         ctx.font = '900 22px "Plus Jakarta Sans", sans-serif';
         const badgeTextWidth = ctx.measureText(badgeTitleText).width;
         const badgeW = Math.max(340, badgeTextWidth + 44);
