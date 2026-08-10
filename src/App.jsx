@@ -490,8 +490,8 @@ export default function App() {
 
         // 4. LARGE PORTRAIT PHOTO WITH VIBRANT BACKDROP & OVERLAY BADGES — PERFECTLY CENTERED!
         const photoSize = 480;
-        const photoX = cardCenterX - photoSize / 2; // 600 - 240 = 360 (PERFECTLY CENTERED!)
-        const photoY = logoBoxY + logoBoxH + 60;
+        const photoX = cardCenterX - photoSize / 2; // 600 - 240 = 360
+        const photoY = logoBoxY + logoBoxH + 55;
 
         // 3D Black Drop Shadow Box
         drawRoundedRect(ctx, photoX + 10, photoY + 10, photoSize, photoSize, 32);
@@ -516,7 +516,7 @@ export default function App() {
         drawRoundedRect(ctx, photoX, photoY, photoSize, photoSize, 32);
         ctx.strokeStyle = C.black; ctx.lineWidth = 5.5; ctx.stroke();
 
-        // TOP PHOTO OVERLAY STICKER: "★ VERIFIED BUILDER" — CENTERED ON TOP EDGE
+        // TOP PHOTO OVERLAY STICKER: "★ VERIFIED BUILDER"
         const topTagW = 215;
         const topTagX = photoX + (photoSize - topTagW) / 2;
         const topTagY = photoY - 14;
@@ -530,7 +530,7 @@ export default function App() {
         ctx.textAlign = 'center';
         ctx.fillText('★ VERIFIED BUILDER', topTagX + topTagW / 2, topTagY + 24);
 
-        // BOTTOM PHOTO OVERLAY STICKER: "ACCESS ALL AREAS // 26" — CENTERED ON BOTTOM EDGE
+        // BOTTOM PHOTO OVERLAY STICKER: "ACCESS ALL AREAS // 26"
         const botTagW = 225;
         const botTagX = photoX + (photoSize - botTagW) / 2;
         const botTagY = photoY + photoSize - 22;
@@ -544,8 +544,8 @@ export default function App() {
         ctx.textAlign = 'center';
         ctx.fillText('ACCESS ALL AREAS // 26', botTagX + botTagW / 2, botTagY + 24);
 
-        // 5. BUILDER NAME & SUBTITLE — PERFECTLY CENTER ALIGNED!
-        const nameY = photoY + photoSize + 60;
+        // 5. BUILDER NAME & SUBTITLE — SHIFTED DOWN PER USER REQUEST (nameY = photoY + photoSize + 95)
+        const nameY = photoY + photoSize + 95;
         const rawName = fullName.trim();
         let nameFontSize = 58;
         if (rawName.length > 18) nameFontSize = 40;
@@ -575,13 +575,13 @@ export default function App() {
         ctx.textAlign = 'center';
         ctx.fillText('Hacker House Goa  ·  Builder Pass', cardCenterX, nameY + 36);
 
-        // 6. SIDE-BY-SIDE "PRIMARY STACK" (CYAN) AND "VIBE CHECK" (PINK) RETRO PILL BADGES — CENTERED!
+        // 6. SIDE-BY-SIDE "PRIMARY STACK" (CYAN) AND "VIBE CHECK" (PINK) RETRO PILL BADGES
         const stackVibeY = nameY + 54;
         const pillW = 168;
         const pillH = 58;
         const gap = 14;
-        const totalPillsW = pillW * 2 + gap; // 350px
-        const pillsStartX = cardCenterX - totalPillsW / 2; // 600 - 175 = 425 (CENTERED!)
+        const totalPillsW = pillW * 2 + gap;
+        const pillsStartX = cardCenterX - totalPillsW / 2;
 
         // PILL 1: PRIMARY STACK (Cyan Border & Dark Fill)
         const p1X = pillsStartX;
@@ -619,13 +619,13 @@ export default function App() {
         ctx.fillStyle = C.white;
         ctx.fillText((vibe || 'CHILL').toUpperCase(), p2X + pillW / 2, stackVibeY + 44);
 
-        // 7. ★ BUILDER TITLE BADGE — PERFECTLY CENTERED!
+        // 7. ★ BUILDER TITLE BADGE
         const badgeTitleText = '★ ' + (builderTitle || 'On-Chain Surfer');
         const badgeY = stackVibeY + pillH + 18;
         ctx.font = '900 22px "Plus Jakarta Sans", sans-serif';
         const badgeTextWidth = ctx.measureText(badgeTitleText).width;
         const badgeW = Math.max(350, badgeTextWidth + 44);
-        const badgeX = cardCenterX - badgeW / 2; // CENTERED!
+        const badgeX = cardCenterX - badgeW / 2;
         const badgeH = 48;
 
         drawRoundedRect(ctx, badgeX + 4, badgeY + 4, badgeW, badgeH, 16);
@@ -640,16 +640,16 @@ export default function App() {
         ctx.textAlign = 'center';
         ctx.fillText(badgeTitleText, cardCenterX, badgeY + 32);
 
-        // 8. BOTTOM BARCODE + TAGLINE SECTION — CENTERED AT BOTTOM
-        const bottomY = cardY + cardH - 100;
+        // 8. BOTTOM BARCODE + TAGLINE SECTION
+        const bottomY = cardY + cardH - 90;
         const barcodeW = 280;
         const barcodeX = cardCenterX - barcodeW / 2;
-        drawBarcode(ctx, barcodeX, bottomY, barcodeW, 50);
+        drawBarcode(ctx, barcodeX, bottomY, barcodeW, 48);
 
         ctx.font = '800 16px "Plus Jakarta Sans", sans-serif';
         ctx.fillStyle = C.white;
         ctx.textAlign = 'center';
-        ctx.fillText('Code is intelligence made visible. #FrameInGoa', cardCenterX, bottomY + 70);
+        ctx.fillText('Code is intelligence made visible. #FrameInGoa', cardCenterX, bottomY + 68);
 
         const dataUrl = canvas.toDataURL('image/png', 1.0);
         setGeneratedDataUrl(dataUrl);
