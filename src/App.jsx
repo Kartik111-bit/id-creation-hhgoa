@@ -509,14 +509,16 @@ export default function App() {
           ctx.fillText(ic.symbol, iconsX + 22, iy + 30);
         });
 
-        // 5. LARGE PORTRAIT PHOTO WITH VIBRANT BACKDROP
-        const photoSize = 470;
-        const photoX = cardX + cardW - photoSize - 50;
-        const photoY = iconsY;
+        // 5. LARGE PORTRAIT PHOTO WITH VIBRANT BACKDROP & OVERLAY BADGES FROM USER SCREENSHOTS
+        const photoSize = 500; // ENLARGED PORTRAIT PHOTO FRAME
+        const photoX = cardX + cardW - photoSize - 35;
+        const photoY = iconsY - 10;
 
-        drawRoundedRect(ctx, photoX + 8, photoY + 8, photoSize, photoSize, 32);
+        // 3D Black Drop Shadow Box
+        drawRoundedRect(ctx, photoX + 10, photoY + 10, photoSize, photoSize, 32);
         ctx.fillStyle = C.black; ctx.fill();
 
+        // Vibrant Photo Backdrop
         drawRoundedRect(ctx, photoX, photoY, photoSize, photoSize, 32);
         ctx.fillStyle = photoBgColor; ctx.fill();
 
@@ -531,10 +533,37 @@ export default function App() {
         ctx.drawImage(imageObj, sx, sy, sW, sH, photoX, photoY, photoSize, photoSize);
         ctx.restore();
 
+        // Thick Black Frame Outline around Photo
         drawRoundedRect(ctx, photoX, photoY, photoSize, photoSize, 32);
-        ctx.strokeStyle = C.black; ctx.lineWidth = 5; ctx.stroke();
+        ctx.strokeStyle = C.black; ctx.lineWidth = 5.5; ctx.stroke();
 
-        // 6. BUILDER NAME & SUBTITLE (EXTRA BIG, EXTRA BOLD 900 & CREATIVE SHADOW)
+        // TOP PHOTO OVERLAY STICKER: "★ VERIFIED BUILDER" (Yellow Sticker Pill from Screenshot)
+        const topTagX = photoX + 20;
+        const topTagY = photoY - 14;
+        drawRoundedRect(ctx, topTagX + 3, topTagY + 3, 215, 38, 10);
+        ctx.fillStyle = C.black; ctx.fill();
+        drawRoundedRect(ctx, topTagX, topTagY, 215, 38, 10);
+        ctx.fillStyle = C.gold; ctx.fill();
+        ctx.strokeStyle = C.black; ctx.lineWidth = 3.5; ctx.stroke();
+        ctx.font = '900 14px "JetBrains Mono", monospace';
+        ctx.fillStyle = C.black;
+        ctx.textAlign = 'center';
+        ctx.fillText('★ VERIFIED BUILDER', topTagX + 107, topTagY + 24);
+
+        // BOTTOM PHOTO OVERLAY STICKER: "ACCESS ALL AREAS // 26" (Cyan Sticker Pill from Screenshot)
+        const botTagX = photoX + photoSize - 235;
+        const botTagY = photoY + photoSize - 22;
+        drawRoundedRect(ctx, botTagX + 3, botTagY + 3, 225, 38, 10);
+        ctx.fillStyle = C.black; ctx.fill();
+        drawRoundedRect(ctx, botTagX, botTagY, 225, 38, 10);
+        ctx.fillStyle = C.cyan; ctx.fill();
+        ctx.strokeStyle = C.black; ctx.lineWidth = 3.5; ctx.stroke();
+        ctx.font = '900 12px "JetBrains Mono", monospace';
+        ctx.fillStyle = C.black;
+        ctx.textAlign = 'center';
+        ctx.fillText('ACCESS ALL AREAS // 26', botTagX + 112, botTagY + 24);
+
+        // 6. BUILDER NAME & SUBTITLE (EXTRA BIG & EXTRA BOLD)
         const nameY = photoY + photoSize + 56;
         const rawName = fullName.trim();
         let nameFontSize = 60;
