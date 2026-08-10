@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import heic2any from 'heic2any';
-import Lanyard from './components/Lanyard';
 import './App.css';
 
 const C = {
@@ -175,6 +174,40 @@ export default function App() {
     }
   };
 
+  const drawLanyardClip = (ctx, cardX, cardY, cardW) => {
+    const clipCx = cardX + cardW / 2;
+    const clipCy = cardY + 54;
+
+    ctx.fillStyle = C.yellow;
+    ctx.fillRect(clipCx - 38, 0, 76, clipCy - 30);
+    ctx.strokeStyle = C.black;
+    ctx.lineWidth = 4.5;
+    ctx.strokeRect(clipCx - 38, 0, 76, clipCy - 30);
+
+    ctx.fillStyle = C.black;
+    ctx.beginPath(); ctx.arc(clipCx, clipCy - 55, 7, 0, Math.PI * 2); ctx.fill();
+
+    ctx.lineWidth = 8;
+    ctx.strokeStyle = '#F3F4F6';
+    ctx.beginPath();
+    ctx.arc(clipCx, clipCy - 15, 24, 0, Math.PI * 2);
+    ctx.stroke();
+
+    ctx.strokeStyle = C.black;
+    ctx.lineWidth = 3;
+    ctx.stroke();
+
+    ctx.fillStyle = '#9CA3AF';
+    ctx.fillRect(clipCx - 11, clipCy - 5, 22, 28);
+    ctx.strokeStyle = C.black;
+    ctx.lineWidth = 3.5;
+    ctx.strokeRect(clipCx - 11, clipCy - 5, 22, 28);
+
+    drawRoundedRect(ctx, clipCx - 42, cardY + 40, 84, 28, 14);
+    ctx.fillStyle = '#0D0022'; ctx.fill();
+    ctx.strokeStyle = C.black; ctx.lineWidth = 4; ctx.stroke();
+  };
+
   const generateCard = () => {
     if (!imageObj || fullName.trim().length < 2 || !stack || !vibe || !gender) return;
     setIsGenerating(true);
@@ -219,6 +252,28 @@ export default function App() {
           ctx.fill();
         }
 
+        // Cyber Grid Pattern
+        ctx.strokeStyle = 'rgba(0, 245, 255, 0.16)';
+        ctx.lineWidth = 2.5;
+        for (let gx = 0; gx < W; gx += 45) {
+          ctx.beginPath(); ctx.moveTo(gx, 0); ctx.lineTo(gx, H); ctx.stroke();
+        }
+        for (let gy = 0; gy < H; gy += 45) {
+          ctx.beginPath(); ctx.moveTo(0, gy); ctx.lineTo(W, gy); ctx.stroke();
+        }
+
+        // Watermark Text
+        ctx.font = '900 240px "Plus Jakarta Sans", sans-serif';
+        ctx.fillStyle = 'rgba(255, 230, 0, 0.04)';
+        ctx.textAlign = 'right';
+        ctx.fillText('HACKER', W + 40, 300);
+        ctx.textAlign = 'left';
+        ctx.fillText('HOUSE', -40, H - 100);
+
+        // Floating Starbursts
+        drawStarburst(ctx, 160, 480, 14, 110, 50, C.yellow);
+        drawStarburst(ctx, W - 140, 1280, 12, 60, 28, C.cyan);
+
         // Main Card
         const cardW = 800;
         const cardH = 1460;
@@ -232,7 +287,7 @@ export default function App() {
         ctx.fillStyle = t.cardBg; ctx.fill();
         ctx.strokeStyle = C.yellow; ctx.lineWidth = 6; ctx.stroke();
 
-        // Card Grid Overlay
+        // Card Grid Mesh Overlay
         ctx.save();
         drawRoundedRect(ctx, cardX, cardY, cardW, cardH, 38);
         ctx.clip();
@@ -246,6 +301,9 @@ export default function App() {
         }
         ctx.restore();
 
+        // Top Lanyard Metallic Clasp
+        drawLanyardClip(ctx, cardX, cardY, cardW);
+
         // Header
         const headerY = cardY + 110;
         const contentX = cardX + 50;
@@ -258,7 +316,7 @@ export default function App() {
         ctx.textAlign = 'center';
         ctx.fillText('✦ OFFICIAL BUILDER PASS ✦', contentX + 180, headerY + 28);
 
-        // 2:47 PM STUDIO Target
+        // 2:47 PM STUDIO Stamp
         const studioX = cardX + cardW - 140;
         const studioY = headerY + 15;
         ctx.save();
@@ -411,7 +469,7 @@ export default function App() {
   return (
     <div className="app-container">
       <div className="bg-watermark wm-top">HACKER</div>
-      <div class="bg-watermark wm-bottom">HOUSE</div>
+      <div className="bg-watermark wm-bottom">HOUSE</div>
 
       <div className="floating-sticker fs-1">🏝️</div>
       <div className="floating-sticker fs-2">⚡</div>
@@ -433,12 +491,12 @@ export default function App() {
 
           <h1 className="main-title">BUILD YOUR OFFICIAL LANYARD PASS</h1>
           <p className="sub-caption">
-            Upload your portrait photo, pick your details, and watch your interactive 3D physics <span className="highlight-tag">Lanyard Pass</span> swing live!
+            Upload your portrait photo, pick your details, and download your <span className="highlight-tag">1200×1800</span> high-res badge.
           </p>
         </header>
 
         <div className="card">
-          <div className="card-title"><span class="icon">📸</span>Step 1: Upload Portrait Photo</div>
+          <div className="card-title"><span className="icon">📸</span>Step 1: Upload Portrait Photo</div>
           <div className={`upload-zone ${previewUrl ? 'has-image' : ''}`}>
             <input type="file" accept="image/*,.heic,.heif" onChange={handleFileChange} />
             {previewUrl ? (
@@ -538,28 +596,17 @@ export default function App() {
           {isGenerating ? (
             <>
               <div className="spinner"></div>
-              <span>CRAFTING 3D LANYARD PASS...</span>
+              <span>CRAFTING 1200×1800 PASS...</span>
             </>
           ) : (
-            <span>GENERATE 3D PHYSICS LANYARD PASS ⚡</span>
+            <span>GENERATE ID CARD ⚡</span>
           )}
         </button>
 
         {generatedDataUrl && (
           <div className="result-section visible" ref={resultRef}>
             <div className="result-card-wrapper">
-              <div className="lanyard-3d-box">
-                <div className="lanyard-hint">👆 Drag & Grab Card in 3D Physics!</div>
-                <Lanyard
-                  position={[0, 0, 20]}
-                  gravity={[0, -40, 0]}
-                  fov={20}
-                  frontImage={generatedDataUrl}
-                  backImage={generatedDataUrl}
-                  imageFit="cover"
-                  lanyardWidth={1}
-                />
-              </div>
+              <img id="generatedCard" src={generatedDataUrl} alt="Hacker House Goa 2026 Pass" />
             </div>
 
             <div className="action-buttons">
@@ -569,13 +616,13 @@ export default function App() {
                 download={`HackerHouse-Goa-2026-${fullName.trim().replace(/\s+/g, '-')}-Pass.png`}
                 onClick={() => showToast('Pass Downloaded! ⚡')}
               >
-                <span>⬇️ Download High-Res Badge</span>
+                <span>⬇️ Download High-Res Pass</span>
               </a>
 
               <button
                 className="btn btn-x"
                 onClick={() => {
-                  const text = `Just generated my official 3D Physics Lanyard Badge for Hacker House Goa 2026! ⚡✦\n\nName: ${fullName}\nStack: ${stack}\n\n#FrameInGoa @hh_goa`;
+                  const text = `Just generated my official Lanyard Badge for Hacker House Goa 2026! ⚡✦\n\nName: ${fullName}\nStack: ${stack}\n\n#FrameInGoa @hh_goa`;
                   navigator.clipboard.writeText(text);
                   showToast('Caption copied! Opening X...');
                   window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`, '_blank');
