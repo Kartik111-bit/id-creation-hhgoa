@@ -563,42 +563,43 @@ export default function App() {
         ctx.textAlign = 'center';
         ctx.fillText('ACCESS ALL AREAS // 26', botTagX + 112, botTagY + 24);
 
-        // 6. BUILDER NAME & SUBTITLE
-        const nameY = photoY + photoSize + 54;
+        // 6. BUILDER INFO SECTION — MOVED DOWN AND TO THE RIGHT PER USER REQUEST
+        const infoX = cardX + 75; // Shifted 25px right
+        const nameY = photoY + photoSize + 85; // Shifted 31px down for spacious breathing room
         const rawName = fullName.trim();
         let nameFontSize = 58;
-        if (rawName.length > 18) nameFontSize = 42;
-        else if (rawName.length > 14) nameFontSize = 48;
+        if (rawName.length > 18) nameFontSize = 40;
+        else if (rawName.length > 14) nameFontSize = 46;
 
         ctx.font = `900 ${nameFontSize}px "Playfair Display", serif`;
         const nameWidth = ctx.measureText(rawName).width;
 
         // Warm Gold Underline Highlight Banner
-        drawRoundedRect(ctx, contentX - 6, nameY + 6, Math.min(nameWidth + 16, 360), 14, 6);
+        drawRoundedRect(ctx, infoX - 6, nameY + 6, Math.min(nameWidth + 16, 360), 14, 6);
         ctx.fillStyle = C.gold; ctx.fill();
         ctx.strokeStyle = C.black; ctx.lineWidth = 2.5; ctx.stroke();
 
         // 3D Offset Black Shadow for Name Text
         ctx.fillStyle = C.black;
         ctx.textAlign = 'left';
-        ctx.fillText(rawName, contentX + 3, nameY + 3);
+        ctx.fillText(rawName, infoX + 3, nameY + 3);
 
         // Giant Crisp White Name Text
         ctx.fillStyle = C.white;
-        ctx.fillText(rawName, contentX, nameY);
+        ctx.fillText(rawName, infoX, nameY);
 
         ctx.font = '800 20px "Plus Jakarta Sans", sans-serif';
         ctx.fillStyle = C.gold;
-        ctx.fillText('Hacker House Goa  ·  Builder Pass', contentX, nameY + 36);
+        ctx.fillText('Hacker House Goa  ·  Builder Pass', infoX, nameY + 36);
 
-        // 7. SIDE-BY-SIDE "PRIMARY STACK" (CYAN) AND "VIBE CHECK" (PINK) RETRO PILL BADGES FROM USER SCREENSHOT
-        const stackVibeY = nameY + 50;
+        // 7. SIDE-BY-SIDE "PRIMARY STACK" (CYAN) AND "VIBE CHECK" (PINK) RETRO PILL BADGES
+        const stackVibeY = nameY + 52;
         const pillW = 168;
         const pillH = 58;
         const gap = 14;
 
         // PILL 1: PRIMARY STACK (Cyan Border & Dark Fill)
-        const p1X = contentX;
+        const p1X = infoX;
         drawRoundedRect(ctx, p1X + 4, stackVibeY + 4, pillW, pillH, 14);
         ctx.fillStyle = C.black; ctx.fill();
 
@@ -616,7 +617,7 @@ export default function App() {
         ctx.fillText((stack || 'MOBILE').toUpperCase(), p1X + pillW / 2, stackVibeY + 44);
 
         // PILL 2: VIBE CHECK (Hot Pink Border & Dark Fill)
-        const p2X = contentX + pillW + gap;
+        const p2X = infoX + pillW + gap;
         drawRoundedRect(ctx, p2X + 4, stackVibeY + 4, pillW, pillH, 14);
         ctx.fillStyle = C.black; ctx.fill();
 
@@ -633,7 +634,7 @@ export default function App() {
         ctx.fillStyle = C.white;
         ctx.fillText((vibe || 'CHILL').toUpperCase(), p2X + pillW / 2, stackVibeY + 44);
 
-        // 8. ★ BUILDER TITLE BADGE (MATCHING SCREENSHOT)
+        // 8. ★ BUILDER TITLE BADGE
         const badgeTitleText = '★ ' + (builderTitle || 'On-Chain Surfer');
         const badgeY = stackVibeY + pillH + 18;
         ctx.font = '900 22px "Plus Jakarta Sans", sans-serif';
@@ -641,33 +642,33 @@ export default function App() {
         const badgeW = Math.max(340, badgeTextWidth + 44);
         const badgeH = 48;
 
-        drawRoundedRect(ctx, contentX + 4, badgeY + 4, badgeW, badgeH, 16);
+        drawRoundedRect(ctx, infoX + 4, badgeY + 4, badgeW, badgeH, 16);
         ctx.fillStyle = C.black; ctx.fill();
 
-        drawRoundedRect(ctx, contentX, badgeY, badgeW, badgeH, 16);
+        drawRoundedRect(ctx, infoX, badgeY, badgeW, badgeH, 16);
         ctx.fillStyle = '#1A0018'; ctx.fill();
 
         ctx.strokeStyle = C.pink; ctx.lineWidth = 3.5; ctx.stroke();
 
         ctx.fillStyle = C.white;
         ctx.textAlign = 'left';
-        ctx.fillText(badgeTitleText, contentX + 22, badgeY + 32);
+        ctx.fillText(badgeTitleText, infoX + 22, badgeY + 32);
 
         // 9. BOTTOM BARCODE + TAGLINE SECTION
         const bottomY = cardY + cardH - 110;
-        drawBarcode(ctx, contentX, bottomY, 260, 56);
+        drawBarcode(ctx, infoX, bottomY, 260, 56);
 
         ctx.strokeStyle = 'rgba(255, 255, 255, 0.4)';
         ctx.lineWidth = 2.5;
         ctx.beginPath();
-        ctx.moveTo(contentX + 300, bottomY - 10);
-        ctx.lineTo(contentX + 300, bottomY + 66);
+        ctx.moveTo(infoX + 300, bottomY - 10);
+        ctx.lineTo(infoX + 300, bottomY + 66);
         ctx.stroke();
 
         ctx.font = '800 18px "Plus Jakarta Sans", sans-serif';
         ctx.fillStyle = C.white;
-        ctx.fillText('Code is intelligence', contentX + 325, bottomY + 20);
-        ctx.fillText('made visible. #FrameInGoa', contentX + 325, bottomY + 46);
+        ctx.fillText('Code is intelligence', infoX + 325, bottomY + 20);
+        ctx.fillText('made visible. #FrameInGoa', infoX + 325, bottomY + 46);
 
         const dataUrl = canvas.toDataURL('image/png', 1.0);
         setGeneratedDataUrl(dataUrl);
