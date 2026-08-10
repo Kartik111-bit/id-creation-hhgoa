@@ -7,12 +7,13 @@ const C = {
   greenCard: '#08291B',
   gold: '#F9B828',
   pink: '#FF007F',
+  crimson: '#E51A4C',
   cyan: '#00F5FF',
   lime: '#39FF14',
   white: '#FFFFFF',
-  cardCream: '#FAF8F0',
+  cardBg: '#E51A4C',
   black: '#000000',
-  grayText: '#555555'
+  grayText: '#FFE6EA'
 };
 
 const titleAdjectives = {
@@ -163,7 +164,7 @@ export default function App() {
   };
 
   const drawBarcode = (ctx, x, y, width, height) => {
-    ctx.fillStyle = C.black;
+    ctx.fillStyle = C.white;
     let currentX = x;
     const endX = x + width;
     while (currentX < endX) {
@@ -237,7 +238,7 @@ export default function App() {
           'Chaos': C.pink
         };
 
-        const photoBgColor = vibeColors[vibe] || C.lime;
+        const photoBgColor = vibeColors[vibe] || C.gold;
 
         // 1. RETRO-TROPICAL EMERALD GREEN CANVAS BACKDROP (BEHIND CARD)
         const radGrad = ctx.createRadialGradient(W / 2, 400, 50, W / 2, 900, 1200);
@@ -281,7 +282,7 @@ export default function App() {
         ctx.bezierCurveTo(300, 1000, 900, 1250, W, 1150);
         ctx.stroke();
 
-        // 2. MAIN LANYARD BADGE CARD (Clean Off-White #FAF8F0)
+        // 2. MAIN LANYARD BADGE CARD (Vibrant Crimson Red #E51A4C)
         const cardW = 800;
         const cardH = 1460;
         const cardX = (W - cardW) / 2;
@@ -291,10 +292,24 @@ export default function App() {
         drawRoundedRect(ctx, cardX + 18, cardY + 18, cardW, cardH, 38);
         ctx.fillStyle = C.black; ctx.fill();
 
-        // Clean Off-White Card Fill
+        // Crimson Red #E51A4C Card Fill
         drawRoundedRect(ctx, cardX, cardY, cardW, cardH, 38);
-        ctx.fillStyle = C.cardCream; ctx.fill();
+        ctx.fillStyle = C.crimson; ctx.fill();
         ctx.strokeStyle = C.black; ctx.lineWidth = 6; ctx.stroke();
+
+        // Subtle Card Grid Overlay
+        ctx.save();
+        drawRoundedRect(ctx, cardX, cardY, cardW, cardH, 38);
+        ctx.clip();
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.08)';
+        ctx.lineWidth = 1.5;
+        for (let cx = cardX; cx < cardX + cardW; cx += 32) {
+          ctx.beginPath(); ctx.moveTo(cx, cardY); ctx.lineTo(cx, cardY + cardH); ctx.stroke();
+        }
+        for (let cy = cardY; cy < cardY + cardH; cy += 32) {
+          ctx.beginPath(); ctx.moveTo(cardX, cy); ctx.lineTo(cardX + cardW, cy); ctx.stroke();
+        }
+        ctx.restore();
 
         // Top Lanyard Metallic Clasp & Slot Hole
         drawLanyardClip(ctx, cardX, cardY, cardW);
@@ -323,7 +338,7 @@ export default function App() {
         ctx.beginPath(); ctx.arc(45, -12, 3, 0, Math.PI * 2); ctx.fillStyle = C.black; ctx.fill();
 
         ctx.font = '900 28px "JetBrains Mono", monospace';
-        ctx.fillStyle = C.black;
+        ctx.fillStyle = C.gold;
         ctx.textAlign = 'center';
         ctx.fillText('2:47PM', 0, 8);
         ctx.font = '900 15px "JetBrains Mono", monospace';
@@ -361,7 +376,7 @@ export default function App() {
 
         // Date & Location Label
         ctx.font = '800 16px "JetBrains Mono", monospace';
-        ctx.fillStyle = C.grayText;
+        ctx.fillStyle = C.gold;
         ctx.textAlign = 'left';
         ctx.fillText('GOA, INDIA  ·  28 - 31 OCT 2026', logoBoxX + 4, logoBoxY + logoBoxH + 30);
 
@@ -419,19 +434,19 @@ export default function App() {
         ctx.fillStyle = C.gold;
         ctx.fillRect(contentX, nameY + 6, Math.min(nameWidth, 340), 16);
 
-        ctx.fillStyle = C.black;
+        ctx.fillStyle = C.white;
         ctx.textAlign = 'left';
         ctx.fillText(fullName.trim(), contentX, nameY);
 
         ctx.font = '800 24px "Plus Jakarta Sans", sans-serif';
-        ctx.fillStyle = C.grayText;
+        ctx.fillStyle = C.gold;
         ctx.fillText(stack.toUpperCase() + ' Builder  ·  Hacker House Goa', contentX, nameY + 44);
 
         // 7. BOTTOM BARCODE + TAGLINE SECTION
         const bottomY = cardY + cardH - 130;
         drawBarcode(ctx, contentX, bottomY, 260, 60);
 
-        ctx.strokeStyle = '#D1D5DB';
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.4)';
         ctx.lineWidth = 2.5;
         ctx.beginPath();
         ctx.moveTo(contentX + 300, bottomY - 10);
@@ -439,7 +454,7 @@ export default function App() {
         ctx.stroke();
 
         ctx.font = '800 18px "Plus Jakarta Sans", sans-serif';
-        ctx.fillStyle = C.black;
+        ctx.fillStyle = C.white;
         ctx.fillText('Code is intelligence', contentX + 325, bottomY + 22);
         ctx.fillText('made visible. #FrameInGoa', contentX + 325, bottomY + 48);
 
@@ -670,7 +685,7 @@ export default function App() {
         )}
 
         <footer className="footer">
-          <p>Hacker House <span class="hashtag">#FrameInGoa</span> · Goa, India ⚡</p>
+          <p>Hacker House <span className="hashtag">#FrameInGoa</span> · Goa, India ⚡</p>
         </footer>
       </div>
 
