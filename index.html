@@ -3,276 +3,153 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="description" content="Generate your HH Goa 2026 Builder ID Card - Maximalist Edition">
-    <meta name="theme-color" content="#FF007F">
+    <meta name="description" content="Generate your HH Goa 2026 Builder ID Pass - Studio Edition">
+    <meta name="theme-color" content="#F9B828">
     <meta property="og:title" content="Hacker House Goa 2026 — Builder ID Pass Generator">
-    <meta property="og:description" content="Generate your official maximalist HH Goa 2026 Builder ID Pass. Upload your photo, pick your stack & vibe, and get a high-voltage branded pass ready to share.">
+    <meta property="og:description" content="Generate your official retro-tropical HH Goa 2026 Builder ID Pass. Upload your photo, pick your stack & vibe, and get a high-resolution badge ready to share.">
     <meta property="og:image" content="https://gitparthwandre.github.io/id-creation-hhgoa/og-image.png">
     <meta property="og:url" content="https://gitparthwandre.github.io/id-creation-hhgoa/">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Hacker House Goa 2026 — Builder ID Pass Generator">
-    <meta name="twitter:description" content="Generate your official maximalist HH Goa 2026 Builder ID Pass. Upload your photo, pick your stack & vibe, and get a high-voltage branded pass ready to share.">
+    <meta name="twitter:description" content="Generate your official retro-tropical HH Goa 2026 Builder ID Pass. Upload your photo, pick your stack & vibe, and get a high-resolution badge ready to share.">
     <meta name="twitter:image" content="https://gitparthwandre.github.io/id-creation-hhgoa/og-image.png">
-    <title>Hacker House Goa 2026 — Builder ID Pass Generator ⚡</title>
+    <title>Hacker House Goa 2026 — Official Builder Pass Generator ✦</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=JetBrains+Mono:wght@500;700;800&family=Noto+Sans+Devanagari:wght@700;900&family=Plus+Jakarta+Sans:wght@800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=JetBrains+Mono:wght@500;700;800&family=Noto+Sans+Devanagari:wght@700;900&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/heic2any@0.0.4/dist/heic2any.min.js"></script>
     <style>
         :root {
-            --yellow: #FFE600;
+            --gold: #F9B828;
             --pink: #FF007F;
+            --dark-green: #09331D;
+            --forest-green: #0E472A;
+            --mint: #39FF14;
             --cyan: #00F5FF;
-            --lime: #39FF14;
-            --purple: #7B2CBF;
-            --orange: #FF5722;
-            --bg-dark: #0A061D;
-            --card-bg: rgba(18, 12, 46, 0.88);
-            --cream: #FFF8E7;
+            --paper-bg: #F4F1EA;
+            --card-cream: #F5EFE6;
             --white: #FFFFFF;
-            --black: #000000;
+            --black: #111111;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
         body {
             font-family: 'JetBrains Mono', monospace;
-            background: var(--bg-dark);
-            color: var(--cream);
+            background: var(--paper-bg);
+            color: var(--black);
             min-height: 100vh;
             min-height: 100dvh;
             overflow-x: hidden;
             line-height: 1.5;
             background-image: 
-                radial-gradient(circle at 10% 20%, rgba(255, 0, 127, 0.25) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(0, 245, 255, 0.25) 0%, transparent 40%),
-                radial-gradient(circle at 50% 50%, rgba(255, 230, 0, 0.15) 0%, transparent 60%);
-        }
-
-        /* Animated Grid Background */
-        .grid-bg {
-            position: fixed;
-            inset: 0;
-            z-index: 0;
-            background-size: 40px 40px;
-            background-image: 
-                linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-            pointer-events: none;
-        }
-
-        .bg-scene {
-            position: fixed;
-            inset: 0;
-            z-index: 0;
-            pointer-events: none;
-            overflow: hidden;
-        }
-
-        .sun {
-            position: absolute;
-            top: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 160px;
-            height: 160px;
-            background: radial-gradient(circle, var(--yellow) 30%, var(--orange) 100%);
-            border-radius: 50%;
-            box-shadow: 0 0 80px rgba(255, 230, 0, 0.6), 0 0 120px rgba(255, 0, 127, 0.4);
-            border: 4px solid var(--black);
-        }
-
-        .sun::before {
-            content: '';
-            position: absolute;
-            inset: -22px;
-            border-radius: 50%;
-            border: 3px dashed var(--yellow);
-            animation: rotate 40s linear infinite;
-        }
-
-        .sun::after {
-            content: '';
-            position: absolute;
-            inset: -38px;
-            border-radius: 50%;
-            border: 2px dotted var(--cyan);
-            animation: rotate 60s linear reverse infinite;
-        }
-
-        @keyframes rotate { to { transform: rotate(360deg); } }
-
-        .ocean {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 30%;
-            background: linear-gradient(180deg, rgba(123, 44, 191, 0.4) 0%, rgba(10, 6, 29, 0.9) 100%);
-            border-top: 3px dashed var(--cyan);
-        }
-
-        .wave {
-            position: absolute;
-            width: 200%;
-            height: 40px;
-            background: repeating-linear-gradient(90deg, transparent, transparent 25px, rgba(0, 245, 255, 0.2) 25px, rgba(0, 245, 255, 0.2) 50px);
-            animation: wave-move 8s linear infinite;
-        }
-        .wave:nth-child(1) { top: 0; animation-duration: 9s; opacity: 0.8; }
-        .wave:nth-child(2) { top: 20px; animation-duration: 6s; opacity: 0.5; background: repeating-linear-gradient(90deg, transparent, transparent 20px, rgba(255, 0, 127, 0.2) 20px, rgba(255, 0, 127, 0.2) 40px); }
-
-        @keyframes wave-move { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-
-        /* Floating Sticker Decorations */
-        .bg-sticker {
-            position: absolute;
-            font-size: 2.2rem;
-            filter: drop-shadow(4px 4px 0px var(--black));
-            animation: float 4s ease-in-out infinite;
-        }
-        .sticker-1 { top: 12%; left: 6%; transform: rotate(-12deg); animation-delay: 0s; }
-        .sticker-2 { top: 18%; right: 7%; transform: rotate(14deg); animation-delay: 1.5s; }
-        .sticker-3 { bottom: 15%; left: 5%; transform: rotate(-8deg); animation-delay: 0.8s; }
-        .sticker-4 { bottom: 22%; right: 6%; transform: rotate(10deg); animation-delay: 2.2s; }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(var(--rot, 0deg)); }
-            50% { transform: translateY(-12px) rotate(var(--rot, 0deg)); }
+                linear-gradient(to right, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+            background-size: 32px 32px;
         }
 
         .container {
             position: relative;
             z-index: 1;
-            max-width: 560px;
+            max-width: 580px;
             margin: 0 auto;
             padding: 24px 18px 60px;
         }
 
-        /* Maximalist Header */
+        /* Top Header Strip & Studio Badge */
         .header {
             text-align: center;
             margin-bottom: 28px;
-            padding-top: 8px;
         }
 
-        .tag-pill {
-            display: inline-block;
-            background: var(--cyan);
-            color: var(--black);
-            font-size: 0.6875rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            padding: 4px 12px;
-            border-radius: 20px;
-            border: 2px solid var(--black);
-            box-shadow: 3px 3px 0px var(--black);
-            margin-bottom: 10px;
-            transform: rotate(-2deg);
-        }
-
-        .logo-main {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 3.2rem;
-            font-weight: 900;
-            color: var(--yellow);
-            letter-spacing: -0.03em;
-            line-height: 0.95;
-            text-shadow: 5px 5px 0px var(--black), -2px -2px 0 var(--black), 2px -2px 0 var(--black), -2px 2px 0 var(--black);
-            position: relative;
-            display: inline-block;
-        }
-
-        .logo-goa {
-            display: inline-block;
-            font-family: 'Noto Sans Devanagari', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 900;
-            color: var(--yellow);
-            background: var(--pink);
-            padding: 2px 14px;
-            border-radius: 8px;
-            transform: rotate(-9deg) translateY(-10px);
-            margin: 0 4px;
-            border: 3px solid var(--black);
-            box-shadow: 4px 4px 0px var(--black);
-            text-shadow: none;
-            vertical-align: middle;
-        }
-
-        .logo-sub {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.875rem;
-            font-weight: 800;
-            color: var(--cyan);
-            margin-top: 12px;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            text-shadow: 2px 2px 0px var(--black);
-        }
-
-        /* Step Progress */
-        .steps {
-            display: flex;
+        .studio-pill {
+            display: inline-flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
-            margin-bottom: 24px;
-        }
-
-        .step {
-            display: flex;
-            align-items: center;
-            gap: 6px;
+            background: var(--gold);
+            color: var(--black);
             font-size: 0.75rem;
             font-weight: 800;
             text-transform: uppercase;
+            letter-spacing: 0.12em;
+            padding: 8px 18px;
+            border-radius: 8px;
+            border: 2.5px solid var(--black);
+            box-shadow: 4px 4px 0px var(--black);
+            margin-bottom: 16px;
+        }
+
+        /* Live Countdown Widget */
+        .countdown-box {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--dark-green);
+            color: var(--gold);
+            padding: 10px 16px;
+            border-radius: 12px;
+            border: 2.5px solid var(--black);
+            box-shadow: 4px 4px 0px var(--black);
+            margin-bottom: 20px;
+            font-size: 0.75rem;
+            font-weight: 800;
+        }
+
+        .countdown-label {
+            color: var(--pink);
+            letter-spacing: 0.08em;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .countdown-timer {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9375rem;
+            color: var(--gold);
             letter-spacing: 0.06em;
-            color: rgba(255, 255, 255, 0.4);
-            padding: 4px 10px;
-            border-radius: 20px;
-            border: 2px solid transparent;
-            transition: all 0.3s;
         }
 
-        .step.active {
+        .main-title {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 2rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
             color: var(--black);
-            background: var(--yellow);
-            border-color: var(--black);
-            box-shadow: 3px 3px 0px var(--black);
+            margin-bottom: 8px;
         }
 
-        .step-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
-            border: 2px solid var(--black);
+        .sub-caption {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.9375rem;
+            font-weight: 600;
+            color: #555555;
+            max-width: 480px;
+            margin: 0 auto 24px;
+            line-height: 1.5;
         }
 
-        .step.active .step-dot {
-            background: var(--pink);
+        .highlight-tag {
+            color: var(--black);
+            font-weight: 800;
+            background: rgba(249, 184, 40, 0.4);
+            padding: 1px 6px;
+            border-radius: 4px;
         }
 
-        .step-line {
-            width: 24px;
-            height: 3px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 2px;
-        }
-
-        /* Neo-Brutalist Cards */
+        /* Clean Studio Cards */
         .card {
-            background: var(--card-bg);
-            backdrop-filter: blur(16px);
-            border: 3px solid var(--yellow);
+            background: var(--white);
+            border: 3px solid var(--black);
             border-radius: 18px;
             padding: 24px;
             margin-bottom: 20px;
             position: relative;
-            box-shadow: 8px 8px 0px var(--black), 0 0 30px rgba(255, 0, 127, 0.15);
+            box-shadow: 6px 6px 0px var(--black);
         }
 
         .card-title {
@@ -281,7 +158,7 @@
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 0.08em;
-            color: var(--yellow);
+            color: var(--black);
             margin-bottom: 16px;
             display: flex;
             align-items: center;
@@ -289,9 +166,9 @@
         }
 
         .card-title .icon {
-            font-size: 1.2rem;
-            background: var(--pink);
-            padding: 4px;
+            font-size: 1.1rem;
+            background: var(--gold);
+            padding: 4px 8px;
             border-radius: 6px;
             border: 2px solid var(--black);
             box-shadow: 2px 2px 0px var(--black);
@@ -299,35 +176,27 @@
 
         /* Upload Zone */
         .upload-zone {
-            border: 3px dashed var(--yellow);
+            border: 3px dashed var(--black);
             border-radius: 14px;
-            padding: 32px 18px;
+            padding: 36px 18px;
             text-align: center;
             cursor: pointer;
-            transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.2s ease;
             position: relative;
             overflow: hidden;
-            background: rgba(0, 0, 0, 0.4);
+            background: #FAF8F5;
         }
 
         .upload-zone:hover {
-            border-color: var(--cyan);
-            background: rgba(0, 245, 255, 0.08);
-            transform: scale(1.015);
-            box-shadow: 0 0 20px rgba(0, 245, 255, 0.2);
-        }
-
-        .upload-zone.dragover {
-            border-color: var(--pink);
-            background: rgba(255, 0, 127, 0.15);
-            transform: scale(1.03);
+            background: rgba(249, 184, 40, 0.12);
+            border-color: var(--black);
+            transform: translateY(-2px);
         }
 
         .upload-zone.has-image {
             padding: 0;
             border-style: solid;
-            border-color: var(--cyan);
-            border-width: 3px;
+            border-color: var(--black);
             box-shadow: 4px 4px 0px var(--black);
         }
 
@@ -342,21 +211,19 @@
         .upload-icon {
             font-size: 2.8rem;
             margin-bottom: 10px;
-            filter: drop-shadow(3px 3px 0px var(--black));
         }
 
         .upload-text {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 1.2rem;
+            font-size: 1.15rem;
             font-weight: 800;
-            color: var(--yellow);
+            color: var(--black);
             margin-bottom: 4px;
-            text-shadow: 2px 2px 0px var(--black);
         }
 
         .upload-hint {
             font-size: 0.75rem;
-            color: var(--cyan);
+            color: #666666;
             font-weight: 700;
         }
 
@@ -393,45 +260,42 @@
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.75rem;
             font-weight: 800;
-            color: var(--yellow);
+            color: var(--black);
             margin-bottom: 6px;
             text-transform: uppercase;
             letter-spacing: 0.06em;
-            text-shadow: 1px 1px 0px var(--black);
         }
 
         input[type="text"], select {
             width: 100%;
             padding: 14px 16px;
-            background: rgba(0, 0, 0, 0.5);
-            border: 3px solid var(--yellow);
+            background: #FAF8F5;
+            border: 2.5px solid var(--black);
             border-radius: 12px;
-            color: var(--cream);
+            color: var(--black);
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.9375rem;
             font-weight: 700;
             transition: all 0.2s;
             outline: none;
-            box-shadow: 4px 4px 0px var(--black);
+            box-shadow: 3px 3px 0px var(--black);
         }
 
-        input[type="text"]::placeholder { color: rgba(255, 248, 231, 0.4); }
+        input[type="text"]::placeholder { color: #888888; }
 
         input[type="text"]:focus, select:focus {
-            border-color: var(--cyan);
-            background: rgba(0, 245, 255, 0.08);
-            box-shadow: 4px 4px 0px var(--pink);
+            background: var(--white);
+            border-color: var(--black);
+            box-shadow: 4px 4px 0px var(--gold);
         }
 
         select {
             appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 12 12'%3E%3Cpath fill='%23FFE600' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 12 12'%3E%3Cpath fill='%23111111' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
             background-repeat: no-repeat;
             background-position: right 16px center;
             padding-right: 40px;
         }
-
-        select option { background: var(--bg-dark); color: var(--cream); font-weight: 700; }
 
         .field-row {
             display: grid;
@@ -441,8 +305,8 @@
 
         /* Live Title Preview */
         .title-preview {
-            background: rgba(255, 0, 127, 0.15);
-            border: 3px solid var(--pink);
+            background: rgba(249, 184, 40, 0.25);
+            border: 2.5px solid var(--black);
             border-radius: 12px;
             padding: 14px 16px;
             margin-top: 10px;
@@ -451,12 +315,12 @@
         }
 
         .title-preview::before {
-            content: '⚡ TITLE GENERATED';
+            content: '✦ TITLE GENERATED';
             position: absolute;
             top: -12px;
             left: 14px;
-            background: var(--yellow);
-            color: var(--black);
+            background: var(--pink);
+            color: var(--white);
             font-size: 0.625rem;
             font-weight: 900;
             padding: 2px 8px;
@@ -468,8 +332,7 @@
             font-family: 'Plus Jakarta Sans', sans-serif;
             font-size: 1.2rem;
             font-weight: 900;
-            color: var(--yellow);
-            text-shadow: 2px 2px 0px var(--black);
+            color: var(--black);
             margin-top: 4px;
         }
 
@@ -494,7 +357,7 @@
         }
 
         .btn-primary {
-            background: var(--yellow);
+            background: var(--gold);
             color: var(--black);
             box-shadow: 6px 6px 0px var(--black);
         }
@@ -502,7 +365,7 @@
         .btn-primary:hover {
             transform: translate(-3px, -3px);
             box-shadow: 9px 9px 0px var(--black);
-            background: #FFF000;
+            background: #FFC038;
         }
 
         .btn-primary:active {
@@ -529,8 +392,8 @@
         }
 
         .btn-x {
-            background: var(--cyan);
-            color: var(--black);
+            background: var(--dark-green);
+            color: var(--gold);
             box-shadow: 6px 6px 0px var(--black);
         }
 
@@ -548,33 +411,27 @@
         .result-section.visible { display: block; }
 
         @keyframes popIn {
-            from { opacity: 0; transform: scale(0.85) translateY(30px); }
+            from { opacity: 0; transform: scale(0.88) translateY(20px); }
             to { opacity: 1; transform: scale(1) translateY(0); }
         }
 
         .result-card-wrapper {
-            background: rgba(0, 0, 0, 0.3);
-            border: 4px solid var(--yellow);
+            background: var(--white);
+            border: 4px solid var(--black);
             border-radius: 20px;
             padding: 16px;
             margin-bottom: 20px;
             text-align: center;
             position: relative;
-            box-shadow: 10px 10px 0px var(--black), 0 0 50px rgba(0, 245, 255, 0.3);
-            animation: cardFloat 4s ease-in-out infinite;
-        }
-
-        @keyframes cardFloat {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
+            box-shadow: 8px 8px 0px var(--black);
         }
 
         #generatedCard {
             max-width: 100%;
             height: auto;
-            border-radius: 12px;
+            border-radius: 14px;
             border: 3px solid var(--black);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
         }
 
         .action-buttons {
@@ -611,7 +468,7 @@
             pointer-events: none;
             white-space: nowrap;
             border: 3px solid var(--black);
-            box-shadow: 5px 5px 0px var(--black);
+            box-shadow: 4px 4px 0px var(--black);
         }
 
         .toast.show {
@@ -623,11 +480,11 @@
             text-align: center;
             margin-top: 32px;
             padding-top: 24px;
-            border-top: 3px dashed rgba(255, 230, 0, 0.3);
+            border-top: 3px dashed rgba(0, 0, 0, 0.15);
         }
 
         .footer p {
-            color: rgba(255, 255, 255, 0.6);
+            color: #666666;
             font-size: 0.8125rem;
             font-weight: 700;
             letter-spacing: 0.06em;
@@ -646,51 +503,41 @@
 
         @media (max-width: 440px) {
             .container { padding: 16px 12px 40px; }
-            .logo-main { font-size: 2.5rem; }
+            .main-title { font-size: 1.6rem; }
             .card { padding: 18px; }
             .field-row { grid-template-columns: 1fr; }
-            .bg-sticker { display: none; }
         }
     </style>
 <base target="_blank">
 </head>
 <body>
-    <div class="grid-bg"></div>
-    <div class="bg-scene">
-        <div class="sun"></div>
-        <div class="bg-sticker sticker-1">🏝️</div>
-        <div class="bg-sticker sticker-2">⚡</div>
-        <div class="bg-sticker sticker-3">🚀</div>
-        <div class="bg-sticker sticker-4">🔥</div>
-        <div class="ocean">
-            <div class="wave"></div>
-            <div class="wave"></div>
-        </div>
-    </div>
     <canvas id="confetti"></canvas>
 
     <div class="container">
         <header class="header">
-            <div class="tag-pill">⚡ OFFICIAL EVENT PASS GENERATOR</div>
-            <br />
-            <div class="logo-main">HACKER<span class="logo-goa">गोवा</span>HOUSE</div>
-            <div class="logo-sub">GOA 2026 · BUILDER ID PASS</div>
+            <div class="studio-pill">
+                <span>✦</span>
+                <span>2:47 PM STUDIO · HACKER HOUSE GOA 2026</span>
+                <span>✦</span>
+            </div>
+
+            <div class="countdown-box">
+                <div class="countdown-label">✦ GOA 2026 IN</div>
+                <div class="countdown-timer" id="countdownTimer">78D : 02H : 11M : 43S</div>
+            </div>
+
+            <h1 class="main-title">CUSTOMIZE YOUR OFFICIAL EVENT PASS</h1>
+            <p class="sub-caption">
+                Upload your portrait photo, customize your details, and download your <span class="highlight-tag">1200×1800</span> high-res retro-tropical badge.
+            </p>
         </header>
 
-        <div class="steps">
-            <div class="step active" id="step1"><div class="step-dot"></div><span>1. Upload</span></div>
-            <div class="step-line"></div>
-            <div class="step" id="step2"><div class="step-dot"></div><span>2. Details</span></div>
-            <div class="step-line"></div>
-            <div class="step" id="step3"><div class="step-dot"></div><span>3. Pass</span></div>
-        </div>
-
         <div class="card" id="uploadCard">
-            <div class="card-title"><span class="icon">📸</span>Step 1: Snap or Drop Your Photo</div>
+            <div class="card-title"><span class="icon">📸</span>Step 1: Upload Portrait Photo</div>
             <div class="upload-zone" id="uploadZone">
                 <input type="file" id="photoInput" accept="image/*,.heic,.heif" />
                 <div class="upload-content" id="uploadContent">
-                    <div class="upload-icon">🏝️</div>
+                    <div class="upload-icon">🏖️</div>
                     <div class="upload-text">Tap or Drag Photo Here</div>
                     <div class="upload-hint">JPG · PNG · HEIC (iPhone)</div>
                 </div>
@@ -701,7 +548,7 @@
             <div class="card-title"><span class="icon">✏️</span>Step 2: Builder Info</div>
             <div class="field-group">
                 <label for="fullName">Full Name</label>
-                <input type="text" id="fullName" placeholder="e.g. Rahul Sharma" maxlength="26" />
+                <input type="text" id="fullName" placeholder="e.g. Arjun Mehta" maxlength="26" />
             </div>
 
             <div class="field-row">
@@ -761,12 +608,12 @@
         </div>
 
         <button class="btn btn-primary" id="generateBtn" disabled>
-            <span>⚡ GENERATE MAXIMALIST PASS</span>
+            <span>GENERATE ID CARD 🌴</span>
         </button>
 
         <div class="result-section" id="resultSection">
             <div class="result-card-wrapper">
-                <img id="generatedCard" alt="Hacker House Goa 2026 Builder ID Pass" />
+                <img id="generatedCard" alt="Hacker House Goa 2026 Official Builder Pass" />
             </div>
 
             <div class="action-buttons">
@@ -782,7 +629,7 @@
     </div>
 
     <div class="toast" id="toast"></div>
-    <canvas id="canvas" width="1000" height="1400"></canvas>
+    <canvas id="canvas" width="1200" height="1800"></canvas>
 
     <script>
         const state = {
@@ -817,23 +664,21 @@
         const ctx = canvas.getContext('2d');
         const toast = document.getElementById('toast');
 
-        // High Voltage Neon Colors
+        // Color Constants for Studio Retro-Tropical Theme
         const C = {
-            yellow: '#FFE600',
+            gold: '#F9B828',
             pink: '#FF007F',
-            cyan: '#00F5FF',
-            lime: '#39FF14',
-            purple: '#7B2CBF',
-            orange: '#FF5722',
-            darkBg: '#0A061D',
-            cream: '#FFF8E7',
+            magenta: '#D81159',
+            darkGreen: '#09331D',
+            forestGreen: '#0B3C1D',
+            cream: '#F5EFE6',
             white: '#FFFFFF',
-            black: '#000000'
+            black: '#111111'
         };
 
         const titleAdjectives = {
-            'Frontend': ['Pixel', 'DOM', 'CSS', 'React', 'Canvas', 'WebGL', 'UI', 'Cyber'],
-            'Backend': ['API', 'Server', 'Database', 'Cache', 'Queue', 'Graph', 'Kernel'],
+            'Frontend': ['Pixel', 'DOM', 'CSS', 'React', 'Canvas', 'WebGL', 'UI'],
+            'Backend': ['API', 'Server', 'Database', 'Cache', 'Queue', 'Graph'],
             'Fullstack': ['Stack', 'Universal', 'Polyglot', 'Swiss Army', 'Architect'],
             'Mobile': ['Native', 'Cross-Platform', 'Gesture', 'Touch', 'Mobile'],
             'DevOps': ['Pipeline', 'Container', 'Cloud', 'Terraform', 'Kubernetes'],
@@ -855,6 +700,28 @@
             'Chill': ['Zen Master', 'Flow Keeper', 'Harmonizer', 'Guru'],
             'Chaos': ['Disruptor', 'Firestarter', 'Rebel', 'Stormbringer', 'Catalyst']
         };
+
+        // Live Countdown Timer Script (Target Date: Oct 28, 2026)
+        function updateCountdown() {
+            const target = new Date('October 28, 2026 09:00:00').getTime();
+            const now = new Date().getTime();
+            const diff = target - now;
+
+            if (diff > 0) {
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+                const format = (n) => String(n).padStart(2, '0');
+                const el = document.getElementById('countdownTimer');
+                if (el) {
+                    el.textContent = `${days}D : ${format(hours)}H : ${format(minutes)}M : ${format(seconds)}S`;
+                }
+            }
+        }
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
 
         function generateBuilderTitle() {
             const s = stack.value || 'Other';
@@ -902,8 +769,6 @@
                 state.imageType = blob.type;
                 uploadZone.classList.add('has-image');
                 uploadContent.innerHTML = '<img src="' + url + '" class="upload-preview" alt="Preview" /><div class="upload-change">Change Photo</div>';
-                document.getElementById('step1').classList.remove('active');
-                document.getElementById('step2').classList.add('active');
                 fullName.focus();
                 validateForm();
             };
@@ -948,7 +813,36 @@
             ctx.closePath();
         }
 
-        // Helper to draw a barcode pattern on canvas
+        // Helper to draw Arch Photo Frame (Rounded top arch, flat bottom)
+        function drawArchPath(ctx, x, y, w, h) {
+            const r = w / 2;
+            ctx.beginPath();
+            ctx.moveTo(x, y + h);
+            ctx.lineTo(x, y + r);
+            ctx.arc(x + r, y + r, r, Math.PI, 0, false);
+            ctx.lineTo(x + w, y + h);
+            ctx.closePath();
+        }
+
+        // Helper to draw 4-Point Star Sparkle
+        function drawStarSparkle(ctx, cx, cy, radius, color) {
+            ctx.save();
+            ctx.fillStyle = color;
+            ctx.beginPath();
+            ctx.moveTo(cx, cy - radius);
+            ctx.quadraticCurveTo(cx, cy, cx + radius, cy);
+            ctx.quadraticCurveTo(cx, cy, cx, cy + radius);
+            ctx.quadraticCurveTo(cx, cy, cx - radius, cy);
+            ctx.quadraticCurveTo(cx, cy, cx, cy - radius);
+            ctx.closePath();
+            ctx.fill();
+            ctx.strokeStyle = C.black;
+            ctx.lineWidth = 2;
+            ctx.stroke();
+            ctx.restore();
+        }
+
+        // Helper to draw Barcode
         function drawBarcode(ctx, x, y, width, height) {
             ctx.fillStyle = C.black;
             let currentX = x;
@@ -961,374 +855,301 @@
             }
         }
 
-        // Helper to draw starburst shapes on canvas
-        function drawStarburst(ctx, cx, cy, spikes, outerRadius, innerRadius, color) {
-            let rot = Math.PI / 2 * 3;
-            let x = cx;
-            let y = cy;
-            const step = Math.PI / spikes;
-
-            ctx.beginPath();
-            ctx.moveTo(cx, cy - outerRadius);
-            for (let i = 0; i < spikes; i++) {
-                x = cx + Math.cos(rot) * outerRadius;
-                y = cy + Math.sin(rot) * outerRadius;
-                ctx.lineTo(x, y);
-                rot += step;
-
-                x = cx + Math.cos(rot) * innerRadius;
-                y = cy + Math.sin(rot) * innerRadius;
-                ctx.lineTo(x, y);
-                rot += step;
-            }
-            ctx.lineTo(cx, cy - outerRadius);
-            ctx.closePath();
-            ctx.fillStyle = color;
-            ctx.fill();
-            ctx.strokeStyle = C.black;
-            ctx.lineWidth = 3;
-            ctx.stroke();
-        }
-
         async function generateCard() {
             generateBtn.disabled = true;
-            generateBtn.innerHTML = '<div class="spinner"></div><span>BUILDING MAXIMALIST PASS...</span>';
+            generateBtn.innerHTML = '<div class="spinner"></div><span>CRAFTING 1200×1800 PASS...</span>';
 
             setTimeout(() => {
                 try {
-                    const W = 1000;
-                    const H = 1400;
+                    // 1200 x 1800 High Resolution Badge
+                    const W = 1200;
+                    const H = 1800;
                     canvas.width = W;
                     canvas.height = H;
 
-                    const name = fullName.value.trim().toUpperCase();
+                    const name = fullName.value.trim();
                     const handle = github.value.trim();
-                    const title = state.builderTitle.toUpperCase();
+                    const title = state.builderTitle;
                     const stackVal = stack.value.toUpperCase();
                     const vibeVal = vibe.value;
 
-                    // ===== DYNAMIC VIBE THEME PALETTES =====
+                    // Dynamic Theme Mapping Per Vibe
                     const themeMap = {
-                        'Night Owl': { bg: ['#0F0C29', '#302B63', '#24243E'], grid: 'rgba(157, 78, 221, 0.35)', accent: '#9D4EDD', secondary: C.pink, sun: C.yellow },
-                        'Coffee Addict': { bg: ['#23120B', '#4E2A1E', '#7A4332'], grid: 'rgba(255, 140, 0, 0.35)', accent: C.yellow, secondary: C.orange, sun: C.lime },
-                        'Beach Bum': { bg: ['#0B3C1D', '#0A3319', '#052010'], grid: 'rgba(57, 255, 20, 0.35)', accent: C.lime, secondary: C.pink, sun: C.yellow },
-                        'Code Warrior': { bg: ['#051923', '#003554', '#006494'], grid: 'rgba(0, 245, 255, 0.35)', accent: C.cyan, secondary: C.lime, sun: C.yellow },
-                        'Bug Hunter': { bg: ['#1F1900', '#FFB703', '#FB8500'], grid: 'rgba(255, 183, 3, 0.35)', accent: C.yellow, secondary: C.pink, sun: C.cyan },
-                        'Ship It': { bg: ['#0B091A', '#240046', '#5A189A'], grid: 'rgba(0, 245, 255, 0.35)', accent: C.cyan, secondary: C.yellow, sun: C.lime },
-                        'Chill': { bg: ['#081C15', '#1B4332', '#2D6A4F'], grid: 'rgba(64, 224, 208, 0.35)', accent: '#40E0D0', secondary: C.lime, sun: C.yellow },
-                        'Chaos': { bg: ['#2B001D', '#FF007F', '#7B2CBF'], grid: 'rgba(255, 0, 127, 0.35)', accent: C.pink, secondary: C.cyan, sun: C.yellow }
+                        'Night Owl': { bg: '#0A071E', ray: '#4A0E4E', accent: '#9D4EDD' },
+                        'Coffee Addict': { bg: '#1C0A00', ray: '#7A4332', accent: C.gold },
+                        'Beach Bum': { bg: '#09331D', ray: '#D81159', accent: C.gold },
+                        'Code Warrior': { bg: '#051923', ray: '#006494', accent: '#00F5FF' },
+                        'Bug Hunter': { bg: '#1F1900', ray: '#D97706', accent: C.gold },
+                        'Ship It': { bg: '#0B091A', ray: '#5A189A', accent: C.pink },
+                        'Chill': { bg: '#081C15', ray: '#2D6A4F', accent: '#39FF14' },
+                        'Chaos': { bg: '#2B001D', ray: '#C026D3', accent: C.gold }
                     };
 
                     const t = themeMap[vibeVal] || themeMap['Beach Bum'];
 
-                    // 1. BASE BACKGROUND GRADIENT FOR THE ID CARD
-                    const bgGrad = ctx.createLinearGradient(0, 0, W, H);
-                    bgGrad.addColorStop(0, t.bg[0]);
-                    bgGrad.addColorStop(0.5, t.bg[1]);
-                    bgGrad.addColorStop(1, t.bg[2]);
-                    ctx.fillStyle = bgGrad;
-                    ctx.fillRect(0, 0, W, H);
+                    // 1. CARD BASE CONTAINER (Golden Outer Frame + Black Border)
+                    ctx.fillStyle = C.black;
+                    drawRoundedRect(ctx, 20, 20, W - 40, H - 40, 48);
+                    ctx.fill();
 
-                    // 2. ACID LIME GRID PATTERN OVERLAY ON ID CARD
-                    ctx.strokeStyle = t.grid;
-                    ctx.lineWidth = 2;
-                    const gridSize = 40;
-                    for (let x = 0; x < W; x += gridSize) {
-                        ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke();
-                    }
-                    for (let y = 0; y < H; y += gridSize) {
-                        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
-                    }
+                    // Gold Outer Border Fill
+                    drawRoundedRect(ctx, 28, 28, W - 56, H - 56, 42);
+                    ctx.fillStyle = C.gold;
+                    ctx.fill();
+                    ctx.strokeStyle = C.black;
+                    ctx.lineWidth = 6;
+                    ctx.stroke();
 
-                    // 3. DIAGONAL STRIPE ACCENTS AT TOP & BOTTOM
+                    // Inner Dark Forest Background Box
+                    const innerX = 54;
+                    const innerY = 54;
+                    const innerW = W - 108;
+                    const innerH = H - 108;
+
+                    drawRoundedRect(ctx, innerX, innerY, innerW, innerH, 36);
+                    ctx.fillStyle = t.bg;
+                    ctx.fill();
+                    ctx.strokeStyle = C.black;
+                    ctx.lineWidth = 6;
+                    ctx.stroke();
+
+                    // 2. SUNBURST PINWHEEL RAYS (Center of Photo Arch)
+                    const rayCx = W / 2;
+                    const rayCy = 950;
                     ctx.save();
-                    ctx.fillStyle = 'rgba(0, 0, 0, 0.25)';
-                    for (let i = -W; i < W * 2; i += 60) {
+                    drawRoundedRect(ctx, innerX, innerY, innerW, innerH, 36);
+                    ctx.clip();
+
+                    const numRays = 28;
+                    const rayAngle = (Math.PI * 2) / numRays;
+                    ctx.fillStyle = t.ray;
+
+                    for (let i = 0; i < numRays; i += 2) {
                         ctx.beginPath();
-                        ctx.moveTo(i, 0);
-                        ctx.lineTo(i + 30, 0);
-                        ctx.lineTo(i + 30 - 200, 200);
-                        ctx.lineTo(i - 200, 200);
+                        ctx.moveTo(rayCx, rayCy);
+                        ctx.arc(rayCx, rayCy, 1600, i * rayAngle, (i + 1) * rayAngle);
                         ctx.closePath();
                         ctx.fill();
                     }
                     ctx.restore();
 
-                    // 4. SIDE TICKET NOTCH CUTOUTS (brutalist ticket pass effect)
-                    ctx.fillStyle = '#000000';
-                    ctx.beginPath(); ctx.arc(0, H / 2, 40, 0, Math.PI * 2); ctx.fill();
-                    ctx.beginPath(); ctx.arc(W, H / 2, 40, 0, Math.PI * 2); ctx.fill();
-
-                    // 5. RADIANT HEADER SUN & RAYS
-                    const sunX = W / 2;
-                    const sunY = 110;
-                    ctx.shadowColor = t.sun;
-                    ctx.shadowBlur = 60;
-                    ctx.beginPath(); ctx.arc(sunX, sunY, 56, 0, Math.PI * 2);
-                    ctx.fillStyle = t.sun; ctx.fill();
-                    ctx.strokeStyle = C.black; ctx.lineWidth = 4; ctx.stroke();
-                    ctx.shadowBlur = 0;
-
-                    // Sun orbit dash ring
+                    // 3. INNER DOTTED GOLD BORDER LINING
                     ctx.save();
-                    ctx.strokeStyle = t.accent;
-                    ctx.lineWidth = 3;
-                    ctx.setLineDash([10, 8]);
-                    ctx.beginPath(); ctx.arc(sunX, sunY, 78, 0, Math.PI * 2); ctx.stroke();
+                    ctx.strokeStyle = C.gold;
+                    ctx.lineWidth = 4;
+                    ctx.setLineDash([12, 10]);
+                    drawRoundedRect(ctx, innerX + 16, innerY + 16, innerW - 32, innerH - 32, 28);
+                    ctx.stroke();
                     ctx.restore();
 
-                    // Decorative Starbursts
-                    drawStarburst(ctx, 120, 110, 8, 24, 12, t.secondary);
-                    drawStarburst(ctx, 880, 110, 8, 24, 12, t.accent);
-
-                    // 6. MAIN HEADER TEXT ("HACKER HOUSE")
-                    ctx.textAlign = 'center';
-                    ctx.font = '900 68px "Plus Jakarta Sans", sans-serif';
-
-                    // Black Offset 3D Text Shadow
-                    ctx.fillStyle = C.black;
-                    ctx.fillText('HACKER', W / 2 + 5, 195);
-                    ctx.fillText('HOUSE', W / 2 + 5, 262);
-
-                    // Text Front Fill
-                    ctx.fillStyle = t.sun;
-                    ctx.fillText('HACKER', W / 2, 190);
-                    ctx.fillText('HOUSE', W / 2, 257);
-
-                    // 7. DEVANAGARI "गोवा" POP STICKER BADGE
+                    // 4. TOP STAMP BADGE ("✦ OFFICIAL BUILDER PASS ✦")
                     ctx.save();
-                    ctx.translate(W / 2 + 175, 225);
+                    ctx.translate(W / 2, 135);
+                    drawRoundedRect(ctx, -190, -22, 380, 44, 12);
+                    ctx.fillStyle = C.gold; ctx.fill();
+                    ctx.strokeStyle = C.black; ctx.lineWidth = 4; ctx.stroke();
+                    ctx.font = '800 18px "JetBrains Mono", monospace';
+                    ctx.fillStyle = C.black;
+                    ctx.textAlign = 'center';
+                    ctx.fillText('✦ OFFICIAL BUILDER PASS ✦', 0, 7);
+                    ctx.restore();
+
+                    // 2:47 PM STUDIO Stamp (Top Right)
+                    ctx.save();
+                    ctx.translate(W - 160, 140);
+                    ctx.rotate(0.08);
+                    ctx.font = '900 24px "JetBrains Mono", monospace';
+                    ctx.fillStyle = C.gold;
+                    ctx.textAlign = 'center';
+                    ctx.fillText('2:47PM', 0, -4);
+                    ctx.font = '800 14px "JetBrains Mono", monospace';
+                    ctx.fillText('STUDIO', 0, 16);
+                    ctx.restore();
+
+                    // 5. STACKED LOGO BOX ("HACKER HOUSE") WITH HOT-PINK DEVANAGARI "गोवा" STICKER
+                    const logoX = 100;
+                    const logoY = 195;
+                    const logoW = 380;
+                    const logoH = 260;
+
+                    // Black Logo Box with Gold Stroke
+                    drawRoundedRect(ctx, logoX, logoY, logoW, logoH, 20);
+                    ctx.fillStyle = C.black; ctx.fill();
+                    ctx.strokeStyle = C.gold; ctx.lineWidth = 4; ctx.stroke();
+
+                    // "HACKER HOUSE" High Contrast Serif Text
+                    ctx.font = '900 78px "Playfair Display", serif';
+                    ctx.fillStyle = C.gold;
+                    ctx.textAlign = 'left';
+                    ctx.fillText('HACKER', logoX + 24, logoY + 105);
+                    ctx.fillText('HOUSE', logoX + 24, logoY + 205);
+
+                    // Hot Pink Tilted Devanagari "गोवा" Badge Overlapping Center
+                    ctx.save();
+                    ctx.translate(logoX + logoW / 2 + 10, logoY + logoH / 2 - 5);
                     ctx.rotate(-0.16);
-                    drawRoundedRect(ctx, -56, -26, 112, 52, 12);
+                    drawRoundedRect(ctx, -68, -30, 136, 60, 14);
                     ctx.fillStyle = C.pink; ctx.fill();
                     ctx.strokeStyle = C.black; ctx.lineWidth = 4; ctx.stroke();
-                    ctx.fillStyle = t.sun;
-                    ctx.font = '900 32px "Noto Sans Devanagari", sans-serif';
+                    ctx.font = '900 36px "Noto Sans Devanagari", sans-serif';
+                    ctx.fillStyle = C.gold;
                     ctx.textAlign = 'center';
-                    ctx.fillText('गोवा', 0, 10);
+                    ctx.fillText('गोवा', 0, 12);
                     ctx.restore();
 
-                    // SUBTITLE BADGE BANNER (Black fill with Acid Lime border & text)
-                    ctx.save();
-                    ctx.translate(W / 2, 310);
-                    drawRoundedRect(ctx, -190, -18, 380, 36, 20);
-                    ctx.fillStyle = C.black; ctx.fill();
-                    ctx.strokeStyle = t.accent; ctx.lineWidth = 3; ctx.stroke();
-                    ctx.font = '800 16px "JetBrains Mono", monospace';
-                    ctx.fillStyle = t.accent;
-                    ctx.fillText('⚡ OFFICIAL BUILDER PASS · 2026 ⚡', 0, 6);
-                    ctx.restore();
+                    // Event Dates below logo
+                    ctx.font = '800 18px "JetBrains Mono", monospace';
+                    ctx.fillStyle = C.gold;
+                    ctx.textAlign = 'left';
+                    ctx.fillText('GOA, INDIA  ·  28 - 31 OCT 2026', logoX + 10, logoY + logoH + 42);
 
-                    // 8. PHOTO FRAME WITH NEO-BRUTALIST MULTI-OFFSET BORDER & STICKERS
-                    const photoSize = 580;
-                    const photoY = 355;
-                    const photoX = (W - photoSize) / 2;
+                    // 6. ARCH PHOTO FRAME (Rounded Top Arch, Flat Bottom)
+                    const archW = 460;
+                    const archH = 560;
+                    const archX = (W - archW) / 2;
+                    const archY = 620;
 
-                    // Black backing block shadow
-                    drawRoundedRect(ctx, photoX + 12, photoY + 12, photoSize, photoSize, 20);
-                    ctx.fillStyle = C.black; ctx.fill();
+                    // Outer Gold Backing Box Arch
+                    drawArchPath(ctx, archX - 12, archY - 12, archW + 24, archH + 24);
+                    ctx.fillStyle = C.gold; ctx.fill();
+                    ctx.strokeStyle = C.black; ctx.lineWidth = 6; ctx.stroke();
 
-                    // Acid Lime backing accent box
-                    drawRoundedRect(ctx, photoX - 6, photoY - 6, photoSize + 12, photoSize + 12, 20);
-                    ctx.fillStyle = t.accent; ctx.fill();
-                    ctx.strokeStyle = C.black; ctx.lineWidth = 4; ctx.stroke();
+                    // Inner Pink Arch Rim
+                    drawArchPath(ctx, archX - 4, archY - 4, archW + 8, archH + 8);
+                    ctx.fillStyle = C.pink; ctx.fill();
 
-                    // Render Uploaded Image
+                    // Render Uploaded Portrait Photo inside Arch
                     const imgAspect = state.image.width / state.image.height;
                     let sx, sy, sW, sH;
                     if (imgAspect > 1) { sH = state.image.height; sW = sH; sx = (state.image.width - sW) / 2; sy = 0; }
                     else { sW = state.image.width; sH = sW; sx = 0; sy = (state.image.height - sH) / 2; }
 
                     ctx.save();
-                    drawRoundedRect(ctx, photoX, photoY, photoSize, photoSize, 16);
+                    drawArchPath(ctx, archX, archY, archW, archH);
                     ctx.clip();
-                    ctx.drawImage(state.image, sx, sy, sW, sH, photoX, photoY, photoSize, photoSize);
+                    ctx.drawImage(state.image, sx, sy, sW, sH, archX, archY, archW, archH);
 
-                    // Gradient Bottom Fade Overlay
-                    const photoGrad = ctx.createLinearGradient(0, photoY + photoSize - 140, 0, photoY + photoSize);
-                    photoGrad.addColorStop(0, 'rgba(0,0,0,0)');
-                    photoGrad.addColorStop(1, 'rgba(0,0,0,0.45)');
-                    ctx.fillStyle = photoGrad;
-                    ctx.fillRect(photoX, photoY, photoSize, photoSize);
-
-                    // Holographic Sheen Line
-                    const holoGrad = ctx.createLinearGradient(photoX - 100, photoY - 100, photoX + 400, photoY + 400);
-                    holoGrad.addColorStop(0, 'rgba(255,255,255,0)');
-                    holoGrad.addColorStop(0.45, 'rgba(255,255,255,0)');
-                    holoGrad.addColorStop(0.5, 'rgba(255,255,255,0.25)');
-                    holoGrad.addColorStop(0.55, 'rgba(255,255,255,0)');
-                    holoGrad.addColorStop(1, 'rgba(255,255,255,0)');
-                    ctx.fillStyle = holoGrad;
-                    ctx.fillRect(photoX, photoY, photoSize, photoSize);
+                    // Subtle Arch Bottom Gradient Overlay
+                    const photoOverlay = ctx.createLinearGradient(0, archY + archH - 120, 0, archY + archH);
+                    photoOverlay.addColorStop(0, 'rgba(0,0,0,0)');
+                    photoOverlay.addColorStop(1, 'rgba(0,0,0,0.35)');
+                    ctx.fillStyle = photoOverlay;
+                    ctx.fillRect(archX, archY, archW, archH);
                     ctx.restore();
 
-                    // Photo Border Line
-                    drawRoundedRect(ctx, photoX, photoY, photoSize, photoSize, 16);
-                    ctx.strokeStyle = C.black; ctx.lineWidth = 4; ctx.stroke();
+                    // Arch Frame Outline
+                    drawArchPath(ctx, archX, archY, archW, archH);
+                    ctx.strokeStyle = C.black; ctx.lineWidth = 5; ctx.stroke();
 
-                    // Corner reticle brackets
-                    const cLen = 28;
-                    ctx.strokeStyle = t.accent; ctx.lineWidth = 4;
-                    ctx.beginPath(); ctx.moveTo(photoX + 10, photoY + 10 + cLen); ctx.lineTo(photoX + 10, photoY + 10); ctx.lineTo(photoX + 10 + cLen, photoY + 10); ctx.stroke();
-                    ctx.beginPath(); ctx.moveTo(photoX + photoSize - 10 - cLen, photoY + 10); ctx.lineTo(photoX + photoSize - 10, photoY + 10); ctx.lineTo(photoX + photoSize - 10, photoY + 10 + cLen); ctx.stroke();
-                    ctx.beginPath(); ctx.moveTo(photoX + 10, photoY + photoSize - 10 - cLen); ctx.lineTo(photoX + 10, photoY + photoSize - 10); ctx.lineTo(photoX + 10 + cLen, photoY + photoSize - 10); ctx.stroke();
-                    ctx.beginPath(); ctx.moveTo(photoX + photoSize - 10 - cLen, photoY + photoSize - 10); ctx.lineTo(photoX + photoSize - 10, photoY + photoSize - 10); ctx.lineTo(photoX + photoSize - 10, photoY + photoSize - 10 - cLen); ctx.stroke();
+                    // Sparkle Stars Floating on Left of Arch
+                    drawStarSparkle(ctx, archX - 35, archY + 180, 24, C.gold);
+                    drawStarSparkle(ctx, archX - 15, archY + 280, 16, C.gold);
 
-                    // STICKER BADGES ON PHOTO
-                    // Top-Left: "VERIFIED BUILDER"
-                    ctx.save();
-                    ctx.translate(photoX - 15, photoY + 30);
-                    ctx.rotate(-0.08);
-                    drawRoundedRect(ctx, 0, 0, 175, 34, 8);
-                    ctx.fillStyle = C.yellow; ctx.fill();
-                    ctx.strokeStyle = C.black; ctx.lineWidth = 3; ctx.stroke();
-                    ctx.font = '900 13px "JetBrains Mono", monospace';
+                    // 7. BUILDER NAME GOLD PILL BADGE
+                    const nameY = archY + archH + 50;
+                    const nameW = 680;
+                    const nameH = 84;
+                    const nameX = (W - nameW) / 2;
+
+                    // Black Shadow
+                    drawRoundedRect(ctx, nameX + 6, nameY + 6, nameW, nameH, 42);
+                    ctx.fillStyle = C.black; ctx.fill();
+
+                    // Gold Pill
+                    drawRoundedRect(ctx, nameX, nameY, nameW, nameH, 42);
+                    ctx.fillStyle = C.gold; ctx.fill();
+                    ctx.strokeStyle = C.black; ctx.lineWidth = 5; ctx.stroke();
+
+                    // Name Text + Cross Sparkles
+                    ctx.font = '900 42px "Plus Jakarta Sans", sans-serif';
                     ctx.fillStyle = C.black;
                     ctx.textAlign = 'center';
-                    ctx.fillText('★ VERIFIED BUILDER', 87, 22);
-                    ctx.restore();
+                    ctx.fillText(name, W / 2, nameY + 56);
 
-                    // Bottom-Right: "ACCESS ALL AREAS"
-                    ctx.save();
-                    ctx.translate(photoX + photoSize - 180, photoY + photoSize - 20);
-                    ctx.rotate(0.06);
-                    drawRoundedRect(ctx, 0, 0, 190, 36, 8);
-                    ctx.fillStyle = C.cyan; ctx.fill();
-                    ctx.strokeStyle = C.black; ctx.lineWidth = 3; ctx.stroke();
-                    ctx.font = '900 13px "JetBrains Mono", monospace';
-                    ctx.fillStyle = C.black;
+                    ctx.font = '800 32px sans-serif';
+                    ctx.fillStyle = C.pink;
+                    ctx.fillText('✦', nameX + 45, nameY + 54);
+                    ctx.fillText('✦', nameX + nameW - 45, nameY + 54);
+
+                    // 8. GENERATED BUILDER TITLE PILL
+                    const titleY = nameY + nameH + 36;
+                    ctx.font = '800 24px "JetBrains Mono", monospace';
+                    ctx.fillStyle = C.gold;
                     ctx.textAlign = 'center';
-                    ctx.fillText('ACCESS ALL AREAS // 26', 95, 23);
-                    ctx.restore();
+                    ctx.fillText(title.toUpperCase(), W / 2, titleY);
 
-                    // 9. BUILDER NAME
-                    const nameY = photoY + photoSize + 65;
-                    ctx.textAlign = 'center';
-                    ctx.font = '900 62px "Plus Jakarta Sans", sans-serif';
-
-                    // 3D Shadow for Name
-                    ctx.fillStyle = C.black;
-                    ctx.fillText(name, W / 2 + 4, nameY + 4);
-                    ctx.fillStyle = t.sun;
-                    ctx.fillText(name, W / 2, nameY);
-
-                    // 10. BUILDER TITLE STICKER PILL (Acid Lime Pill #39FF14)
-                    const titleY = nameY + 54;
-                    const titleWidth = Math.max(340, ctx.measureText(title).width + 70);
-                    ctx.save();
-                    ctx.translate(W / 2, titleY);
-                    ctx.rotate(-0.02);
-                    drawRoundedRect(ctx, -titleWidth / 2, -22, titleWidth, 44, 12);
-                    ctx.fillStyle = t.accent; ctx.fill();
-                    ctx.strokeStyle = C.black; ctx.lineWidth = 3.5; ctx.stroke();
-                    ctx.font = '900 22px "JetBrains Mono", monospace';
-                    ctx.fillStyle = C.black;
-                    ctx.textAlign = 'center';
-                    ctx.fillText('⚡ ' + title + ' ⚡', 0, 7);
-                    ctx.restore();
-
-                    // 11. NEO-BRUTALIST INFO CARDS (STACK & VIBE)
-                    const infoY = titleY + 50;
-                    const cardW = 380;
-                    const cardH = 96;
-                    const gap = 30;
+                    // 9. CLEAN INFO CARDS (STACK & VIBE)
+                    const infoY = titleY + 45;
+                    const cardW = 480;
+                    const cardH = 110;
+                    const gap = 36;
                     const leftX = (W - (cardW * 2 + gap)) / 2;
                     const rightX = leftX + cardW + gap;
 
                     // STACK CARD
-                    // Drop Shadow Box
-                    drawRoundedRect(ctx, leftX + 6, infoY + 6, cardW, cardH, 14);
+                    drawRoundedRect(ctx, leftX + 6, infoY + 6, cardW, cardH, 16);
                     ctx.fillStyle = C.black; ctx.fill();
-                    // Card Box
-                    drawRoundedRect(ctx, leftX, infoY, cardW, cardH, 14);
-                    ctx.fillStyle = 'rgba(0, 245, 255, 0.12)'; ctx.fill();
-                    ctx.strokeStyle = C.cyan; ctx.lineWidth = 3; ctx.stroke();
+
+                    drawRoundedRect(ctx, leftX, infoY, cardW, cardH, 16);
+                    ctx.fillStyle = C.cream; ctx.fill();
+                    ctx.strokeStyle = C.black; ctx.lineWidth = 4; ctx.stroke();
 
                     ctx.textAlign = 'center';
-                    ctx.font = '800 13px "JetBrains Mono", monospace';
-                    ctx.fillStyle = C.cyan;
-                    ctx.fillText('⚡ PRIMARY STACK', leftX + cardW / 2, infoY + 28);
-                    ctx.font = '900 36px "Plus Jakarta Sans", sans-serif';
-                    ctx.fillStyle = C.white;
-                    ctx.fillText(stackVal, leftX + cardW / 2, infoY + 72);
+                    ctx.font = '800 14px "JetBrains Mono", monospace';
+                    ctx.fillStyle = C.magenta;
+                    ctx.fillText('STACK', leftX + cardW / 2, infoY + 34);
+                    ctx.font = '900 40px "Plus Jakarta Sans", sans-serif';
+                    ctx.fillStyle = C.black;
+                    ctx.fillText(stackVal, leftX + cardW / 2, infoY + 82);
 
                     // VIBE CARD
-                    // Drop Shadow Box
-                    drawRoundedRect(ctx, rightX + 6, infoY + 6, cardW, cardH, 14);
+                    drawRoundedRect(ctx, rightX + 6, infoY + 6, cardW, cardH, 16);
                     ctx.fillStyle = C.black; ctx.fill();
-                    // Card Box
-                    drawRoundedRect(ctx, rightX, infoY, cardW, cardH, 14);
-                    ctx.fillStyle = 'rgba(255, 0, 127, 0.12)'; ctx.fill();
-                    ctx.strokeStyle = C.pink; ctx.lineWidth = 3; ctx.stroke();
 
-                    ctx.font = '800 13px "JetBrains Mono", monospace';
-                    ctx.fillStyle = C.pink;
-                    ctx.fillText('🔥 VIBE CHECK', rightX + cardW / 2, infoY + 28);
-                    ctx.font = '900 34px "Plus Jakarta Sans", sans-serif';
-                    ctx.fillStyle = C.white;
-                    ctx.fillText(vibeVal.toUpperCase(), rightX + cardW / 2, infoY + 72);
+                    drawRoundedRect(ctx, rightX, infoY, cardW, cardH, 16);
+                    ctx.fillStyle = C.cream; ctx.fill();
+                    ctx.strokeStyle = C.black; ctx.lineWidth = 4; ctx.stroke();
 
-                    // 12. SOCIAL HANDLE (IF PROVIDED)
-                    const handleY = infoY + cardH + 40;
+                    ctx.font = '800 14px "JetBrains Mono", monospace';
+                    ctx.fillStyle = C.magenta;
+                    ctx.fillText('VIBE', rightX + cardW / 2, infoY + 34);
+                    ctx.font = '900 38px "Plus Jakarta Sans", sans-serif';
+                    ctx.fillStyle = C.black;
+                    ctx.fillText(vibeVal.toUpperCase(), rightX + cardW / 2, infoY + 82);
+
+                    // 10. SOCIAL HANDLE (IF PROVIDED)
                     if (handle) {
-                        const formattedHandle = handle.startsWith('@') ? handle : '@' + handle;
-                        ctx.font = '800 22px "JetBrains Mono", monospace';
-                        ctx.fillStyle = C.yellow;
-                        ctx.fillText('𝕏 ' + formattedHandle, W / 2, handleY);
+                        ctx.font = '800 24px "JetBrains Mono", monospace';
+                        ctx.fillStyle = C.gold;
+                        ctx.fillText('𝕏 ' + (handle.startsWith('@') ? handle : '@' + handle), W / 2, infoY + cardH + 45);
                     }
 
-                    // 13. BOTTOM BARCODE & OFFICIAL METALLIC SEAL
-                    const bSectionY = H - 140;
-
-                    // Barcode Box
-                    drawRoundedRect(ctx, 60, bSectionY, 320, 60, 8);
+                    // 11. BARCODE & FOOTER DETAILS
+                    const bY = H - 150;
+                    drawRoundedRect(ctx, 100, bY, 340, 64, 10);
                     ctx.fillStyle = C.white; ctx.fill();
                     ctx.strokeStyle = C.black; ctx.lineWidth = 3; ctx.stroke();
-                    drawBarcode(ctx, 75, bSectionY + 10, 290, 40);
+                    drawBarcode(ctx, 115, bY + 10, 310, 44);
 
-                    // Official Seal Stamp (Right Bottom)
-                    const sealX = W - 140;
-                    const sealY = bSectionY + 25;
-                    ctx.save();
-                    ctx.translate(sealX, sealY);
-                    ctx.rotate(-0.15);
-                    drawStarburst(ctx, 0, 0, 16, 52, 44, C.yellow);
-                    ctx.font = '900 10px "JetBrains Mono", monospace';
-                    ctx.fillStyle = C.black;
-                    ctx.textAlign = 'center';
-                    ctx.fillText('HACKER HOUSE', 0, -8);
-                    ctx.fillText('GOA 2026', 0, 4);
-                    ctx.fillText('OFFICIAL SEAL', 0, 16);
-                    ctx.restore();
-
-                    // 14. FOOTER CREDENTIALS & HASHTAG
-                    ctx.fillStyle = t.sun;
-                    ctx.fillRect(40, H - 45, W - 80, 4);
-
-                    ctx.font = '800 18px "JetBrains Mono", monospace';
-                    ctx.fillStyle = C.yellow;
-                    ctx.textAlign = 'left';
-                    ctx.fillText('HH GOA 2026', 40, H - 18);
-
+                    // Bottom Hashtag & Ticket ID
+                    ctx.font = '800 20px "JetBrains Mono", monospace';
+                    ctx.fillStyle = C.gold;
                     ctx.textAlign = 'right';
-                    ctx.fillStyle = C.pink;
-                    ctx.fillText('#FRAMEINGOA 🌴', W - 40, H - 18);
+                    ctx.fillText('#FRAMEINGOA 🌴', W - 100, bY + 40);
 
-                    const serial = 'PASS-HH26-' + Math.random().toString(36).substr(2, 6).toUpperCase();
-                    ctx.font = '800 15px "JetBrains Mono", monospace';
-                    ctx.fillStyle = 'rgba(255, 248, 231, 0.6)';
+                    const serial = 'STUDIO-HH26-' + Math.random().toString(36).substr(2, 6).toUpperCase();
+                    ctx.font = '800 16px "JetBrains Mono", monospace';
+                    ctx.fillStyle = 'rgba(249, 184, 40, 0.7)';
                     ctx.textAlign = 'center';
-                    ctx.fillText(serial, W / 2, H - 18);
+                    ctx.fillText(serial, W / 2, H - 75);
 
-                    // 15. EXPORT CANVAS TO PNG
+                    // 12. EXPORT CANVAS TO HIGH-RES PNG
                     const dataUrl = canvas.toDataURL('image/png', 1.0);
                     generatedCard.src = dataUrl;
                     state.generatedDataUrl = dataUrl;
 
                     resultSection.classList.add('visible');
-                    generateBtn.innerHTML = '<span>✓ MAXIMALIST PASS READY!</span>';
-                    document.getElementById('step2').classList.remove('active');
-                    document.getElementById('step3').classList.add('active');
+                    generateBtn.innerHTML = '<span>✓ 1200×1800 PASS READY!</span>';
 
                     setTimeout(() => {
                         resultSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -1339,7 +1160,7 @@
                     console.error(err);
                     showToast('Error generating pass. Please refresh and try again.');
                     generateBtn.disabled = false;
-                    generateBtn.innerHTML = '<span>⚡ GENERATE MAXIMALIST PASS</span>';
+                    generateBtn.innerHTML = '<span>GENERATE ID CARD 🌴</span>';
                 }
             }, 100);
         }
@@ -1348,25 +1169,25 @@
 
         downloadBtn.addEventListener('click', () => {
             const link = document.createElement('a');
-            link.download = 'HackerHouse-Goa-2026-' + fullName.value.trim().replace(/\s+/g, '-') + '-Pass.png';
+            link.download = 'HackerHouse-Goa-2026-' + fullName.value.trim().replace(/\s+/g, '-') + '-StudioPass.png';
             link.href = state.generatedDataUrl;
             link.click();
-            showToast('Pass downloaded! 🏝️⚡');
+            showToast('Studio Pass downloaded! 🌴✦');
         });
 
         shareBtn.addEventListener('click', async () => {
             const name = fullName.value.trim();
-            const text = 'Just generated my official Hacker House Goa 2026 Builder Pass! 🏝️⚡\n\nTitle: ' + state.builderTitle + '\nStack: ' + stack.value + '\n\n#FrameInGoa @hh_goa';
+            const text = 'Just customized my official 1200x1800 Builder Pass for Hacker House Goa 2026! 🌴✦\n\nTitle: ' + state.builderTitle + '\nStack: ' + stack.value + '\n\n#FrameInGoa @hh_goa';
 
             const link = document.createElement('a');
-            link.download = 'HackerHouse-Goa-2026-' + name.replace(/\s+/g, '-') + '-Pass.png';
+            link.download = 'HackerHouse-Goa-2026-' + name.replace(/\s+/g, '-') + '-StudioPass.png';
             link.href = state.generatedDataUrl;
             link.click();
 
             if (navigator.canShare && state.generatedDataUrl) {
                 try {
                     const blob = await fetch(state.generatedDataUrl).then(r => r.blob());
-                    const file = new File([blob], 'hh-goa-2026-builder-pass.png', { type: 'image/png' });
+                    const file = new File([blob], 'hh-goa-2026-studio-pass.png', { type: 'image/png' });
                     if (navigator.canShare({ files: [file] })) {
                         await navigator.share({
                             files: [file],
@@ -1395,7 +1216,7 @@
             state.builderTitle = '';
             photoInput.value = '';
             uploadZone.classList.remove('has-image');
-            uploadContent.innerHTML = '<div class="upload-icon">🏝️</div><div class="upload-text">Tap or Drag Photo Here</div><div class="upload-hint">JPG · PNG · HEIC (iPhone)</div>';
+            uploadContent.innerHTML = '<div class="upload-icon">🏖️</div><div class="upload-text">Tap or Drag Photo Here</div><div class="upload-hint">JPG · PNG · HEIC (iPhone)</div>';
             fullName.value = '';
             stack.value = '';
             vibe.value = '';
@@ -1405,10 +1226,7 @@
             resultSection.classList.remove('visible');
             generatedCard.src = '';
             generateBtn.disabled = true;
-            generateBtn.innerHTML = '<span>⚡ GENERATE MAXIMALIST PASS</span>';
-            document.getElementById('step1').classList.add('active');
-            document.getElementById('step2').classList.remove('active');
-            document.getElementById('step3').classList.remove('active');
+            generateBtn.innerHTML = '<span>GENERATE ID CARD 🌴</span>';
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
@@ -1418,7 +1236,7 @@
             c.width = window.innerWidth;
             c.height = window.innerHeight;
             const particles = [];
-            const colors = [C.yellow, C.pink, C.cyan, C.lime, C.orange];
+            const colors = [C.gold, C.pink, C.darkGreen, C.cream];
             for (let i = 0; i < 110; i++) {
                 particles.push({
                     x: c.width / 2,
