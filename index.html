@@ -944,215 +944,309 @@
                     const stackVal = stack.value;
                     const vibeVal = vibe.value;
 
-                    // ===== MULTI-COLOR VIBE MAP (gradients) =====
-                    const vibeTheme = {
+                    // ===== THEME MAP =====
+                    const theme = {
                         'Night Owl': {
-                            grad: ['#0f0c29', '#302b63', '#24243e'],
-                            accent: '#9D4EDD',
-                            sun: '#FFD700',
-                            box1: '#7B2CBF',
-                            box2: '#5A189A'
+                            bg: ['#0f0c29', '#302b63', '#24243e'], accent: '#9D4EDD', sun: '#FFD700',
+                            decor: (ctx) => {
+                                ctx.fillStyle = 'rgba(255,255,255,0.35)';
+                                for (let i = 0; i < 60; i++) { const sx = 15 + Math.random() * 970; const sy = 10 + Math.random() * 450; ctx.beginPath(); ctx.arc(sx, sy, Math.random() * 2.5 + 0.5, 0, Math.PI * 2); ctx.fill(); }
+                                ctx.beginPath(); ctx.arc(930, 85, 26, 0, Math.PI * 2); ctx.fillStyle = 'rgba(255,255,255,0.18)'; ctx.fill();
+                                ctx.beginPath(); ctx.arc(923, 80, 18, 0, Math.PI * 2); ctx.fillStyle = theme['Night Owl'].bg[0]; ctx.fill();
+                            }
                         },
                         'Coffee Addict': {
-                            grad: ['#3E2723', '#5D4037', '#8D6E63'],
-                            accent: '#D2691E',
-                            sun: '#FFD700',
-                            box1: '#6D4C41',
-                            box2: '#5D4037'
+                            bg: ['#3E2723', '#5D4037', '#8D6E63'], accent: '#D2691E', sun: '#FFD700',
+                            decor: (ctx) => {
+                                ctx.fillStyle = 'rgba(210,105,30,0.16)';
+                                for (let i = 0; i < 14; i++) { const bx = 25 + (i % 7) * 145; const by = 25 + Math.floor(i / 7) * 85; ctx.save(); ctx.translate(bx, by); ctx.rotate(Math.PI / 4); ctx.beginPath(); ctx.ellipse(0, 0, 14, 7, 0, 0, Math.PI * 2); ctx.fill(); ctx.restore(); }
+                                ctx.strokeStyle = 'rgba(255,255,255,0.08)'; ctx.lineWidth = 2;
+                                for (let i = 0; i < 6; i++) { ctx.beginPath(); ctx.moveTo(680 + i * 50, 230); ctx.quadraticCurveTo(700 + i * 50, 170, 680 + i * 50, 130); ctx.stroke(); }
+                            }
                         },
                         'Beach Bum': {
-                            grad: ['#0B6B3A', '#147A4A', '#1B9C5C'],
-                            accent: '#FF006E',
-                            sun: '#FFD700',
-                            box1: '#0B6B3A',
-                            box2: '#FF006E'
+                            bg: ['#0B6B3A', '#147A4A', '#1B9C5C'], accent: '#FF006E', sun: '#FFD700',
+                            decor: (ctx) => {
+                                ctx.strokeStyle = 'rgba(8, 69, 38, 0.35)'; ctx.lineWidth = 12;
+                                ctx.beginPath(); ctx.moveTo(50, H); ctx.lineTo(50, H - 220); ctx.stroke();
+                                ctx.strokeStyle = 'rgba(8, 69, 38, 0.25)'; ctx.lineWidth = 5;
+                                for (let a of [-0.8, -0.3, 0.3, 0.8, 0]) { ctx.beginPath(); ctx.moveTo(50, H - 220); ctx.quadraticCurveTo(50 + Math.cos(a) * 90, H - 220 + Math.sin(a) * 60, 50 + Math.cos(a) * 160, H - 220 + Math.sin(a) * 40); ctx.stroke(); }
+                                ctx.strokeStyle = 'rgba(255,255,255,0.08)'; ctx.lineWidth = 2;
+                                for (let i = 0; i < 4; i++) { ctx.beginPath(); const wy = H - 170 + i * 30; for (let x = 0; x < W; x += 10) { const y = wy + Math.sin((x + i * 50) * 0.03) * 12; if (x === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y); } ctx.stroke(); }
+                            }
                         },
                         'Code Warrior': {
-                            grad: ['#0a0a0a', '#1a1a2e', '#16213E'],
-                            accent: '#E94560',
-                            sun: '#FFD700',
-                            box1: '#1a1a2e',
-                            box2: '#E94560'
+                            bg: ['#0a0a0a', '#1a1a2e', '#16213E'], accent: '#E94560', sun: '#FFD700',
+                            decor: (ctx) => {
+                                ctx.fillStyle = 'rgba(233,69,96,0.1)';
+                                ctx.font = '700 60px "JetBrains Mono", monospace';
+                                ctx.fillText('{ }', 30, 120); ctx.fillText('< >', 840, 150); ctx.fillText('[ ]', 790, 250); ctx.fillText('//', 730, 330);
+                                ctx.fillStyle = 'rgba(0,255,100,0.06)';
+                                for (let i = 0; i < 70; i++) { ctx.fillRect(Math.random() * W, Math.random() * 380, 2, 6 + Math.random() * 20); }
+                            }
                         },
                         'Bug Hunter': {
-                            grad: ['#2C1810', '#4A2C00', '#6B3F00'],
-                            accent: '#FF8C00',
-                            sun: '#FFD700',
-                            box1: '#4A2C00',
-                            box2: '#FF8C00'
+                            bg: ['#2C1810', '#4A2C00', '#6B3F00'], accent: '#FF8C00', sun: '#FFD700',
+                            decor: (ctx) => {
+                                ctx.strokeStyle = 'rgba(255,140,0,0.16)'; ctx.lineWidth = 2;
+                                for (let i = 0; i < 8; i++) { const bx = 50 + i * 120; const by = 55 + (i % 2) * 40; ctx.beginPath(); ctx.arc(bx, by, 10, 0, Math.PI * 2); ctx.stroke(); ctx.beginPath(); ctx.arc(bx, by - 7, 7, 0, Math.PI * 2); ctx.stroke(); for (let a = 0; a < 6; a++) { const angle = (a / 6) * Math.PI * 2; ctx.beginPath(); ctx.moveTo(bx + Math.cos(angle) * 9, by + Math.sin(angle) * 9); ctx.lineTo(bx + Math.cos(angle) * 20, by + Math.sin(angle) * 20); ctx.stroke(); } }
+                                ctx.strokeStyle = 'rgba(255,140,0,0.12)'; ctx.lineWidth = 1;
+                                ctx.beginPath(); ctx.arc(920, 260, 40, 0, Math.PI * 2); ctx.stroke();
+                                ctx.beginPath(); ctx.moveTo(920, 210); ctx.lineTo(920, 310); ctx.stroke();
+                                ctx.beginPath(); ctx.moveTo(870, 260); ctx.lineTo(970, 260); ctx.stroke();
+                            }
                         },
                         'Ship It': {
-                            grad: ['#0a192f', '#112240', '#233554'],
-                            accent: '#00BFFF',
-                            sun: '#FFD700',
-                            box1: '#112240',
-                            box2: '#00BFFF'
+                            bg: ['#0a192f', '#112240', '#233554'], accent: '#00BFFF', sun: '#FFD700',
+                            decor: (ctx) => {
+                                ctx.fillStyle = 'rgba(0,191,255,0.12)';
+                                ctx.beginPath(); ctx.moveTo(880, 50); ctx.lineTo(910, 125); ctx.lineTo(850, 125); ctx.closePath(); ctx.fill();
+                                ctx.fillStyle = 'rgba(255,100,0,0.14)';
+                                ctx.beginPath(); ctx.moveTo(865, 125); ctx.lineTo(880, 185); ctx.lineTo(895, 125); ctx.closePath(); ctx.fill();
+                                ctx.fillStyle = 'rgba(255,255,255,0.2)';
+                                for (let i = 0; i < 35; i++) { ctx.beginPath(); ctx.arc(15 + Math.random() * 970, 10 + Math.random() * 340, Math.random() * 2 + 0.5, 0, Math.PI * 2); ctx.fill(); }
+                                ctx.strokeStyle = 'rgba(0,191,255,0.08)'; ctx.lineWidth = 1;
+                                ctx.beginPath(); ctx.ellipse(500, 260, 470, 80, 0, 0, Math.PI * 2); ctx.stroke();
+                            }
                         },
                         'Chill': {
-                            grad: ['#1B4332', '#2D6A4F', '#40916C'],
-                            accent: '#40E0D0',
-                            sun: '#FFD700',
-                            box1: '#2D6A4F',
-                            box2: '#40E0D0'
+                            bg: ['#1B4332', '#2D6A4F', '#40916C'], accent: '#40E0D0', sun: '#FFD700',
+                            decor: (ctx) => {
+                                ctx.strokeStyle = 'rgba(64,224,208,0.14)'; ctx.lineWidth = 2;
+                                for (let i = 0; i < 7; i++) { ctx.beginPath(); ctx.arc(60 + i * 160, 85 + (i % 2) * 28, 20 + i * 8, 0, Math.PI * 2); ctx.stroke(); }
+                                ctx.strokeStyle = 'rgba(255,255,255,0.07)'; ctx.lineWidth = 2;
+                                for (let i = 0; i < 8; i++) { ctx.beginPath(); const wy = 15 + i * 38; for (let x = 0; x < W; x += 10) { const y = wy + Math.sin((x + i * 35) * 0.015) * 16; if (x === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y); } ctx.stroke(); }
+                            }
                         },
                         'Chaos': {
-                            grad: ['#240046', '#3C096C', '#5A189A'],
-                            accent: '#FF006E',
-                            sun: '#FFD700',
-                            box1: '#3C096C',
-                            box2: '#FF006E'
+                            bg: ['#240046', '#3C096C', '#5A189A'], accent: '#FF006E', sun: '#FFD700',
+                            decor: (ctx) => {
+                                ctx.strokeStyle = 'rgba(255,0,110,0.16)'; ctx.lineWidth = 3;
+                                for (let i = 0; i < 7; i++) { const lx = 50 + i * 160; ctx.beginPath(); ctx.moveTo(lx, 20); ctx.lineTo(lx - 18, 90); ctx.lineTo(lx + 12, 100); ctx.lineTo(lx - 6, 175); ctx.stroke(); }
+                                ctx.fillStyle = 'rgba(255,0,110,0.08)';
+                                for (let i = 0; i < 30; i++) { ctx.save(); ctx.translate(Math.random() * W, Math.random() * 340); ctx.rotate(Math.random() * Math.PI); ctx.beginPath(); ctx.moveTo(0, -12); ctx.lineTo(8, 6); ctx.lineTo(-6, 8); ctx.closePath(); ctx.fill(); ctx.restore(); }
+                            }
                         }
                     };
-                    const vt = vibeTheme[vibeVal] || vibeTheme['Beach Bum'];
+                    const t = theme[vibeVal] || theme['Beach Bum'];
 
-                    // ===== BACKGROUND: Multi-color gradient =====
+                    // ===== BACKGROUND =====
                     const bgGrad = ctx.createLinearGradient(0, 0, W, H);
-                    bgGrad.addColorStop(0, vt.grad[0]);
-                    bgGrad.addColorStop(0.5, vt.grad[1]);
-                    bgGrad.addColorStop(1, vt.grad[2]);
+                    bgGrad.addColorStop(0, t.bg[0]);
+                    bgGrad.addColorStop(0.5, t.bg[1]);
+                    bgGrad.addColorStop(1, t.bg[2]);
                     ctx.fillStyle = bgGrad;
                     ctx.fillRect(0, 0, W, H);
 
-                    // Subtle diagonal stripes
-                    ctx.strokeStyle = 'rgba(255, 255, 255, 0.02)';
-                    ctx.lineWidth = 2;
-                    for (let i = -H; i < W + H; i += 60) {
-                        ctx.beginPath();
-                        ctx.moveTo(i, 0);
-                        ctx.lineTo(i + H, H);
-                        ctx.stroke();
+                    // Vignette
+                    const vig = ctx.createRadialGradient(W / 2, H / 2, 280, W / 2, H / 2, 950);
+                    vig.addColorStop(0, 'rgba(0,0,0,0)');
+                    vig.addColorStop(1, 'rgba(0,0,0,0.4)');
+                    ctx.fillStyle = vig;
+                    ctx.fillRect(0, 0, W, H);
+
+                    // Header glow
+                    const hGlow = ctx.createRadialGradient(W / 2, 170, 40, W / 2, 170, 500);
+                    hGlow.addColorStop(0, 'rgba(255, 215, 0, 0.12)');
+                    hGlow.addColorStop(1, 'rgba(255, 215, 0, 0)');
+                    ctx.fillStyle = hGlow;
+                    ctx.fillRect(0, 0, W, 500);
+
+                    // ===== THEME DECORATIONS =====
+                    t.decor(ctx);
+
+                    // Floating particles
+                    ctx.fillStyle = 'rgba(255, 255, 255, 0.06)';
+                    for (let i = 0; i < 25; i++) {
+                        const px = 30 + (i * 41) % 940;
+                        const py = 350 + (i * 67) % 1000;
+                        ctx.beginPath(); ctx.arc(px, py, 2, 0, Math.PI * 2); ctx.fill();
                     }
 
-                    // ===== TOP HEADER =====
-                    // Sun
-                    ctx.beginPath();
-                    ctx.arc(W / 2, 70, 38, 0, Math.PI * 2);
-                    ctx.fillStyle = vt.sun;
-                    ctx.fill();
-                    for (let i = 0; i < 8; i++) {
-                        const a = (i / 8) * Math.PI * 2;
+                    // ===== HEADER =====
+                    // Sun with strong glow
+                    ctx.shadowColor = 'rgba(255, 215, 0, 0.7)';
+                    ctx.shadowBlur = 50;
+                    ctx.beginPath(); ctx.arc(W / 2, 90, 46, 0, Math.PI * 2);
+                    ctx.fillStyle = t.sun; ctx.fill();
+                    ctx.shadowBlur = 0;
+
+                    // Sun rays
+                    for (let i = 0; i < 16; i++) {
+                        const a = (i / 16) * Math.PI * 2;
                         ctx.beginPath();
-                        ctx.moveTo(W / 2 + Math.cos(a) * 46, 70 + Math.sin(a) * 46);
-                        ctx.lineTo(W / 2 + Math.cos(a) * 58, 70 + Math.sin(a) * 58);
-                        ctx.strokeStyle = 'rgba(255, 215, 0, 0.3)';
-                        ctx.lineWidth = 2;
+                        ctx.moveTo(W / 2 + Math.cos(a) * 56, 90 + Math.sin(a) * 56);
+                        ctx.lineTo(W / 2 + Math.cos(a) * 78, 90 + Math.sin(a) * 78);
+                        ctx.strokeStyle = 'rgba(255, 215, 0, 0.4)';
+                        ctx.lineWidth = 2.5;
                         ctx.stroke();
                     }
 
                     // HACKER HOUSE
                     ctx.textAlign = 'center';
-                    ctx.font = '900 48px "Playfair Display", serif';
-                    ctx.fillStyle = 'rgba(0,0,0,0.35)';
-                    ctx.fillText('HACKER', W / 2 + 2, 155);
-                    ctx.fillText('HOUSE', W / 2 + 2, 205);
-                    ctx.fillStyle = vt.sun;
-                    ctx.fillText('HACKER', W / 2, 153);
-                    ctx.fillText('HOUSE', W / 2, 203);
+                    ctx.font = '900 58px "Playfair Display", serif';
+                    ctx.fillStyle = 'rgba(0,0,0,0.45)';
+                    ctx.fillText('HACKER', W / 2 + 2, 195);
+                    ctx.fillText('HOUSE', W / 2 + 2, 258);
+                    ctx.fillStyle = t.sun;
+                    ctx.fillText('HACKER', W / 2, 193);
+                    ctx.fillText('HOUSE', W / 2, 256);
 
                     // गोवा badge
                     ctx.save();
-                    ctx.translate(W / 2 + 120, 180);
+                    ctx.translate(W / 2 + 145, 228);
                     ctx.rotate(-0.12);
-                    drawRoundedRect(ctx, -42, -19, 84, 38, 15);
-                    ctx.fillStyle = C.pink;
-                    ctx.fill();
-                    ctx.lineWidth = 2.5;
-                    ctx.strokeStyle = C.black;
-                    ctx.stroke();
-                    ctx.fillStyle = vt.sun;
-                    ctx.font = '700 22px "Noto Sans Devanagari", sans-serif';
+                    drawRoundedRect(ctx, -52, -23, 104, 46, 17);
+                    ctx.fillStyle = C.pink; ctx.fill();
+                    ctx.lineWidth = 2.5; ctx.strokeStyle = C.black; ctx.stroke();
+                    ctx.fillStyle = t.sun;
+                    ctx.font = '700 28px "Noto Sans Devanagari", sans-serif';
                     ctx.textAlign = 'center';
-                    ctx.fillText('गोवा', 0, 6);
+                    ctx.fillText('गोवा', 0, 7);
                     ctx.restore();
 
                     // Subtitle
-                    ctx.font = '700 12px "JetBrains Mono", monospace';
-                    ctx.fillStyle = vt.accent;
-                    ctx.fillText('◆ OFFICIAL BUILDER ID ◆', W / 2, 248);
+                    ctx.font = '700 14px "JetBrains Mono", monospace';
+                    ctx.fillStyle = t.accent;
+                    ctx.fillText('◆ OFFICIAL BUILDER ID ◆', W / 2, 310);
 
-                    // ===== MASSIVE PHOTO =====
-                    const photoSize = 680;
-                    const photoY = 290;
+                    // ===== PHOTO =====
+                    const photoSize = 620;
+                    const photoY = 345;
                     const photoX = (W - photoSize) / 2;
-                    const photoBottom = photoY + photoSize; // 970
+                    const photoBorderBottom = photoY + photoSize + 6; // 971
 
-                    // Photo shadow
-                    ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';
-                    ctx.shadowBlur = 50;
+                    // Strong accent glow behind photo
+                    ctx.shadowColor = t.accent;
+                    ctx.shadowBlur = 100;
                     ctx.shadowOffsetY = 20;
+                    drawRoundedRect(ctx, photoX - 12, photoY - 12, photoSize + 24, photoSize + 24, 32);
+                    ctx.fillStyle = 'rgba(0,0,0,0.2)';
+                    ctx.fill();
+                    ctx.shadowBlur = 0; ctx.shadowOffsetY = 0;
 
-                    // Background behind photo
-                    drawRoundedRect(ctx, photoX, photoY, photoSize, photoSize, 26);
-                    ctx.fillStyle = vt.grad[0];
+                    // Photo bg
+                    drawRoundedRect(ctx, photoX, photoY, photoSize, photoSize, 24);
+                    ctx.fillStyle = t.bg[0];
                     ctx.fill();
 
-                    // Draw photo: center crop to square
+                    // Draw photo
                     const imgAspect = state.image.width / state.image.height;
                     let sx, sy, sW, sH;
-                    if (imgAspect > 1) {
-                        sH = state.image.height;
-                        sW = sH;
-                        sx = (state.image.width - sW) / 2;
-                        sy = 0;
-                    } else {
-                        sW = state.image.width;
-                        sH = sW;
-                        sx = 0;
-                        sy = (state.image.height - sH) / 2;
-                    }
+                    if (imgAspect > 1) { sH = state.image.height; sW = sH; sx = (state.image.width - sW) / 2; sy = 0; }
+                    else { sW = state.image.width; sH = sW; sx = 0; sy = (state.image.height - sH) / 2; }
 
                     ctx.save();
-                    drawRoundedRect(ctx, photoX, photoY, photoSize, photoSize, 26);
+                    drawRoundedRect(ctx, photoX, photoY, photoSize, photoSize, 24);
                     ctx.clip();
                     ctx.drawImage(state.image, sx, sy, sW, sH, photoX, photoY, photoSize, photoSize);
+                    // Bottom gradient overlay
+                    const photoOverlay = ctx.createLinearGradient(0, photoY + photoSize - 120, 0, photoY + photoSize);
+                    photoOverlay.addColorStop(0, 'rgba(0,0,0,0)');
+                    photoOverlay.addColorStop(1, 'rgba(0,0,0,0.3)');
+                    ctx.fillStyle = photoOverlay;
+                    ctx.fillRect(photoX, photoY, photoSize, photoSize);
                     ctx.restore();
 
-                    ctx.shadowColor = 'transparent';
-                    ctx.shadowBlur = 0;
-                    ctx.shadowOffsetY = 0;
+                    // Shine effect on photo (diagonal white streak)
+                    ctx.save();
+                    drawRoundedRect(ctx, photoX, photoY, photoSize, photoSize, 24);
+                    ctx.clip();
+                    const shineGrad = ctx.createLinearGradient(photoX - 100, photoY - 100, photoX + 200, photoY + 200);
+                    shineGrad.addColorStop(0, 'rgba(255,255,255,0)');
+                    shineGrad.addColorStop(0.4, 'rgba(255,255,255,0)');
+                    shineGrad.addColorStop(0.5, 'rgba(255,255,255,0.15)');
+                    shineGrad.addColorStop(0.6, 'rgba(255,255,255,0)');
+                    shineGrad.addColorStop(1, 'rgba(255,255,255,0)');
+                    ctx.fillStyle = shineGrad;
+                    ctx.fillRect(photoX, photoY, photoSize, photoSize);
+                    ctx.restore();
 
-                    // Photo border — thick sun color
-                    ctx.strokeStyle = vt.sun;
-                    ctx.lineWidth = 6;
-                    drawRoundedRect(ctx, photoX - 4, photoY - 4, photoSize + 8, photoSize + 8, 30);
+                    // Photo border — sun
+                    ctx.strokeStyle = t.sun; ctx.lineWidth = 6;
+                    drawRoundedRect(ctx, photoX - 4, photoY - 4, photoSize + 8, photoSize + 8, 28);
                     ctx.stroke();
 
-                    // Photo border — vibe accent inner
-                    ctx.strokeStyle = vt.accent;
-                    ctx.lineWidth = 2;
-                    drawRoundedRect(ctx, photoX + 4, photoY + 4, photoSize - 8, photoSize - 8, 20);
+                    // Photo border — accent inner
+                    ctx.strokeStyle = t.accent; ctx.lineWidth = 2;
+                    drawRoundedRect(ctx, photoX + 4, photoY + 4, photoSize - 8, photoSize - 8, 18);
                     ctx.stroke();
 
-                    // ===== NAME (BIG, NO OVERLAP) =====
-                    // Photo bottom is at 970. Name text is 68px tall.
-                    // Baseline at 1080 means text top is at 1080 - 68 = 1012
-                    // Gap from photo border (at 974) to text top (1012) = 38px ✓
-                    const nameY = 1080;
+                    // Corner brackets
+                    const cs = 26;
+                    ctx.strokeStyle = t.accent; ctx.lineWidth = 3;
+                    ctx.beginPath(); ctx.moveTo(photoX - 8, photoY + cs); ctx.lineTo(photoX - 8, photoY - 8); ctx.lineTo(photoX + cs, photoY - 8); ctx.stroke();
+                    ctx.beginPath(); ctx.moveTo(photoX + photoSize - cs, photoY - 8); ctx.lineTo(photoX + photoSize + 8, photoY - 8); ctx.lineTo(photoX + photoSize + 8, photoY + cs); ctx.stroke();
+                    ctx.beginPath(); ctx.moveTo(photoX - 8, photoY + photoSize - cs); ctx.lineTo(photoX - 8, photoY + photoSize + 8); ctx.lineTo(photoX + cs, photoY + photoSize + 8); ctx.stroke();
+                    ctx.beginPath(); ctx.moveTo(photoX + photoSize - cs, photoY + photoSize + 8); ctx.lineTo(photoX + photoSize + 8, photoY + photoSize + 8); ctx.lineTo(photoX + photoSize + 8, photoY + photoSize - cs); ctx.stroke();
+
+                    // Sparkles around photo
+                    ctx.fillStyle = t.sun;
+                    const sparklePos = [[photoX - 30, photoY + 100], [photoX + photoSize + 30, photoY + 180], [photoX - 25, photoY + photoSize - 120], [photoX + photoSize + 25, photoY + photoSize - 80], [photoX - 20, photoY + 300], [photoX + photoSize + 20, photoY + 400]];
+                    for (let sp of sparklePos) {
+                        ctx.save(); ctx.translate(sp[0], sp[1]);
+                        ctx.beginPath(); ctx.moveTo(0, -10); ctx.lineTo(2.5, -2.5); ctx.lineTo(10, 0); ctx.lineTo(2.5, 2.5); ctx.lineTo(0, 10); ctx.lineTo(-2.5, 2.5); ctx.lineTo(-10, 0); ctx.lineTo(-2.5, -2.5); ctx.closePath(); ctx.fill();
+                        ctx.restore();
+                    }
+
+                    // ===== NAME (TIGHT GAP — RIGHT BELOW PHOTO) =====
+                    // Photo border bottom = 971. Name font = 64px Playfair.
+                    // Baseline at 1045 → text top ≈ 1045 - 68 = 977
+                    // Gap = 977 - 971 = 6px — tight but no overlap ✓
+                    const nameY = 1045;
                     ctx.textAlign = 'center';
                     ctx.font = '900 64px "Playfair Display", serif';
-                    ctx.fillStyle = 'rgba(0,0,0,0.35)';
+                    ctx.fillStyle = 'rgba(0,0,0,0.45)';
                     ctx.fillText(name, W / 2 + 2, nameY + 2);
-                    ctx.fillStyle = vt.sun;
+                    ctx.fillStyle = t.sun;
                     ctx.fillText(name, W / 2, nameY);
 
-                    // Name underline
+                    // Name underline with glow
                     const nameWidth = ctx.measureText(name).width;
-                    ctx.strokeStyle = vt.accent;
-                    ctx.lineWidth = 4;
+                    ctx.shadowColor = t.accent; ctx.shadowBlur = 15;
+                    ctx.strokeStyle = t.accent; ctx.lineWidth = 4;
                     ctx.beginPath();
-                    ctx.moveTo(W / 2 - nameWidth / 2, nameY + 18);
-                    ctx.lineTo(W / 2 + nameWidth / 2, nameY + 18);
+                    ctx.moveTo(W / 2 - nameWidth / 2, nameY + 22);
+                    ctx.lineTo(W / 2 + nameWidth / 2, nameY + 22);
                     ctx.stroke();
+                    ctx.shadowBlur = 0;
 
                     // ===== BUILDER TITLE =====
                     ctx.font = '700 24px "JetBrains Mono", monospace';
-                    ctx.fillStyle = vt.accent;
-                    ctx.fillText(title.toUpperCase(), W / 2, nameY + 55);
+                    ctx.fillStyle = t.accent;
+                    ctx.fillText(title.toUpperCase(), W / 2, nameY + 58);
+
+                    // ===== VERIFIED BADGE (next to title) =====
+                    const badgeX = W / 2 + ctx.measureText(title.toUpperCase()).width / 2 + 20;
+                    const badgeY = nameY + 52;
+                    ctx.beginPath(); ctx.arc(badgeX, badgeY, 10, 0, Math.PI * 2);
+                    ctx.fillStyle = t.accent; ctx.fill();
+                    ctx.strokeStyle = '#FFF'; ctx.lineWidth = 1.5; ctx.stroke();
+                    ctx.strokeStyle = '#FFF'; ctx.lineWidth = 2.5;
+                    ctx.beginPath(); ctx.moveTo(badgeX - 4, badgeY); ctx.lineTo(badgeX - 1, badgeY + 4); ctx.lineTo(badgeX + 5, badgeY - 4); ctx.stroke();
+
+                    // ===== DIVIDER =====
+                    ctx.strokeStyle = 'rgba(255, 255, 255, 0.15)';
+                    ctx.lineWidth = 1;
+                    ctx.beginPath();
+                    ctx.moveTo(200, nameY + 82);
+                    ctx.lineTo(W - 200, nameY + 82);
+                    ctx.stroke();
+
+                    // Diamond on divider
+                    ctx.fillStyle = t.accent;
+                    ctx.beginPath();
+                    ctx.moveTo(W / 2, nameY + 74);
+                    ctx.lineTo(W / 2 + 8, nameY + 82);
+                    ctx.lineTo(W / 2, nameY + 90);
+                    ctx.lineTo(W / 2 - 8, nameY + 82);
+                    ctx.closePath();
+                    ctx.fill();
 
                     // ===== INFO BOXES =====
-                    const boxY = nameY + 90;
+                    const boxY = nameY + 105;
                     const boxW = 360;
-                    const boxH = 95;
+                    const boxH = 90;
                     const gap = 40;
                     const leftX = (W - (boxW * 2 + gap)) / 2;
 
@@ -1160,31 +1254,33 @@
                     drawRoundedRect(ctx, leftX, boxY, boxW, boxH, 14);
                     ctx.fillStyle = 'rgba(255, 255, 255, 0.07)';
                     ctx.fill();
-                    ctx.strokeStyle = vt.sun;
-                    ctx.lineWidth = 2.5;
-                    ctx.stroke();
+                    ctx.strokeStyle = t.sun; ctx.lineWidth = 2.5; ctx.stroke();
                     ctx.textAlign = 'center';
                     ctx.font = '700 12px "JetBrains Mono", monospace';
-                    ctx.fillStyle = vt.sun;
+                    ctx.fillStyle = t.sun;
                     ctx.fillText('STACK', leftX + boxW / 2, boxY + 26);
                     ctx.font = '900 36px "Playfair Display", serif';
                     ctx.fillStyle = '#FFF8E7';
-                    ctx.fillText(stackVal, leftX + boxW / 2, boxY + 68);
+                    ctx.fillText(stackVal, leftX + boxW / 2, boxY + 66);
 
                     // Vibe box
                     const rightX = leftX + boxW + gap;
                     drawRoundedRect(ctx, rightX, boxY, boxW, boxH, 14);
                     ctx.fillStyle = 'rgba(255, 255, 255, 0.07)';
                     ctx.fill();
-                    ctx.strokeStyle = vt.accent;
-                    ctx.lineWidth = 2.5;
-                    ctx.stroke();
+                    ctx.strokeStyle = t.accent; ctx.lineWidth = 2.5; ctx.stroke();
                     ctx.font = '700 12px "JetBrains Mono", monospace';
-                    ctx.fillStyle = vt.accent;
+                    ctx.fillStyle = t.accent;
                     ctx.fillText('VIBE', rightX + boxW / 2, boxY + 26);
                     ctx.font = '900 34px "Playfair Display", serif';
                     ctx.fillStyle = '#FFF8E7';
-                    ctx.fillText(vibeVal, rightX + boxW / 2, boxY + 68);
+                    ctx.fillText(vibeVal, rightX + boxW / 2, boxY + 66);
+
+                    // Small icon between boxes
+                    ctx.fillStyle = t.sun;
+                    ctx.beginPath(); ctx.arc(W / 2, boxY + boxH / 2, 8, 0, Math.PI * 2); ctx.fill();
+                    ctx.fillStyle = t.bg[0];
+                    ctx.beginPath(); ctx.arc(W / 2, boxY + boxH / 2, 4, 0, Math.PI * 2); ctx.fill();
 
                     // ===== HANDLE =====
                     if (handle) {
@@ -1193,21 +1289,73 @@
                         ctx.fillText(handle.startsWith('@') ? handle : '@' + handle, W / 2, boxY + boxH + 40);
                     }
 
-                    // ===== BOTTOM BAR =====
-                    ctx.fillStyle = vt.sun;
-                    ctx.fillRect(60, H - 52, W - 120, 3);
+                    // ===== RIBBON BANNER =====
+                    const ribbonY = boxY + boxH + 70;
+                    const ribbonW = 280;
+                    const ribbonH = 36;
+                    const ribbonX = (W - ribbonW) / 2;
+                    // Banner body
+                    drawRoundedRect(ctx, ribbonX, ribbonY, ribbonW, ribbonH, 8);
+                    ctx.fillStyle = t.accent;
+                    ctx.fill();
+                    // Banner tails
+                    ctx.beginPath();
+                    ctx.moveTo(ribbonX - 15, ribbonY + ribbonH / 2);
+                    ctx.lineTo(ribbonX, ribbonY);
+                    ctx.lineTo(ribbonX, ribbonY + ribbonH);
+                    ctx.closePath();
+                    ctx.fillStyle = t.accent;
+                    ctx.fill();
+                    ctx.beginPath();
+                    ctx.moveTo(ribbonX + ribbonW + 15, ribbonY + ribbonH / 2);
+                    ctx.lineTo(ribbonX + ribbonW, ribbonY);
+                    ctx.lineTo(ribbonX + ribbonW, ribbonY + ribbonH);
+                    ctx.closePath();
+                    ctx.fill();
+                    // Text
                     ctx.font = '700 14px "JetBrains Mono", monospace';
-                    ctx.fillStyle = vt.sun;
-                    ctx.textAlign = 'left';
-                    ctx.fillText('HH GOA 2026', 60, H - 22);
-                    ctx.textAlign = 'right';
-                    ctx.fillStyle = vt.accent;
-                    ctx.fillText('#FRAMEINGOA', W - 60, H - 22);
-                    const serial = 'HH26-' + Math.random().toString(36).substr(2, 6).toUpperCase();
-                    ctx.font = '500 11px "JetBrains Mono", monospace';
-                    ctx.fillStyle = 'rgba(255, 248, 231, 0.25)';
+                    ctx.fillStyle = '#FFF';
                     ctx.textAlign = 'center';
-                    ctx.fillText(serial, W / 2, H - 22);
+                    ctx.fillText('HH GOA 2026 BUILDER', W / 2, ribbonY + 24);
+
+                    // ===== SEAL =====
+                    const sealY = H - 100;
+                    ctx.save(); ctx.translate(W / 2, sealY); ctx.rotate(-0.1);
+                    ctx.beginPath(); ctx.arc(0, 0, 24, 0, Math.PI * 2);
+                    ctx.strokeStyle = t.accent; ctx.lineWidth = 2; ctx.stroke();
+                    ctx.beginPath(); ctx.arc(0, 0, 18, 0, Math.PI * 2);
+                    ctx.strokeStyle = t.sun; ctx.lineWidth = 1.5; ctx.setLineDash([4, 3]); ctx.stroke(); ctx.setLineDash([]);
+                    ctx.fillStyle = t.sun;
+                    ctx.beginPath();
+                    for (let i = 0; i < 5; i++) {
+                        const a = (i / 5) * Math.PI * 2 - Math.PI / 2;
+                        const a2 = ((i + 0.5) / 5) * Math.PI * 2 - Math.PI / 2;
+                        if (i === 0) ctx.moveTo(Math.cos(a) * 12, Math.sin(a) * 12);
+                        else ctx.lineTo(Math.cos(a) * 12, Math.sin(a) * 12);
+                        ctx.lineTo(Math.cos(a2) * 5, Math.sin(a2) * 5);
+                    }
+                    ctx.closePath(); ctx.fill();
+                    ctx.restore();
+
+                    // ===== BOTTOM BAR =====
+                    ctx.fillStyle = t.sun;
+                    ctx.fillRect(40, H - 55, W - 80, 5);
+                    ctx.shadowColor = t.sun; ctx.shadowBlur = 15;
+                    ctx.fillRect(40, H - 55, W - 80, 5);
+                    ctx.shadowBlur = 0;
+
+                    ctx.font = '700 18px "JetBrains Mono", monospace';
+                    ctx.fillStyle = t.sun;
+                    ctx.textAlign = 'left';
+                    ctx.fillText('HH GOA 2026', 40, H - 24);
+                    ctx.textAlign = 'right';
+                    ctx.fillStyle = t.accent;
+                    ctx.fillText('#FRAMEINGOA', W - 40, H - 24);
+                    const serial = 'HH26-' + Math.random().toString(36).substr(2, 6).toUpperCase();
+                    ctx.font = '700 14px "JetBrains Mono", monospace';
+                    ctx.fillStyle = 'rgba(255, 248, 231, 0.5)';
+                    ctx.textAlign = 'center';
+                    ctx.fillText(serial, W / 2, H - 24);
 
                     // ===== EXPORT =====
                     const dataUrl = canvas.toDataURL('image/png', 1.0);
