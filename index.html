@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="description" content="Generate your official HH Goa 2026 2:47PM Studio Lanyard Pass">
+    <meta name="description" content="Generate your official HH Goa 2026 Studio Lanyard Pass with Dynamic Matching Themes">
     <meta name="theme-color" content="#11002C">
-    <meta property="og:title" content="Hacker House Goa 2026 — Official Lanyard Pass Generator">
-    <meta property="og:description" content="Generate your official 2:47PM Studio Lanyard Pass for HH Goa 2026. Upload your photo, pick your stack & vibe, and get a high-resolution badge ready to share.">
+    <meta property="og:title" content="Hacker House Goa 2026 — Dynamic Lanyard Pass Generator">
+    <meta property="og:description" content="Generate your official studio Lanyard Pass for HH Goa 2026. Upload your photo, pick your stack & vibe, and get a high-resolution badge ready to share.">
     <meta property="og:image" content="https://gitparthwandre.github.io/id-creation-hhgoa/og-image.png">
     <meta property="og:url" content="https://gitparthwandre.github.io/id-creation-hhgoa/">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Hacker House Goa 2026 — Official Lanyard Pass Generator">
-    <meta name="twitter:description" content="Generate your official 2:47PM Studio Lanyard Pass for HH Goa 2026. Upload your photo, pick your stack & vibe, and get a high-resolution badge ready to share.">
+    <meta name="twitter:title" content="Hacker House Goa 2026 — Dynamic Lanyard Pass Generator">
+    <meta name="twitter:description" content="Generate your official studio Lanyard Pass for HH Goa 2026. Upload your photo, pick your stack & vibe, and get a high-resolution badge ready to share.">
     <meta name="twitter:image" content="https://gitparthwandre.github.io/id-creation-hhgoa/og-image.png">
-    <title>Hacker House Goa 2026 — 2:47PM Studio Lanyard Pass ✦</title>
+    <title>Hacker House Goa 2026 — Dynamic Lanyard Pass ⚡</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=Plus+Jakarta+Sans:wght@500;700;800;900&family=JetBrains+Mono:wght@500;700;800&family=Noto+Sans+Devanagari:wght@700;900&display=swap" rel="stylesheet">
@@ -27,7 +27,7 @@
             --lime: #39FF14;
             --purple-bg: #11002C;
             --purple-card: #1D0047;
-            --cream-card: #FAF8F0;
+            --card-cream: #FAF8F0;
             --white: #FFFFFF;
             --black: #000000;
         }
@@ -178,8 +178,8 @@
 
         /* Neo-Brutalist Pop Cards */
         .card {
-            background: var(--cream-card);
-            color: var(--black);
+            background: var(--purple-card);
+            color: var(--white);
             border: 3.5px solid var(--black);
             border-radius: 22px;
             padding: 24px;
@@ -194,7 +194,7 @@
             font-weight: 900;
             text-transform: uppercase;
             letter-spacing: 0.08em;
-            color: var(--black);
+            color: var(--yellow);
             margin-bottom: 16px;
             display: flex;
             align-items: center;
@@ -213,7 +213,7 @@
 
         /* Upload Zone */
         .upload-zone {
-            border: 3.5px dashed var(--black);
+            border: 3.5px dashed var(--cyan);
             border-radius: 16px;
             padding: 36px 18px;
             text-align: center;
@@ -221,12 +221,12 @@
             transition: all 0.2s ease;
             position: relative;
             overflow: hidden;
-            background: #FFFDE7;
+            background: rgba(0, 0, 0, 0.35);
         }
 
         .upload-zone:hover {
-            background: rgba(255, 230, 0, 0.3);
-            border-color: var(--black);
+            background: rgba(255, 230, 0, 0.15);
+            border-color: var(--yellow);
             transform: translateY(-2px);
         }
 
@@ -253,13 +253,13 @@
         .upload-text {
             font-size: 1.15rem;
             font-weight: 900;
-            color: var(--black);
+            color: var(--white);
             margin-bottom: 4px;
         }
 
         .upload-hint {
             font-size: 0.75rem;
-            color: #666666;
+            color: rgba(255, 255, 255, 0.7);
             font-weight: 700;
         }
 
@@ -296,7 +296,7 @@
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.75rem;
             font-weight: 900;
-            color: var(--black);
+            color: var(--yellow);
             margin-bottom: 6px;
             text-transform: uppercase;
             letter-spacing: 0.06em;
@@ -305,10 +305,10 @@
         input[type="text"], select {
             width: 100%;
             padding: 14px 16px;
-            background: #FFFFFF;
-            border: 3px solid var(--black);
+            background: #000000;
+            border: 3px solid var(--cyan);
             border-radius: 12px;
-            color: var(--black);
+            color: var(--white);
             font-family: 'Plus Jakarta Sans', sans-serif;
             font-size: 0.9375rem;
             font-weight: 800;
@@ -317,20 +317,25 @@
             box-shadow: 3.5px 3.5px 0px var(--black);
         }
 
-        input[type="text"]::placeholder { color: #999999; }
+        input[type="text"]::placeholder { color: #888888; }
 
         input[type="text"]:focus, select:focus {
-            background: #FFFFFF;
-            border-color: var(--black);
-            box-shadow: 5px 5px 0px var(--cyan);
+            background: #000000;
+            border-color: var(--yellow);
+            box-shadow: 5px 5px 0px var(--pink);
         }
 
         select {
             appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 12 12'%3E%3Cpath fill='%23000000' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 12 12'%3E%3Cpath fill='%23FFE600' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
             background-repeat: no-repeat;
             background-position: right 16px center;
             padding-right: 40px;
+        }
+
+        select option {
+            background: #11002C;
+            color: #FFFFFF;
         }
 
         .field-row {
@@ -341,8 +346,8 @@
 
         /* Live Title Preview */
         .title-preview {
-            background: rgba(255, 0, 127, 0.15);
-            border: 3px solid var(--black);
+            background: rgba(255, 0, 127, 0.2);
+            border: 3px solid var(--pink);
             border-radius: 14px;
             padding: 14px 16px;
             margin-top: 10px;
@@ -367,7 +372,7 @@
         .title-preview-value {
             font-size: 1.2rem;
             font-weight: 900;
-            color: var(--black);
+            color: var(--white);
             margin-top: 4px;
         }
 
@@ -654,7 +659,7 @@
 
         <div class="result-section" id="resultSection">
             <div class="result-card-wrapper">
-                <img id="generatedCard" alt="Hacker House Goa 2026 Official 2:47PM Studio Lanyard Pass" />
+                <img id="generatedCard" alt="Hacker House Goa 2026 Official Lanyard Pass" />
             </div>
 
             <div class="action-buttons">
@@ -716,7 +721,7 @@
             cardCream: '#FAF8F0',
             white: '#FFFFFF',
             black: '#000000',
-            grayText: '#555555'
+            grayText: '#AAAAAA'
         };
 
         const titleAdjectives = {
@@ -884,8 +889,8 @@
         }
 
         // Helper to draw Barcode
-        function drawBarcode(ctx, x, y, width, height) {
-            ctx.fillStyle = C.black;
+        function drawBarcode(ctx, x, y, width, height, isDark) {
+            ctx.fillStyle = isDark ? C.white : C.black;
             let currentX = x;
             const endX = x + width;
             while (currentX < endX) {
@@ -938,7 +943,7 @@
 
         async function generateCard() {
             generateBtn.disabled = true;
-            generateBtn.innerHTML = '<div class="spinner"></div><span>CRAFTING 1200×1800 STUDIO PASS...</span>';
+            generateBtn.innerHTML = '<div class="spinner"></div><span>CRAFTING DYNAMIC LANYARD PASS...</span>';
 
             setTimeout(() => {
                 try {
@@ -954,19 +959,19 @@
                     const stackVal = stack.value.toUpperCase();
                     const vibeVal = vibe.value;
 
-                    // Dynamic Photo Backdrops per Vibe
-                    const vibeColors = {
-                        'Night Owl': C.pink,
-                        'Coffee Addict': C.yellow,
-                        'Beach Bum': C.lime,
-                        'Code Warrior': C.cyan,
-                        'Bug Hunter': C.yellow,
-                        'Ship It': C.cyan,
-                        'Chill': C.lime,
-                        'Chaos': C.pink
+                    // DYNAMIC MATCHING CARD THEMES PER VIBE
+                    const themeMap = {
+                        'Night Owl': { cardBg: '#1C003D', textColor: '#FFFFFF', subColor: '#00F5FF', accentDot: C.yellow, photoBg: C.pink },
+                        'Coffee Addict': { cardBg: '#2B1408', textColor: '#FFFFFF', subColor: '#FFE600', accentDot: C.lime, photoBg: C.yellow },
+                        'Beach Bum': { cardBg: '#09331D', textColor: '#FFFFFF', subColor: '#F9B828', accentDot: C.cyan, photoBg: C.lime },
+                        'Code Warrior': { cardBg: '#051923', textColor: '#FFFFFF', subColor: '#00F5FF', accentDot: C.lime, photoBg: C.cyan },
+                        'Bug Hunter': { cardBg: '#2D1F00', textColor: '#FFFFFF', subColor: '#FFE600', accentDot: C.pink, photoBg: C.yellow },
+                        'Ship It': { cardBg: '#1E0040', textColor: '#FFFFFF', subColor: '#00F5FF', accentDot: C.yellow, photoBg: C.pink },
+                        'Chill': { cardBg: '#082419', textColor: '#FFFFFF', subColor: '#39FF14', accentDot: C.yellow, photoBg: C.lime },
+                        'Chaos': { cardBg: '#3D0022', textColor: '#FFFFFF', subColor: '#FFE600', accentDot: C.cyan, photoBg: C.pink }
                     };
 
-                    const photoBgColor = vibeColors[vibeVal] || C.lime;
+                    const t = themeMap[vibeVal] || themeMap['Beach Bum'];
 
                     // 1. DEEP NEON PURPLE BACKDROP WITH TROPICAL SUNBURST RAYS & WATERMARK
                     ctx.fillStyle = C.purpleBg;
@@ -1009,7 +1014,7 @@
                     drawStarburst(ctx, 160, 480, 14, 110, 50, C.yellow);
                     drawStarburst(ctx, W - 140, 1280, 12, 60, 28, C.cyan);
 
-                    // 2. MAIN LANYARD BADGE CARD (Clean Bright Cream #FAF8F0)
+                    // 2. MAIN DYNAMIC LANYARD BADGE CARD
                     const cardW = 800;
                     const cardH = 1460;
                     const cardX = (W - cardW) / 2;
@@ -1019,10 +1024,24 @@
                     drawRoundedRect(ctx, cardX + 18, cardY + 18, cardW, cardH, 38);
                     ctx.fillStyle = C.black; ctx.fill();
 
-                    // Off-White Card Fill
+                    // Dynamic Rich Color Card Fill (Matching Background Theme)
                     drawRoundedRect(ctx, cardX, cardY, cardW, cardH, 38);
-                    ctx.fillStyle = C.cardCream; ctx.fill();
-                    ctx.strokeStyle = C.black; ctx.lineWidth = 6; ctx.stroke();
+                    ctx.fillStyle = t.cardBg; ctx.fill();
+                    ctx.strokeStyle = C.yellow; ctx.lineWidth = 6; ctx.stroke();
+
+                    // Subtle Grid Mesh Overlay inside Card
+                    ctx.save();
+                    drawRoundedRect(ctx, cardX, cardY, cardW, cardH, 38);
+                    ctx.clip();
+                    ctx.strokeStyle = 'rgba(255, 255, 255, 0.06)';
+                    ctx.lineWidth = 1.5;
+                    for (let cx = cardX; cx < cardX + cardW; cx += 32) {
+                        ctx.beginPath(); ctx.moveTo(cx, cardY); ctx.lineTo(cx, cardY + cardH); ctx.stroke();
+                    }
+                    for (let cy = cardY; cy < cardY + cardH; cy += 32) {
+                        ctx.beginPath(); ctx.moveTo(cardX, cy); ctx.lineTo(cardX + cardW, cy); ctx.stroke();
+                    }
+                    ctx.restore();
 
                     // Top Lanyard Metallic Clasp
                     drawLanyardClip(ctx, cardX, cardY, cardW);
@@ -1053,7 +1072,7 @@
                     ctx.beginPath(); ctx.arc(45, -12, 3, 0, Math.PI * 2); ctx.fillStyle = C.black; ctx.fill();
 
                     ctx.font = '900 28px "JetBrains Mono", monospace';
-                    ctx.fillStyle = C.black;
+                    ctx.fillStyle = C.yellow;
                     ctx.textAlign = 'center';
                     ctx.fillText('2:47PM', 0, 8);
                     ctx.font = '900 15px "JetBrains Mono", monospace';
@@ -1093,7 +1112,7 @@
 
                     // Date & Location Label (Below Logo Box)
                     ctx.font = '800 16px "JetBrains Mono", monospace';
-                    ctx.fillStyle = C.grayText;
+                    ctx.fillStyle = t.subColor;
                     ctx.textAlign = 'left';
                     ctx.fillText('GOA, INDIA  ·  28 - 31 OCT 2026', logoBoxX + 4, logoBoxY + logoBoxH + 30);
 
@@ -1131,7 +1150,7 @@
 
                     // Solid Vibrant Photo Background Color
                     drawRoundedRect(ctx, photoX, photoY, photoSize, photoSize, 32);
-                    ctx.fillStyle = photoBgColor; ctx.fill();
+                    ctx.fillStyle = t.photoBg; ctx.fill();
 
                     // Draw Cropped Portrait Image
                     const imgAspect = state.image.width / state.image.height;
@@ -1147,7 +1166,7 @@
 
                     // Photo Border
                     drawRoundedRect(ctx, photoX, photoY, photoSize, photoSize, 32);
-                    ctx.strokeStyle = C.black; ctx.lineWidth = 5; ctx.stroke();
+                    ctx.strokeStyle = C.yellow; ctx.lineWidth = 5; ctx.stroke();
 
                     // 6. BUILDER NAME WITH GOLD HIGHLIGHT BAR UNDERNEATH
                     const nameY = photoY + photoSize + 60;
@@ -1159,23 +1178,23 @@
                     ctx.fillRect(contentX, nameY + 6, Math.min(nameWidth, 340), 16);
 
                     // Name Text
-                    ctx.fillStyle = C.black;
+                    ctx.fillStyle = t.textColor;
                     ctx.textAlign = 'left';
                     ctx.fillText(name, contentX, nameY);
 
                     // Title Subtitle (e.g. "Product Builder · Hacker House Goa")
                     ctx.font = '800 24px "Plus Jakarta Sans", sans-serif';
-                    ctx.fillStyle = C.grayText;
+                    ctx.fillStyle = t.subColor;
                     ctx.fillText(stackVal + ' Builder  ·  Hacker House Goa', contentX, nameY + 44);
 
                     // 7. BOTTOM BARCODE + TAGLINE SECTION
                     const bottomY = cardY + cardH - 130;
 
-                    // Left Barcode
-                    drawBarcode(ctx, contentX, bottomY, 260, 60);
+                    // Left Barcode (White bars on dark card)
+                    drawBarcode(ctx, contentX, bottomY, 260, 60, true);
 
                     // Vertical Divider Line
-                    ctx.strokeStyle = '#D1D5DB';
+                    ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
                     ctx.lineWidth = 2.5;
                     ctx.beginPath();
                     ctx.moveTo(contentX + 300, bottomY - 10);
@@ -1184,7 +1203,7 @@
 
                     // Tagline (Right)
                     ctx.font = '800 18px "Plus Jakarta Sans", sans-serif';
-                    ctx.fillStyle = C.black;
+                    ctx.fillStyle = t.textColor;
                     ctx.fillText('Code is intelligence', contentX + 325, bottomY + 22);
                     ctx.fillText('made visible. #FrameInGoa', contentX + 325, bottomY + 48);
 
@@ -1194,7 +1213,7 @@
                     state.generatedDataUrl = dataUrl;
 
                     resultSection.classList.add('visible');
-                    generateBtn.innerHTML = '<span>✓ 1200×1800 PASS READY!</span>';
+                    generateBtn.innerHTML = '<span>✓ 1200×1800 DYNAMIC PASS READY!</span>';
 
                     setTimeout(() => {
                         resultSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -1217,7 +1236,7 @@
             link.download = 'HackerHouse-Goa-2026-' + fullName.value.trim().replace(/\s+/g, '-') + '-Pass.png';
             link.href = state.generatedDataUrl;
             link.click();
-            showToast('Pass downloaded! ⚡✦');
+            showToast('Dynamic Pass downloaded! ⚡✦');
         });
 
         shareBtn.addEventListener('click', async () => {
