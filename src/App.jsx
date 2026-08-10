@@ -544,7 +544,7 @@ export default function App() {
         ctx.textAlign = 'center';
         ctx.fillText('ACCESS ALL AREAS // 26', botTagX + botTagW / 2, botTagY + 24);
 
-        // 5. BUILDER NAME & SUBTITLE — SHIFTED DOWN PER USER REQUEST (nameY = photoY + photoSize + 95)
+        // 5. BUILDER NAME & SUBTITLE
         const nameY = photoY + photoSize + 95;
         const rawName = fullName.trim();
         let nameFontSize = 58;
@@ -569,14 +569,14 @@ export default function App() {
         ctx.fillStyle = C.white;
         ctx.fillText(rawName, cardCenterX, nameY);
 
-        // Centered Subtitle Label
-        ctx.font = '800 20px "Plus Jakarta Sans", sans-serif';
+        // Centered Subtitle Label — SHIFTED DOWN TO nameY + 48 FOR 0 OVERLAP WITH GOLD LINE!
+        ctx.font = '800 19px "Plus Jakarta Sans", sans-serif';
         ctx.fillStyle = C.gold;
         ctx.textAlign = 'center';
-        ctx.fillText('Hacker House Goa  ·  Builder Pass', cardCenterX, nameY + 36);
+        ctx.fillText('Hacker House Goa  ·  Builder Pass', cardCenterX, nameY + 48);
 
         // 6. SIDE-BY-SIDE "PRIMARY STACK" (CYAN) AND "VIBE CHECK" (PINK) RETRO PILL BADGES
-        const stackVibeY = nameY + 54;
+        const stackVibeY = nameY + 76; // SHIFTED DOWN TO ACCELERATE BREATHING ROOM
         const pillW = 168;
         const pillH = 58;
         const gap = 14;
@@ -621,7 +621,7 @@ export default function App() {
 
         // 7. ★ BUILDER TITLE BADGE
         const badgeTitleText = '★ ' + (builderTitle || 'On-Chain Surfer');
-        const badgeY = stackVibeY + pillH + 18;
+        const badgeY = stackVibeY + pillH + 16;
         ctx.font = '900 22px "Plus Jakarta Sans", sans-serif';
         const badgeTextWidth = ctx.measureText(badgeTitleText).width;
         const badgeW = Math.max(350, badgeTextWidth + 44);
@@ -641,15 +641,15 @@ export default function App() {
         ctx.fillText(badgeTitleText, cardCenterX, badgeY + 32);
 
         // 8. BOTTOM BARCODE + TAGLINE SECTION
-        const bottomY = cardY + cardH - 90;
+        const bottomY = cardY + cardH - 85;
         const barcodeW = 280;
         const barcodeX = cardCenterX - barcodeW / 2;
-        drawBarcode(ctx, barcodeX, bottomY, barcodeW, 48);
+        drawBarcode(ctx, barcodeX, bottomY, barcodeW, 46);
 
         ctx.font = '800 16px "Plus Jakarta Sans", sans-serif';
         ctx.fillStyle = C.white;
         ctx.textAlign = 'center';
-        ctx.fillText('Code is intelligence made visible. #FrameInGoa', cardCenterX, bottomY + 68);
+        ctx.fillText('Code is intelligence made visible. #FrameInGoa', cardCenterX, bottomY + 64);
 
         const dataUrl = canvas.toDataURL('image/png', 1.0);
         setGeneratedDataUrl(dataUrl);
