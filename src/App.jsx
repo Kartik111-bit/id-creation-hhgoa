@@ -6,12 +6,12 @@ const C = {
   greenBg: '#0B5639',
   greenCard: '#08291B',
   gold: '#F9B828',
-  pink: '#FF007F',
-  crimson: '#E51A4C',
+  pink: '#D6006E',
+  crimson: '#B8003A',
   cyan: '#00F5FF',
   lime: '#39FF14',
   white: '#FFFFFF',
-  cardBg: '#E51A4C',
+  cardBg: '#B8003A',
   black: '#000000',
   grayText: '#FFE6EA'
 };
@@ -282,7 +282,7 @@ export default function App() {
         ctx.bezierCurveTo(300, 1000, 900, 1250, W, 1150);
         ctx.stroke();
 
-        // 2. MAIN LANYARD BADGE CARD (Vibrant Crimson Red #E51A4C)
+        // 2. MAIN LANYARD BADGE CARD (Rich Dark Crimson #B8003A)
         const cardW = 800;
         const cardH = 1460;
         const cardX = (W - cardW) / 2;
@@ -292,7 +292,7 @@ export default function App() {
         drawRoundedRect(ctx, cardX + 18, cardY + 18, cardW, cardH, 38);
         ctx.fillStyle = C.black; ctx.fill();
 
-        // Crimson Red #E51A4C Card Fill
+        // Dark Crimson #B8003A Card Fill
         drawRoundedRect(ctx, cardX, cardY, cardW, cardH, 38);
         ctx.fillStyle = C.crimson; ctx.fill();
         ctx.strokeStyle = C.black; ctx.lineWidth = 6; ctx.stroke();
@@ -327,24 +327,24 @@ export default function App() {
         ctx.textAlign = 'center';
         ctx.fillText('✦ OFFICIAL BUILDER PASS ✦', contentX + 180, headerY + 28);
 
-        // 2:47 PM STUDIO STAMP (EXTRA BIG & EXTRA BOLD!)
+        // 2:47 PM STUDIO STAMP (EXTRA BIG & BOLD)
         const studioX = cardX + cardW - 180;
         const studioY = headerY + 22;
         ctx.save();
         ctx.translate(studioX, studioY);
         ctx.rotate(0.06);
 
-        // Target Circle Ring (Extra Large: Pink 28px, Gold 16px, Black 7px)
+        // Target Circle Ring (Pink 28px, Gold 16px, Black 7px)
         ctx.beginPath(); ctx.arc(105, -24, 28, 0, Math.PI * 2); ctx.fillStyle = C.pink; ctx.fill();
         ctx.beginPath(); ctx.arc(105, -24, 16, 0, Math.PI * 2); ctx.fillStyle = C.gold; ctx.fill();
         ctx.beginPath(); ctx.arc(105, -24, 7, 0, Math.PI * 2); ctx.fillStyle = C.black; ctx.fill();
         ctx.lineWidth = 3; ctx.strokeStyle = C.black; ctx.stroke();
 
-        // 2:47PM Headline Font Size 56px (EXTRA BIG & EXTRA BOLD!)
+        // 2:47PM Headline Font Size 56px
         ctx.font = '900 56px "JetBrains Mono", monospace';
         ctx.fillStyle = C.black;
         ctx.textAlign = 'center';
-        ctx.fillText('2:47PM', 2, 14); // Black drop shadow
+        ctx.fillText('2:47PM', 2, 14);
         ctx.fillStyle = C.gold;
         ctx.fillText('2:47PM', 0, 12);
 
@@ -372,7 +372,7 @@ export default function App() {
         ctx.fillText('HACKER', logoBoxX + 18, logoBoxY + 86);
         ctx.fillText('HOUSE', logoBoxX + 18, logoBoxY + 172);
 
-        // Overlapping Hot Pink Devanagari "गोवा" Sticker Badge
+        // Overlapping Darker Hot Pink Devanagari "गोवा" Sticker Badge
         ctx.save();
         ctx.translate(logoBoxX + logoBoxW / 2 + 10, logoBoxY + logoBoxH / 2 - 4);
         ctx.rotate(-0.16);
@@ -453,7 +453,7 @@ export default function App() {
         ctx.fillStyle = C.gold;
         ctx.fillText(stack.toUpperCase() + ' Builder  ·  Hacker House Goa', contentX, nameY + 40);
 
-        // 7. NEW: ★ BUILDER TITLE BADGE (MATCHING USER SCREENSHOT PILL BADGE)
+        // 7. ★ BUILDER TITLE BADGE (MATCHING USER SCREENSHOT PILL BADGE)
         const badgeTitleText = '★ ' + (builderTitle || 'On-Chain Surfer');
         const badgeY = nameY + 58;
         ctx.font = '900 22px "Plus Jakarta Sans", sans-serif';
@@ -467,9 +467,9 @@ export default function App() {
 
         // Dark Purple/Black Pill Fill
         drawRoundedRect(ctx, contentX, badgeY, badgeW, badgeH, 16);
-        ctx.fillStyle = '#22001F'; ctx.fill();
+        ctx.fillStyle = '#1A0018'; ctx.fill();
 
-        // Hot Pink Border (#FF007F)
+        // Darker Hot Pink Border (#D6006E)
         ctx.strokeStyle = C.pink; ctx.lineWidth = 3.5; ctx.stroke();
 
         // White Bold Text Inside Pill

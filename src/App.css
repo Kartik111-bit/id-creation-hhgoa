@@ -3,8 +3,8 @@
   --green-dark: #063623;
   --green-card: #08291B;
   --gold: #F9B828;
-  --pink: #FF007F;
-  --crimson: #E51A4C;
+  --pink: #D6006E;
+  --crimson: #B8003A;
   --cyan: #00F5FF;
   --lime: #39FF14;
   --white: #FFFFFF;
@@ -93,7 +93,7 @@ body {
   margin-bottom: 24px;
 }
 
-/* 2:47PM STUDIO Logo - LARGER & BOLDER */
+/* 2:47PM STUDIO Logo */
 .studio-brand {
   text-align: left;
 }
@@ -381,7 +381,7 @@ select option {
 
 /* Title Preview */
 .title-preview {
-  background: rgba(255, 0, 127, 0.2);
+  background: rgba(214, 0, 110, 0.25);
   border: 3px solid var(--pink);
   border-radius: 14px;
   padding: 14px 16px;
