@@ -591,56 +591,51 @@ export default function App() {
         ctx.fillStyle = C.gold;
         ctx.fillText('Hacker House Goa  ·  Builder Pass', contentX, nameY + 36);
 
-        // 7. NEW: SIDE-BY-SIDE "STACK / ROLE" AND "VIBE CHECK" RETRO PILL BOXES (FROM USER SCREENSHOT)
-        const stackVibeY = nameY + 54;
-        const boxW = 160;
-        const boxH = 42;
+        // 7. SIDE-BY-SIDE "PRIMARY STACK" (CYAN) AND "VIBE CHECK" (PINK) RETRO PILL BADGES FROM USER SCREENSHOT
+        const stackVibeY = nameY + 50;
+        const pillW = 168;
+        const pillH = 58;
+        const gap = 14;
 
-        // BOX 1: STACK / ROLE
-        ctx.font = '900 11px "JetBrains Mono", monospace';
-        ctx.fillStyle = C.gold;
-        ctx.fillText('STACK / ROLE', contentX, stackVibeY + 10);
-
-        const b1Y = stackVibeY + 16;
-        drawRoundedRect(ctx, contentX + 3, b1Y + 3, boxW, boxH, 12);
+        // PILL 1: PRIMARY STACK (Cyan Border & Dark Fill)
+        const p1X = contentX;
+        drawRoundedRect(ctx, p1X + 4, stackVibeY + 4, pillW, pillH, 14);
         ctx.fillStyle = C.black; ctx.fill();
-        drawRoundedRect(ctx, contentX, b1Y, boxW, boxH, 12);
-        ctx.fillStyle = '#042618'; ctx.fill();
-        ctx.strokeStyle = C.gold; ctx.lineWidth = 2.5; ctx.stroke();
 
-        ctx.font = '900 15px "Plus Jakarta Sans", sans-serif';
+        drawRoundedRect(ctx, p1X, stackVibeY, pillW, pillH, 14);
+        ctx.fillStyle = '#001920'; ctx.fill();
+        ctx.strokeStyle = C.cyan; ctx.lineWidth = 3.5; ctx.stroke();
+
+        ctx.font = '900 10px "JetBrains Mono", monospace';
+        ctx.fillStyle = C.cyan;
+        ctx.textAlign = 'center';
+        ctx.fillText('✦ PRIMARY STACK', p1X + pillW / 2, stackVibeY + 20);
+
+        ctx.font = '900 20px "Plus Jakarta Sans", sans-serif';
         ctx.fillStyle = C.white;
-        ctx.fillText(stack || 'Hardware', contentX + 16, b1Y + 26);
+        ctx.fillText((stack || 'MOBILE').toUpperCase(), p1X + pillW / 2, stackVibeY + 44);
 
-        // Yellow Dropdown Arrow ▼
-        ctx.font = '900 12px sans-serif';
-        ctx.fillStyle = C.gold;
-        ctx.fillText('▼', contentX + boxW - 24, b1Y + 26);
-
-        // BOX 2: VIBE CHECK
-        const b2X = contentX + 175;
-        ctx.font = '900 11px "JetBrains Mono", monospace';
-        ctx.fillStyle = C.gold;
-        ctx.fillText('VIBE CHECK', b2X, stackVibeY + 10);
-
-        drawRoundedRect(ctx, b2X + 3, b1Y + 3, boxW, boxH, 12);
+        // PILL 2: VIBE CHECK (Hot Pink Border & Dark Fill)
+        const p2X = contentX + pillW + gap;
+        drawRoundedRect(ctx, p2X + 4, stackVibeY + 4, pillW, pillH, 14);
         ctx.fillStyle = C.black; ctx.fill();
-        drawRoundedRect(ctx, b2X, b1Y, boxW, boxH, 12);
-        ctx.fillStyle = '#042618'; ctx.fill();
-        ctx.strokeStyle = C.gold; ctx.lineWidth = 2.5; ctx.stroke();
 
-        ctx.font = '900 15px "Plus Jakarta Sans", sans-serif';
+        drawRoundedRect(ctx, p2X, stackVibeY, pillW, pillH, 14);
+        ctx.fillStyle = '#220014'; ctx.fill();
+        ctx.strokeStyle = C.pink; ctx.lineWidth = 3.5; ctx.stroke();
+
+        ctx.font = '900 10px "JetBrains Mono", monospace';
+        ctx.fillStyle = C.pink;
+        ctx.textAlign = 'center';
+        ctx.fillText('🍺 VIBE CHECK', p2X + pillW / 2, stackVibeY + 20);
+
+        ctx.font = '900 20px "Plus Jakarta Sans", sans-serif';
         ctx.fillStyle = C.white;
-        ctx.fillText(vibe || 'Ship It', b2X + 16, b1Y + 26);
-
-        // Yellow Dropdown Arrow ▼
-        ctx.font = '900 12px sans-serif';
-        ctx.fillStyle = C.gold;
-        ctx.fillText('▼', b2X + boxW - 24, b1Y + 26);
+        ctx.fillText((vibe || 'CHILL').toUpperCase(), p2X + pillW / 2, stackVibeY + 44);
 
         // 8. ★ BUILDER TITLE BADGE (MATCHING SCREENSHOT)
         const badgeTitleText = '★ ' + (builderTitle || 'On-Chain Surfer');
-        const badgeY = b1Y + boxH + 20;
+        const badgeY = stackVibeY + pillH + 18;
         ctx.font = '900 22px "Plus Jakarta Sans", sans-serif';
         const badgeTextWidth = ctx.measureText(badgeTitleText).width;
         const badgeW = Math.max(340, badgeTextWidth + 44);
